@@ -1,5 +1,5 @@
-$primary-color : #7ac22c;
-$light-color : #e1e1e1;
+$primary-color : #b58863;
+$light-color : #f0d9b5;
 $dark-color : #000;
 
 
@@ -13,7 +13,6 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    color: #333;
 }
 
 img {
@@ -23,21 +22,24 @@ img {
 }
 
 .nav {
-    background: $dark-color;
+    background: $light-color;
     color: #fff;
     padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     gap: 2rem;
-    box-shadow: 0 2px 6px rgba(122, 194, 44, 0.4);
+    box-shadow: 0 2px 8px rgba(181, 136, 99, 0.4);
     height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .nav a {
     color: $primary-color;
     text-decoration: none;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+
 }
 
 .nav-link {
@@ -55,7 +57,6 @@ img {
     bottom: 0 !important;
     background-color: $primary-color !important;
     transition: width 0.3s !important;
-    box-shadow: 0 0 10px $primary-color, 0 0 40px $primary-color, 0 0 80px $primary-color;
 }
 
 .nav-link:hover {
@@ -69,6 +70,29 @@ img {
 
 .nav ul {
     display: flex;
-    gap: 2rem;
     list-style: none;
+    gap: 10rem;
+    margin: 0;
+    padding: 0;
+    //make this responsive
+    @media (max-width: 768px) {
+        align-items: center;
+        gap: 2rem;
+    }
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+//make all teh li elements in the nav bar be in the center of the page with even space between them
+
+.nav ul li a {
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex !important;
+    align-items: center !important;
 }
