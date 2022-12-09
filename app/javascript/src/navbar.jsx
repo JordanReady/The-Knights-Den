@@ -9,9 +9,9 @@ const Navbar = (props) => {
             <nav className='nav' >
                 <ul>
                     <li className="nav-link"><a href='/'>Play</a></li>
-                    <li className="nav-link"><a href='/'>Learn</a></li>
-                    <li className="nav-link"><a href="/">Stats</a></li>
-                    <li className="nav-link"><a href='/'>Logout</a></li>
+                    <li className="nav-link"><a href='/learn'>Learn</a></li>
+                    <li className="nav-link"><a href="/stats">Stats</a></li>
+                    <li className="nav-link"><a href='/logout'>Logout</a></li>
                 </ul>
             </nav>
     </React.Fragment>
