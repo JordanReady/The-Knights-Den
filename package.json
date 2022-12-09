@@ -1,6 +1,10 @@
 {
-  "name": "mw2-weapon-builder",
+  "name": "my-chess-app",
   "private": true,
+  "engines": {
+    "node": ">= 16.18.1",
+    "yarn": ">= 1.22.19"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
     "@rails/actioncable": "^6.0.0",
