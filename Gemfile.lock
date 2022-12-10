@@ -79,6 +79,7 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    digest (3.1.0)
     erubi (1.11.0)
     ffi (1.15.5)
     globalid (1.0.0)
@@ -102,6 +103,14 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    net-imap (0.2.3)
+      digest
+      net-protocol
+      strscan
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
     net-protocol (0.2.1)
       timeout
     net-smtp (0.3.3)
@@ -179,6 +188,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.4-x86_64-linux)
+    strscan (3.0.1)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
@@ -218,7 +228,9 @@ DEPENDENCIES
   capybara (>= 3.26)
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  net-smtp (~> 0.3.3)
+  net-imap
+  net-pop
+  net-smtp
   pg (~> 1.3.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
