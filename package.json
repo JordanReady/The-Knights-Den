@@ -2,7 +2,7 @@
   "name": "my-chess-app",
   "private": true,
   "engines": {
-    "node": ">= 16.18.1"
+    "node": ">= 19.2.0"
   },
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
