@@ -6,14 +6,20 @@ const Navbar = (props) => {
 
     return (
     <React.Fragment>
-            <nav className='nav' >
-                <ul>
-                    <li className="nav-link"><a href='/'>Play</a></li>
-                    <li className="nav-link"><a href='/learn'>Learn</a></li>
-                    <li className="nav-link"><a href="/stats">Stats</a></li>
-                    <li className="nav-link"><a href='/logout'>Logout</a></li>
-                </ul>
-            </nav>
+        <ul className="nav">
+            <li className="nav-item">
+                <a className="nav-link" href='/'>Play</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href='/learn'>Learn</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href="/stats">Stats</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href='/logout'>Logout</a>
+            </li>
+        </ul>
     </React.Fragment>
     )
 }

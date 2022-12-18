@@ -1,0 +1,86 @@
+$primary-color : #b58863;
+$light-color : #f0d9b5;
+$dark-color : #000;
+
+body {
+    background-color: lightgray;
+}
+
+.containter {
+    max-width: 1240px !important;
+}
+
+
+.btn-row {
+    display: flex;
+    justify-content: space-around;
+    width: 98%;
+}
+
+.game-btn {
+    background-color: $primary-color;
+    border: none;
+    color: $light-color;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 2px solid $light-color;
+    border-radius: 8px;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.game-btn:hover {
+    background-color: $light-color;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+}
+
+.chess {
+    max-width: 800px;
+    max-height: 800px;
+    margin: 4px auto;
+    @media screen and (max-width: 991px) {
+        max-width: 540px;
+        max-height: 600px;
+    }
+}
+
+.btn-col {
+    background-color: $light-color;
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 520px;
+    height: max-content;
+    @media screen and (max-width: 768px) {
+        max-height: 118px;
+        max-width: 94%;
+    }
+}
+
+.game-mode-header {
+    background-color: $light-color;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+        margin: 5px 2px;
+    }
+        
+}
+

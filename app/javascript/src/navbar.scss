@@ -11,34 +11,33 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-img {
-    margin-top: 7px;
-    max-width: 100%;
-    height: 55px;
+    font-size: 18px;
+    
 }
 
 .nav {
     background: $light-color;
     color: #fff;
-    padding: 1rem;
-    gap: 2rem;
-    box-shadow: 0 2px 8px rgba(181, 136, 99, 0.4);
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    box-shadow: 0 2px 6px rgba(181, 136, 99, 0.4);
+    height: 58px;
+    width: 100%;
+    margin : 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
 }
 
 .nav a {
     color: $primary-color;
     text-decoration: none;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
+    font-size: 25px !important;
+    padding-top: 0;
+    
+    @media only screen and (max-width: 768px) {
+        font-size: 20px !important;
+        padding: 0 0.5rem;
+        margin-left: 2px !important;
+    }
 
 }
 
@@ -46,6 +45,11 @@ img {
     position: relative;
     text-decoration: none;
     padding-bottom: 1px !important;
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex !important;
+    align-items: center !important;
 }
 
 .nav-link:after {
@@ -71,28 +75,13 @@ img {
 .nav ul {
     display: flex;
     list-style: none;
-    gap: 10rem;
     margin: 0;
     padding: 0;
-    //make this responsive
-    @media (max-width: 768px) {
-        align-items: center;
-        gap: 2rem;
-    }
 }
 
 li {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-//make all teh li elements in the nav bar be in the center of the page with even space between them
-
-.nav ul li a {
-    color: $primary-color;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: flex !important;
-    align-items: center !important;
-}

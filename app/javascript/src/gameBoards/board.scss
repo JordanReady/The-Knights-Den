@@ -1,0 +1,11 @@
+$primary-color : #b58863;
+$light-color : #f0d9b5;
+$dark-color : #000;
+
+.chessboard {
+  //make the background of the board black and and outline the board
+    background-color: $light-color;
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+
+}
