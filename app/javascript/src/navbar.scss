@@ -16,7 +16,7 @@ body {
 }
 
 .nav {
-    background: $light-color;
+    background: $primary-color;
     color: #fff;
     box-shadow: 0 2px 6px rgba(181, 136, 99, 0.4);
     height: 58px;
@@ -28,7 +28,7 @@ body {
 }
 
 .nav a {
-    color: $primary-color;
+    color: $light-color;
     text-decoration: none;
     font-size: 25px !important;
     padding-top: 0;
@@ -45,7 +45,7 @@ body {
     position: relative;
     text-decoration: none;
     padding-bottom: 1px !important;
-    color: $primary-color;
+    color: $light-color;
     text-decoration: none;
     font-size: 1.2rem;
     display: flex !important;
@@ -59,12 +59,12 @@ body {
     height: 2px !important;
     left: 0 !important;
     bottom: 0 !important;
-    background-color: $primary-color !important;
+    background-color: $light-color !important;
     transition: width 0.3s !important;
 }
 
 .nav-link:hover {
-    color: $primary-color !important;
+    color: $light-color !important;
     cursor: default !important;
 }
 
