@@ -1,15 +1,15 @@
 $primary-color : #b58863;
 $light-color : #f0d9b5;
-$dark-color : #000;
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+.lesson-btn-row {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
 
-.game-btn {
+.lesson-btn {
     background-color: $light-color;
     border: none;
     color: $primary-color;
@@ -26,20 +26,8 @@ body {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.nav-header {
-    color: $light-color;
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
-}
-
-
-.game-btn:hover {
+.lesson-btn:hover {
     background-color: $primary-color;
     color: $light-color;
     border: 2px solid $light-color;
-}
-
-ul.nav {
-    padding: 0;
 }

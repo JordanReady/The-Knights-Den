@@ -1,1 +1,1 @@
-import '../src/learn';
+import '../src/learn/learn';
