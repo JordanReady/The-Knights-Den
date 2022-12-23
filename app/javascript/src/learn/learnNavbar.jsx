@@ -3,14 +3,6 @@ import React from "react";
 import './learn.scss';
 
 const LearnNavbar = (props) => {
-
-    //q: this component is a child of learn.jsx, so how do i pass the button that is clicked to the parent component?
-    //a: i need to pass a function to this component that will change the lesson in the parent component
-    //q: how that i have the function, how do i call it?
-    //a: i need to pass the function to the button, and then call it when the button is clicked
-    //q: how do i pass the function to the button?
-    //a: i need to pass the function as a prop to this component, and then call it in the button
-    //q: how do i pass the function as a prop to this component?
     
     function handleClick(e) {
         e.preventDefault();
@@ -49,6 +41,9 @@ const LearnNavbar = (props) => {
             </li>
             <li className="nav-item">
                 <button id="9" className="game-btn" onClick={handleClick}>9</button>
+            </li>
+            <li className="nav-item">
+                <button id="10" className="game-btn" onClick={handleClick}>10</button>
             </li>
         </ul>
     </React.Fragment>

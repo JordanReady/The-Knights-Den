@@ -2,7 +2,7 @@ import React from "react";
 
 import './lessons.scss';
 
-export default function TheBoard(props) {
+export default function TheRook(props) {
 
     function handleClick(e) {
         e.preventDefault();
@@ -14,18 +14,18 @@ export default function TheBoard(props) {
         <div className="container">
             <div className="row lesson-row">
                 <div className="col-12">
-                    <h1 className="lesson-title">The Board</h1>
+                    <h1 className="lesson-title">The Rook</h1>
                 </div>
                 <div className="col-12">
                     <p className="content">
-                    The chess board is an 8 by 8 grid of squares alternating colors from light to dark every other square. The board is split up horizantally by what are known as ranks, and horizantally by what are known as files. These ranks and files are are labled by letters and numbers. Each horizantal rank has a file number 1 - 8 up the board and each file has a file letter a - h accross the board. The entire game of chess is restricted to piece movments inside these files and ranks!
+                    The rook, much like the bishop, is a long range attacking piece. The rook however, can move any number of squares along its current file or rank either forwards, backwards, left or right. It can only move in one of those 4 directions once per move and cannot move diagonally ever. The rook can't move through its own pieces and will capture an opposing players piece by moving itself to the position of that piece.
                     </p>
                     <div className="lesson-btn-row">
-                        <button id="1"
-                            className="lesson-btn prev-btn disabled" onClick={handleClick}>
+                        <button id="6"
+                            className="lesson-btn prev-btn" onClick={handleClick}>
                             Prev
                         </button>
-                        <button id="2"
+                        <button id="8"
                             className=" lesson-btn next-btn" 
                             onClick={handleClick}>
                             Next

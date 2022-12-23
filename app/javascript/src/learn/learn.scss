@@ -7,13 +7,14 @@ body {
     padding: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
+    background-color: $light-color;
 }
 
 .game-btn {
     background-color: $light-color;
     border: none;
     color: $primary-color;
-    padding: 10px 10px;
+    padding:  6px 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -28,6 +29,7 @@ body {
 
 .nav-header {
     color: $light-color;
+    font-size: 25px;
     @media screen and (max-width: 768px) {
         display: none;
     }

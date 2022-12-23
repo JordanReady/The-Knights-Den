@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Navbar from "../navbar";
+import Navbar from "../navbar/navbar";
 import DefaultBoard from "../gameBoards/defaultBoard";
 import PlayerVsBot from "../gameBoards/playerVsBot";
 import PlayerVsPlayer from "../gameBoards/playerVsPlayer";
