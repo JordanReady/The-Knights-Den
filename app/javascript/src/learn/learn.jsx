@@ -13,6 +13,7 @@ import TheRook from "../chessLessons/TheRook";
 import TheQueen from "../chessLessons/TheQueen";
 import TheKing from "../chessLessons/TheKing";
 import OtherRules from "../chessLessons/OtherRules";
+import ChessTerms from "../chessLessons/ChessTerms";
 
 import './learn.scss';
 
@@ -21,6 +22,12 @@ function Learn() {
 
     function getLesson() {
         switch (lesson) {
+            case "0":
+                return (
+                    <ChessTerms
+                    changeLesson={changeLesson}
+                    />
+                );
             case "1":
                 return (
                     <TheBoard
@@ -81,8 +88,8 @@ function Learn() {
 
     return (
         <>
-        <Navbar />
         <div className="learn">
+            <Navbar />
             <LearnNavbar
             changeLesson={changeLesson}
             />
