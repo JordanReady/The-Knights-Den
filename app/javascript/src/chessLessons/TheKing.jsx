@@ -18,7 +18,7 @@ export default function TheKing(props) {
                 </div>
                 <div className="col-12">
                     <p className="content">
-                    The chess board is an 8 by 8 grid of squares alternating colors from light to dark every other square. The board is split up horizantally by what are known as ranks, and horizantally by what are known as files. These ranks and files are are labled by letters and numbers. Each horizantal rank has a file number 1 - 8 up the board and each file has a file letter a - h accross the board. The entire game of chess is restricted to piece movments inside these files and ranks!
+                    The king is the most important piece in chess. The king can move to any adjacent square that is not occupied by one of its own pieces. It can move horizontally, vertically, or diagonally. The king cannot move to a square that is attacked by an enemy piece. While you may think of the king less of an attacking piece, it plays an important role in the later stages of the game. This is because it plays a key role in helping the player's other pieces coordinate their attacks and defend against the opponent's pieces. Always make sure to protect you king!
                     </p>
                     <div className="lesson-btn-row">
                         <button id="8"
