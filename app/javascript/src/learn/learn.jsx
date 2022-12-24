@@ -14,6 +14,8 @@ import TheQueen from "../chessLessons/TheQueen";
 import TheKing from "../chessLessons/TheKing";
 import OtherRules from "../chessLessons/OtherRules";
 import ChessTerms from "../chessLessons/ChessTerms";
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './learn.scss';
 

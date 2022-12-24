@@ -1,19 +1,27 @@
 import React from "react";
-import Navbar from "../navbar";
+import ReactDOM from "react-dom";
+import Navbar from "../navbar/navbar";
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './logout.scss';
 
-class Logout extends React.Component {
+function Logout() {
 
-
-    render() {
-        return (
-            <div className="logout">
-                <Navbar />
-                <h1>Logout</h1>
-            </div>
-        );
-    }
+    return (
+        <>
+        <div className="logout">
+            <Navbar />
+            logout
+        </div>
+        </>
+    );
 }
 
-export default Logout;
+document.addEventListener('DOMContentLoaded', () => {
+    ReactDOM.render(
+        <Logout />,
+        document.body.appendChild(document.createElement('div')),
+    );
+    }
+);

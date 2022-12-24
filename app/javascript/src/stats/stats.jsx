@@ -1,19 +1,29 @@
 import React from "react";
-import Navbar from "../navbar";
+import ReactDOM from "react-dom";
+import Navbar from "../navbar/navbar";
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './stats.scss';
 
-class Stats extends React.Component {
 
 
-    render() {
-        return (
-            <div className="learn">
-                <Navbar />
-                <h1>Stats</h1>
-            </div>
-        );
-    }
+function Stats() {
+
+    return (
+        <>
+        <div className="stats">
+            <Navbar />
+            stats
+        </div>
+        </>
+    );
 }
 
-export default Stats;
+document.addEventListener('DOMContentLoaded', () => {
+    ReactDOM.render(
+        <Stats />,
+        document.body.appendChild(document.createElement('div')),
+    );
+    }
+);

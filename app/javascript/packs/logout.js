@@ -1,1 +1,1 @@
-import '../src/logout';
+import '../src/logout/logout';

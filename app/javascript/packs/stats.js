@@ -1,1 +1,1 @@
-import '../src/stats';
+import '../src/stats/stats';

@@ -53,6 +53,7 @@ function Home() {
 
   return (
     <>
+    <div className="play">
       <Navbar />
       <div className="container">
         <div className="row justify-content-around">
@@ -100,6 +101,7 @@ function Home() {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }
