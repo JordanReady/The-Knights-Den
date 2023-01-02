@@ -54,7 +54,7 @@ export default function DefaultBoard({ boardWidth }) {
         />
         <div className="btn-row">
           <button
-            className="game-btn"
+            className="board-btn"
             onClick={() => {
               safeGameMutate((game) => {
                 game.reset();
@@ -66,7 +66,7 @@ export default function DefaultBoard({ boardWidth }) {
             Reset
           </button>
           <button
-            className="game-btn"
+            className="board-btn"
             onClick={() => {
               safeGameMutate((game) => {
                 game.undo();
@@ -78,7 +78,7 @@ export default function DefaultBoard({ boardWidth }) {
             Undo
           </button>
           <button
-            className="game-btn"
+            className="board-btn"
             onClick={() => {
               setBoardOrientation((currentOrientation) => (currentOrientation === 'white' ? 'black' : 'white'));
             }}

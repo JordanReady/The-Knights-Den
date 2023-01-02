@@ -8,11 +8,24 @@ import './logout.scss';
 
 function Logout() {
 
+    function handleClick() {
+        console.log("logout");
+    }
+
     return (
         <>
         <div className="logout">
             <Navbar />
-            logout
+            <div className="container">
+            <div className="row">
+              <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
+                <div className="message-border shadow p-4">
+                  <h2 className="mb-4 header">Do you really want to logout?</h2>
+                  <button className="btn shadow" onClick={() => {handleClick()}}>Logout</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         </>
     );

@@ -1,0 +1,28 @@
+$primary-color : #b58863;
+$light-color : #f0d9b5;
+
+.btn {
+  background-color: $primary-color !important;
+  color: $light-color !important;
+}
+
+.btn:hover {
+  background-color: $light-color !important;
+  color: $primary-color !important;
+  border: 1px solid $primary-color !important;
+}
+
+.message-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $light-color !important;
+  border: 1px solid $primary-color !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+}
+
+.header {
+  color: $primary-color !important;
+}

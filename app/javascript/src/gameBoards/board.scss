@@ -2,6 +2,14 @@ $primary-color : #b58863;
 $light-color : #f0d9b5;
 $dark-color : #000;
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  background-color: $light-color;
+}
+
 .chessboard {
   //make the background of the board black and and outline the board
     background-color: $primary-color;
@@ -9,4 +17,32 @@ $dark-color : #000;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
+}
+
+.board-btn {
+  background-color: $light-color !important;
+  border: none;
+  color: $primary-color !important;
+  padding:  6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 2px solid $primary-color !important;
+  border-radius: 8px;
+  z-index: 99;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+    
+  }
+}
+
+.board-btn:hover {
+  background-color: $primary-color !important;
+  color: $light-color !important;
+  border: 2px solid $light-color !important;
 }

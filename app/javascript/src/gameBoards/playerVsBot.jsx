@@ -70,7 +70,7 @@ export default function PlayerVsBot({ boardWidth }) {
   }
 
   return (
-    <div>
+    <div className='chessboard'>
       <Chessboard
         id="PlayervsBot"
         animationDuration={200}
@@ -78,16 +78,13 @@ export default function PlayerVsBot({ boardWidth }) {
         boardWidth={boardWidth}
         position={game.fen()}
         customBoardStyle={{
-          borderRadius: '4px',
-          boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)'
+          borderRadius: '5px'
         }}
         ref={chessboardRef}
       />
-      <div className="gap"></div>
-      <div className="gap"></div>
       <div className="btn-row">
           <button
-            className="game-btn"
+            className="board-btn"
             onClick={() => {
               safeGameMutate((game) => {
                 game.reset();
@@ -99,7 +96,7 @@ export default function PlayerVsBot({ boardWidth }) {
             Reset
           </button>
           <button
-            className="game-btn"
+            className="board-btn"
             onClick={() => {
               safeGameMutate((game) => {
                 game.undo();
@@ -111,7 +108,7 @@ export default function PlayerVsBot({ boardWidth }) {
             Undo
           </button>
           <button
-            className="game-btn"
+            className="board-btn"
             onClick={() => {
               setBoardOrientation((currentOrientation) => (currentOrientation === 'white' ? 'black' : 'white'));
             }}
