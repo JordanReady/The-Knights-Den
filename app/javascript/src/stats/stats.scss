@@ -4,8 +4,19 @@ $light-color: #f0d9b5;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
+}
+
+.username {
+  color: $light-color;
+  font-size: 25px;
+  border: 1px solid $light-color;
+  border-radius: 8px;
+  background-color: $primary-color;
+  padding: 0.5rem;
+  max-width: max-content;
+  margin: auto;
+  cursor: default;
 }
 
 .stats-box {
@@ -16,14 +27,14 @@ body {
   background-color: $light-color;
   border: 1px solid $primary-color;
   border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem;
 }
 
 .stat-header {
   color: $primary-color;
+  cursor: default;
 }
 
 .stat-num {
   color: $primary-color;
+  cursor: default;
 }
