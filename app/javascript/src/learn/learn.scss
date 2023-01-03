@@ -1,48 +1,46 @@
-$primary-color : #b58863;
-$light-color : #f0d9b5;
-$dark-color : #000;
+$primary-color: #b58863;
+$light-color: #f0d9b5;
+$dark-color: #000;
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    background-color: $light-color;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  background-color: $light-color;
 }
 
 .game-btn {
-    background-color: $light-color;
-    border: none;
-    color: $primary-color;
-    padding:  6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 2px solid $primary-color;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-color: $light-color;
+  border: none;
+  color: $primary-color;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 2px solid $primary-color;
+  border-radius: 8px;
+  z-index: 99;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .nav-header {
-    color: $light-color;
-    font-size: 25px;
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+  color: $light-color;
+  font-size: 25px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 
-
 .game-btn:hover {
-    background-color: $primary-color;
-    color: $light-color;
-    border: 2px solid $light-color;
+  background-color: $primary-color;
+  color: $light-color;
+  border: 2px solid $light-color;
 }
 
 ul.nav {
-    padding: 0;
+  padding: 0;
 }
-

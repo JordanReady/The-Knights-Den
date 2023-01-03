@@ -1,14 +1,14 @@
-import React from 'react';
-import { useRef, useState } from 'react';
-import { Chessboard } from 'react-chessboard';
-import { Chess } from 'chess.js';
+import React from "react";
+import { useRef, useState } from "react";
+import { Chessboard } from "react-chessboard";
+import { Chess } from "chess.js";
 
-import './board.scss';
+import "./board.scss";
 
 export default function DefaultBoard({ boardWidth }) {
   const chessboardRef = useRef();
   const [game, setGame] = useState(new Chess());
-  const [boardOrientation, setBoardOrientation] = useState('white');
+  const [boardOrientation, setBoardOrientation] = useState("white");
   const [currentTimeout, setCurrentTimeout] = useState(undefined);
 
   function safeGameMutate(modify) {
@@ -20,12 +20,12 @@ export default function DefaultBoard({ boardWidth }) {
   }
 
   function onDrop(sourceSquare, targetSquare) {
-    console.log('onDrop', sourceSquare, targetSquare);
+    console.log("onDrop", sourceSquare, targetSquare);
     const chess = { ...game };
     console.log(chess);
     chess.move({
       from: sourceSquare,
-      to: targetSquare
+      to: targetSquare,
     });
     setGame(chess);
 
@@ -38,57 +38,55 @@ export default function DefaultBoard({ boardWidth }) {
     return true;
   }
 
-
-    return (
-      <div className='chessboard'>
-        <Chessboard
-          id="DefaultBoard"
-          animationDuration={200}
-          boardOrientation={boardOrientation}
-          boardWidth={boardWidth}
-          position={game.fen()}
-          customBoardStyle={{
-            borderRadius: '5px',
+  return (
+    <div className="chessboard">
+      <Chessboard
+        id="DefaultBoard"
+        animationDuration={200}
+        boardOrientation={boardOrientation}
+        boardWidth={boardWidth}
+        position={game.fen()}
+        customBoardStyle={{
+          borderRadius: "5px",
+        }}
+        ref={chessboardRef}
+      />
+      <div className="btn-row">
+        <button
+          className="board-btn"
+          onClick={() => {
+            safeGameMutate((game) => {
+              game.reset();
+            });
+            // stop any current timeouts
+            clearTimeout(currentTimeout);
           }}
-          ref={chessboardRef}
-        />
-        <div className="btn-row">
-          <button
-            className="board-btn"
-            onClick={() => {
-              safeGameMutate((game) => {
-                game.reset();
-              });
-              // stop any current timeouts
-              clearTimeout(currentTimeout);
-            }}
-          >
-            Reset
-          </button>
-          <button
-            className="board-btn"
-            onClick={() => {
-              safeGameMutate((game) => {
-                game.undo();
-              });
-              // stop any current timeouts
-              clearTimeout(currentTimeout);
-            }}
-          >
-            Undo
-          </button>
-          <button
-            className="board-btn"
-            onClick={() => {
-              setBoardOrientation((currentOrientation) => (currentOrientation === 'white' ? 'black' : 'white'));
-            }}
-          >
-            Flip Board
-          </button>
-        </div>
+        >
+          Reset
+        </button>
+        <button
+          className="board-btn"
+          onClick={() => {
+            safeGameMutate((game) => {
+              game.undo();
+            });
+            // stop any current timeouts
+            clearTimeout(currentTimeout);
+          }}
+        >
+          Undo
+        </button>
+        <button
+          className="board-btn"
+          onClick={() => {
+            setBoardOrientation((currentOrientation) =>
+              currentOrientation === "white" ? "black" : "white"
+            );
+          }}
+        >
+          Flip Board
+        </button>
       </div>
-    );
-  }
-
-
-
+    </div>
+  );
+}
