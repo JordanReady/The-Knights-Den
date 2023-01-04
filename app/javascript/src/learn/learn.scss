@@ -10,6 +10,11 @@ body {
   background-color: $light-color;
 }
 
+.lesson-nav {
+  position: sticky;
+  top: 0;
+}
+
 .game-btn {
   background-color: $light-color;
   border: none;

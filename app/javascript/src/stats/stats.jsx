@@ -21,19 +21,19 @@ function Stats() {
                   </div>
                   <div className="col-12 col-md-3">
                     <h3 className="stat-header">Games</h3>
-                    <h3 className="stat-num">0</h3>
+                    <h3 className="stat-num">27</h3>
                   </div>
                   <div className="col-12 col-md-3">
                     <h3 className="stat-header">Wins</h3>
-                    <h3 className="stat-num">0</h3>
+                    <h3 className="stat-num">19</h3>
                   </div>
                   <div className="col-12 col-md-3">
                     <h3 className="stat-header">Losses</h3>
-                    <h3 className="stat-num">0</h3>
+                    <h3 className="stat-num">5</h3>
                   </div>
                   <div className="col-12 col-md-3">
                     <h3 className="stat-header">Draws</h3>
-                    <h3 className="stat-num">0</h3>
+                    <h3 className="stat-num">3</h3>
                   </div>
                 </div>
               </div>

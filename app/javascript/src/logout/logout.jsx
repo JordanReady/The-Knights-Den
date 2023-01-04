@@ -17,7 +17,7 @@ function Logout() {
         <Navbar />
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
+            <div className="col-12 col-md-9 mx-auto my-4">
               <div className="message-border shadow p-4">
                 <h2 className="mb-4 header">Do you really want to logout?</h2>
                 <button

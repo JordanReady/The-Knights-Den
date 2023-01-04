@@ -51,6 +51,7 @@ function Learn() {
 
   function changeLesson(les) {
     setLesson(les);
+    window.scrollTo(0, 0);
   }
 
   return (

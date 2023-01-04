@@ -12,8 +12,7 @@ const LearnNavbar = (props) => {
 
   return (
     <React.Fragment>
-      <ul className="nav">
-        <li className="nav-item nav-header">Lessons</li>
+      <ul className="nav lesson-nav">
         <li className="nav-item">
           <button id="1" className="game-btn" onClick={handleClick}>
             1
