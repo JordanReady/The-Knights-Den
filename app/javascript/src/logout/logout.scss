@@ -2,27 +2,36 @@ $primary-color: #b58863;
 $light-color: #f0d9b5;
 
 .btn {
-  background-color: $primary-color !important;
-  color: $light-color !important;
+  background-color: $light-color !important;
+  color: $primary-color !important;
+  font-size: larger;
 }
 
 .btn:hover {
-  background-color: $light-color !important;
-  color: $primary-color !important;
-  border: 1px solid $primary-color !important;
+  background-color: $primary-color !important;
+  color: $light-color !important;
+  border: 1px solid $light-color !important;
 }
 
 .message-border {
+  background-color: $primary-color !important;
+  border: 2px solid $light-color !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.message {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: $light-color !important;
-  border: 1px solid $primary-color !important;
-  border-radius: 8px !important;
-  padding: 1rem !important;
+  text-align: center;
 }
 
 .header {
-  color: $primary-color !important;
+  color: $light-color !important;
 }

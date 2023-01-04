@@ -62,12 +62,12 @@ function Home() {
             </div>
             <div className="col-12 col-lg-3 mt-3 btn-col">
               <div className="row row-cols-2 row-cols-lg-1">
-                <div className="col">
+                <div className="col-12">
                   <h3 className="game-mode-header">Select game mode</h3>
                 </div>
-                <div className="col">
+                <div className="col-12">
                   <button
-                    className="game-btn hide-mobile"
+                    className="game-btn select-btn"
                     onClick={() => {
                       setSelectedBoard("DefaultBoard");
                     }}
@@ -75,9 +75,9 @@ function Home() {
                     Practice Board
                   </button>
                 </div>
-                <div className="col">
+                <div className="col-12">
                   <button
-                    className="game-btn hide-mobile"
+                    className="game-btn select-btn"
                     onClick={() => {
                       setSelectedBoard("PlayerVsBot");
                     }}
@@ -85,9 +85,9 @@ function Home() {
                     Player vs Bot
                   </button>
                 </div>
-                <div className="col">
+                <div className="col-12">
                   <button
-                    className="game-btn hide-mobile"
+                    className="game-btn select-btn"
                     onClick={() => {
                       setSelectedBoard("PlayerVsPlayer");
                     }}

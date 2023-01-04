@@ -1,6 +1,6 @@
 $primary-color: #b58863;
 $light-color: #f0d9b5;
-$dark-color: #000;
+$outline-color: #8f6a46;
 
 body {
   margin: 0;
@@ -11,17 +11,16 @@ body {
 }
 
 .chessboard {
-  //make the background of the board black and and outline the board
-  background-color: $primary-color;
-  border: 2px solid $primary-color;
+  background: linear-gradient(to right, $primary-color, $light-color);
+  border: 2px solid $outline-color;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .board-btn {
-  background-color: $light-color !important;
+  background-color: $primary-color !important;
   border: none;
-  color: $primary-color !important;
+  color: $light-color !important;
   padding: 6px 6px;
   text-align: center;
   text-decoration: none;
@@ -29,7 +28,7 @@ body {
   font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
-  border: 2px solid $primary-color !important;
+  border: 2px solid $light-color !important;
   border-radius: 8px;
   z-index: 99;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -40,7 +39,19 @@ body {
 }
 
 .board-btn:hover {
-  background-color: $primary-color !important;
-  color: $light-color !important;
-  border: 2px solid $light-color !important;
+  background-color: $light-color !important;
+  color: $primary-color !important;
+  border: 2px solid $primary-color !important;
+}
+
+.btn-row {
+  background-color: $light-color;
+  border-top: 2px solid $outline-color;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  min-width: 100%;
+  margin: auto;
+  justify-content: space-around !important;
 }

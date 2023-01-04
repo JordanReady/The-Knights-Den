@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 
@@ -11,6 +11,10 @@ export default function DefaultBoard({ boardWidth }) {
   const [boardOrientation, setBoardOrientation] = useState("white");
   const [currentTimeout, setCurrentTimeout] = useState(undefined);
 
+  useEffect(() => {
+    setGame(new Chess());
+  }, []);
+
   function safeGameMutate(modify) {
     setGame((g) => {
       const update = { ...g };
@@ -19,7 +23,7 @@ export default function DefaultBoard({ boardWidth }) {
     });
   }
 
-  function onDrop(sourceSquare, targetSquare) {
+  function onDropMove(sourceSquare, targetSquare) {
     console.log("onDrop", sourceSquare, targetSquare);
     const chess = { ...game };
     console.log(chess);
@@ -42,6 +46,7 @@ export default function DefaultBoard({ boardWidth }) {
     <div className="chessboard">
       <Chessboard
         id="DefaultBoard"
+        onDrop={onDropMove}
         animationDuration={200}
         boardOrientation={boardOrientation}
         boardWidth={boardWidth}

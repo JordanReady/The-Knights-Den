@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./logout.scss";
+import LogoutBox from "./logoutBox";
 
 function Logout() {
   function handleClick() {
@@ -17,19 +18,7 @@ function Logout() {
         <Navbar />
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-9 mx-auto my-4">
-              <div className="message-border shadow p-4">
-                <h2 className="mb-4 header">Do you really want to logout?</h2>
-                <button
-                  className="btn shadow"
-                  onClick={() => {
-                    handleClick();
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
+            <LogoutBox />
           </div>
         </div>
       </div>

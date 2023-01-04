@@ -1,5 +1,5 @@
-$primary-color: #b58863;
-$light-color: #f0d9b5;
+$light-color: #b58863;
+$primary-color: #f0d9b5;
 
 body {
   margin: 0;
@@ -9,7 +9,7 @@ body {
 
 .username {
   color: $light-color;
-  font-size: 25px;
+  font-size: 35px;
   border: 1px solid $light-color;
   border-radius: 8px;
   background-color: $primary-color;
@@ -20,21 +20,43 @@ body {
 }
 
 .stats-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   background-color: $light-color;
-  border: 1px solid $primary-color;
+  border: 2px solid $primary-color;
   border-radius: 8px;
 }
 
+.stat-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background-color: $primary-color;
+  border: 1px solid $light-color;
+  border-radius: 8px;
+  max-width: 120px;
+  margin: auto;
+  cursor: default;
+}
+
 .stat-header {
-  color: $primary-color;
+  color: $light-color;
+  font-size: 28px;
+  padding: 0.25rem;
+  max-width: max-content;
+  margin: auto;
   cursor: default;
 }
 
 .stat-num {
-  color: $primary-color;
+  color: $light-color;
   cursor: default;
 }
