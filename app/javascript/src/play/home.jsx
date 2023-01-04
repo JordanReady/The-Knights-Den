@@ -5,7 +5,6 @@ import DefaultBoard from "../gameBoards/defaultBoard";
 import PlayerVsBot from "../gameBoards/playerVsBot";
 import PlayerVsPlayer from "../gameBoards/playerVsPlayer";
 import { useState, useEffect } from "react";
-import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./home.scss";

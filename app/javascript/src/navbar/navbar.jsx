@@ -2,7 +2,7 @@ import React from "react";
 
 import "./navbar.scss";
 
-const Navbar = (props) => {
+const Navbar = () => {
   return (
     <React.Fragment>
       <ul className="nav">
