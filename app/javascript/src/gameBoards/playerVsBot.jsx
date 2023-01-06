@@ -1,74 +1,49 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
 
 export default function PlayerVsBot({ boardWidth }) {
-  const chessboardRef = useRef();
   const [game, setGame] = useState(new Chess());
-  const [boardOrientation, setBoardOrientation] = useState("white");
   const [currentTimeout, setCurrentTimeout] = useState(undefined);
+  const [boardOrientation, setBoardOrientation] = useState("white")
 
-  function onDragStart(source, piece, position, orientation) {
-    // do not pick up pieces if the game is over
-    if (game.game_over()) return false;
+  function safeGameMutate(modify) {
+    setGame((g) => {
+      const update = { ...g };
+      modify(update);
+      return update;
+    });
+  }   
 
-    // only pick up pieces for the side to move
-    if (
-      (game.turn() === "w" && piece.search(/^b/) !== -1) ||
-      (game.turn() === "b" && piece.search(/^w/) !== -1)
-    ) {
-      return false;
-    }
+  function makeRandomMove() {
+    const possibleMoves = game.moves();
+  
+    // exit if the game is over
+    if (game.game_over() || game.in_draw() || possibleMoves.length === 0) return;
+  
+    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    safeGameMutate((game) => {
+      game.move(possibleMoves[randomIndex]);
+    });
   }
 
-  function onDrop(source, target) {
-    // see if the move is legal
-    var move = game.move({
-      from: source,
-      to: target,
-      promotion: "q", // NOTE: always promote to a queen for example simplicity
+  function onDrop(sourceSquare, targetSquare) {
+    const gameCopy = new Chess(game.fen())
+    const move = gameCopy.move({
+      from: sourceSquare,
+      to: targetSquare,
+      promotion: "q", // always promote to a queen for example simplicity
     });
+    setGame(gameCopy);
 
     // illegal move
-    if (move === null) return "snapback";
+    if (move === null) return false;
 
-    updateStatus();
-  }
-
-  // update the board position after the piece snap
-  // for castling, en passant, pawn promotion
-  function onSnapEnd() {
-    board.position(game.fen());
-  }
-
-  function updateStatus() {
-    var status = "";
-
-    var moveColor = "White";
-    if (game.turn() === "b") {
-      moveColor = "Black";
-    }
-
-    // checkmate?
-    if (game.in_checkmate()) {
-      status = "Game over, " + moveColor + " is in checkmate.";
-    }
-
-    // draw?
-    else if (game.in_draw()) {
-      status = "Game over, drawn position";
-    }
-
-    // game still on
-    else {
-      status = moveColor + " to move";
-
-      // check?
-      if (game.in_check()) {
-        status += ", " + moveColor + " is in check";
-      }
-    }
+    // store timeout so it can be cleared on undo/reset so computer doesn't execute move
+    const newTimeout = setTimeout(makeRandomMove, 200);
+    setCurrentTimeout(newTimeout);
+    return true;
   }
 
   return (
@@ -79,10 +54,10 @@ export default function PlayerVsBot({ boardWidth }) {
         boardOrientation={boardOrientation}
         boardWidth={boardWidth}
         position={game.fen()}
+        onPieceDrop={onDrop}
         customBoardStyle={{
           borderRadius: "5px",
         }}
-        ref={chessboardRef}
       />
       <div className="btn-row">
         <button
@@ -118,6 +93,16 @@ export default function PlayerVsBot({ boardWidth }) {
           }}
         >
           Flip Board
+        </button>
+        <button
+          className="board-btn"
+          onClick={() => {
+            setBoardOrientation((currentOrientation) =>
+              currentOrientation === "white" ? "black" : "white"
+            );
+          }}
+        >
+          Something
         </button>
       </div>
     </div>
