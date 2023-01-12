@@ -12,6 +12,17 @@ import "./home.scss";
 function Home() {
   const [chessboardSize, setChessboardSize] = useState(undefined);
   const [selectedBoard, setSelectedBoard] = useState("DefaultBoard");
+  const [whiteMoves, setWhiteMoves] = useState([]);
+  const [blackMoves, setBlackMoves] = useState([]);
+
+  const handleMove = (move, color) => {
+    if (color === "b") {
+      setWhiteMoves([...whiteMoves, move]);
+    }
+    if (color === "w") {
+      setBlackMoves([...blackMoves, move]);
+    }
+  };
 
   useEffect(() => {
     function handleResize() {
@@ -36,7 +47,14 @@ function Home() {
       case "PlayerVsBot":
         return (
           <>
-            <PlayerVsBot boardWidth={chessboardSize} />
+            <PlayerVsBot
+              boardWidth={chessboardSize}
+              whiteMoves={whiteMoves}
+              blackMoves={blackMoves}
+              setWhiteMoves={setWhiteMoves}
+              setBlackMoves={setBlackMoves}
+              handleMove={handleMove}
+            />
             <br />
           </>
         );
@@ -93,6 +111,39 @@ function Home() {
                   >
                     Player vs Player
                   </button>
+                </div>
+              </div>
+              <div className="col-12">
+                <h3>Move History</h3>
+              </div>
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-6">
+                    <h4>White</h4>
+                    <ul>
+                      {whiteMoves && whiteMoves.length ? (
+                        whiteMoves.map((move, index) => {
+                          if (move) return <li key={index}>{move.san}</li>;
+                          else return <li key={index}>null</li>;
+                        })
+                      ) : (
+                        <li>no moves</li>
+                      )}
+                    </ul>
+                  </div>
+                  <div className="col-6">
+                    <h4>Black</h4>
+                    <ul>
+                      {blackMoves && blackMoves.length ? (
+                        blackMoves.map((move, index) => {
+                          if (move) return <li key={index}>{move.san}</li>;
+                          else return <li key={index}>null</li>;
+                        })
+                      ) : (
+                        <li>no moves</li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

@@ -2,6 +2,14 @@ $primary-color: #b58863;
 $light-color: #f0d9b5;
 $outline-color: #8f6a46;
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  background-color: $light-color;
+}
+
 .game-over-message {
   font-size: 30px;
   font-weight: bold;
@@ -43,12 +51,61 @@ $outline-color: #8f6a46;
   }
 }
 
-body {
+.move-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  background-color: $light-color;
+  width: 100%;
+  align-items: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.move-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  align-items: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.move-list li {
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.move-list li b {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.move-list li div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.move-list li div::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.move-list li div.player::before {
+  background-color: #007bff;
+}
+
+.move-list li div.bot::before {
+  background-color: #ff0000;
 }
 
 .chessboard {
