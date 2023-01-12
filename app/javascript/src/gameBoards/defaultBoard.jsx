@@ -1,44 +1,30 @@
 import React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 
 import "./board.scss";
 
 export default function DefaultBoard({ boardWidth }) {
-  const chessboardRef = useRef();
   const [game, setGame] = useState(new Chess());
   const [boardOrientation, setBoardOrientation] = useState("white");
-  const [currentTimeout, setCurrentTimeout] = useState(undefined);
 
-  useEffect(() => {
-    setGame(new Chess());
-  }, []);
-
-  function safeGameMutate(modify) {
-    setGame((g) => {
-      const update = { ...g };
-      modify(update);
-      return update;
-    });
+  function makeAMove(move) {
+    const gameCopy = { ...game };
+    const result = gameCopy.move(move);
+    setGame(gameCopy);
+    return result; // null if the move was illegal, the move object if the move was legal
   }
 
-  function onDropMove(sourceSquare, targetSquare) {
-    console.log("onDrop", sourceSquare, targetSquare);
-    const chess = { ...game };
-    console.log(chess);
-    chess.move({
+  function onDrop(sourceSquare, targetSquare) {
+    const move = makeAMove({
       from: sourceSquare,
       to: targetSquare,
+      promotion: "q", // always promote to a queen for example simplicity
     });
-    setGame(chess);
 
     // illegal move
     if (move === null) return false;
-
-    // store timeout so it can be cleared on undo/reset so computer doesn't execute move
-    const newTimeout = setTimeout(makeRandomMove, 200);
-    setCurrentTimeout(newTimeout);
     return true;
   }
 
@@ -46,15 +32,14 @@ export default function DefaultBoard({ boardWidth }) {
     <div className="chessboard">
       <Chessboard
         id="DefaultBoard"
-        onDrop={onDropMove}
         animationDuration={200}
         boardOrientation={boardOrientation}
         boardWidth={boardWidth}
         position={game.fen()}
+        onPieceDrop={onDrop}
         customBoardStyle={{
           borderRadius: "5px",
         }}
-        ref={chessboardRef}
       />
       <div className="btn-row">
         <button

@@ -2,6 +2,47 @@ $primary-color: #b58863;
 $light-color: #f0d9b5;
 $outline-color: #8f6a46;
 
+.game-over-message {
+  font-size: 30px;
+  font-weight: bold;
+  color: $primary-color;
+  margin: 0;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-88%, -50%);
+  text-align: center;
+  width: 50%;
+  max-width: 560px;
+  z-index: 99;
+  border: 2px solid $outline-color;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(240, 217, 181, 0.9);
+  @media screen and (max-width: 1398px) {
+    font-size: 30px;
+    transform: translate(-78%, -55%);
+    width: 559px;
+  }
+  @media screen and (max-width: 1199px) {
+    font-size: 30px;
+    transform: translate(-74%, -90%);
+    width: 500px;
+  }
+  @media screen and (max-width: 990px) {
+    font-size: 28px;
+    transform: translate(-50%, -85%) scale(0.9);
+    width: 400px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+    transform: translate(-50%, -99%) scale(0.9);
+    max-width: 80%;
+    padding: 18px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;

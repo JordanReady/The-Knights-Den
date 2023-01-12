@@ -964,6 +964,13 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@chrisoakman/chessboardjs@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@chrisoakman/chessboardjs/-/chessboardjs-1.0.0.tgz#2cfc3399bed5e9933bd8d02ea4b405e21a0b611b"
+  integrity sha512-JHXHoQwwc86xW3F0YIdFcEWLnPldee5mHkqwJbOTeDh5gvNmYXyBj6AkeecDkj2WtORF959yaWYlpyZHUl3LCQ==
+  dependencies:
+    jquery ">=3.4.1"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.npmjs.org/@csstools/convert-colors/-/convert-colors-1.4.0.tgz"
@@ -1963,10 +1970,10 @@ chalk@^2.0, chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chess.js@^1.0.0-alpha.0:
-  version "1.0.0-alpha.0"
-  resolved "https://registry.npmjs.org/chess.js/-/chess.js-1.0.0-alpha.0.tgz"
-  integrity sha512-nwEDlNEOZR/FaKW1DZLYtjgJrtAlxBW/6Fp4Hk8QXqpCCLrXweOU6/vKfJ/jNHT2gPqasxi0/ZPslcWAAdzozg==
+chess.js@^1.0.0.0:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/chess.js/-/chess.js-0.13.4.tgz#5c67542206cab25690f53de3cf7ff6be602c7aad"
+  integrity sha512-li8pyEtvfw6V7xvVr5aUh8OuICfviWNT3YXPh56/wNZ8yEdqdAaWcWargK6xTmqsWKKH5c1bvdJ7lh5vqNv2wg==
 
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1:
   version "3.5.3"
@@ -3032,7 +3039,7 @@ figgy-pudding@^3.5.1:
 
 file-loader@^6.2.0:
   version "6.2.0"
-  resolved "https://registry.npmjs.org/file-loader/-/file-loader-6.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-6.2.0.tgz#baef7cf8e1840df325e4390b4484879480eebe4d"
   integrity sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw==
   dependencies:
     loader-utils "^2.0.0"
@@ -4027,6 +4034,11 @@ jest-worker@^26.5.0:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
+
+jquery@>=3.4.1:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
+  integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
 
 jquery@^3.6.2:
   version "3.6.2"
