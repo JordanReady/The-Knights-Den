@@ -53,8 +53,12 @@ ul {
 .chess {
   max-width: 800px;
   max-height: 800px;
-  margin: 4px auto;
+  margin-top: 15px !important;
+  @media screen and (max-width: 1199px) {
+    margin-top: 50px !important;
+  }
   @media screen and (max-width: 991px) {
+    margin: 25px auto !important;
     position: fixed;
     top: 66%;
     left: 50%;
@@ -75,11 +79,12 @@ ul {
   @media screen and (max-width: 1199px) {
     max-width: 540px;
     height: 745px;
+    margin-top: 50px !important;
   }
   @media screen and (max-width: 991px) {
     max-width: 518px;
     max-height: 258px;
-    margin: 0;
+    margin-top: 10px !important;
   }
   @media screen and (max-width: 767px) {
     max-height: 266px;
@@ -113,6 +118,7 @@ ul {
   border: 2px solid $primary-color;
   border-radius: 8px;
   padding: 10px 10px;
+  width: 150px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -143,27 +149,44 @@ ul {
   z-index: 99;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   @media screen and (max-width: 991px) {
-    margin: 0;
+    margin: auto;
     padding: 7px;
+    max-width: 100px;
   }
 }
 
 .move-list {
   overflow-y: auto;
-  height: 500px;
+  height: 512px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   @media screen and (max-width: 1199px) {
-    height: 420px;
+    height: 423px;
+    padding-top: 3px;
   }
   @media screen and (max-width: 991px) {
     height: 91px;
+    padding-top: 5px;
   }
+  @media screen and (max-width: 767px) {
+    height: 91px;
+  }
+  @media screen and (max-width: 575px) {
+    height: 91px;
+  }
+}
+
+.move-list::-webkit-scrollbar {
+  width: 0px;
+  background-color: $light-color;
+}
+
+.move-list::-webkit-scrollbar-thumb {
+  background-color: $light-color;
 }
 
 .move {
