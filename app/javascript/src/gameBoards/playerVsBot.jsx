@@ -162,7 +162,7 @@ export default function PlayerVsBot(props) {
       resetFirstMove(square);
       return;
     }
-
+    handleMove(move, gameCopy.turn());
     setTimeout(makeRandomMove, 500);
     setMoveFrom("");
     setOptionSquares({});
@@ -235,12 +235,11 @@ export default function PlayerVsBot(props) {
                 game.undo();
                 setGameOver(false);
                 setMoveNumber(moveNumber - 2);
-                // if it is the player's turn, undo the bot's last move
-                if (playerColor === game.turn()) {
-                  game.undo();
-                  setWhiteMoves(whiteMoves.slice(0, whiteMoves.length - 1));
-                } else {
-                  setBlackMoves(blackMoves.slice(0, blackMoves.length - 1));
+                if (game.turn() === "w") {
+                  setWhiteMoves(whiteMoves.slice(0, -1));
+                }
+                if (game.turn() === "b") {
+                  setBlackMoves(blackMoves.slice(0, -1));
                 }
               });
               // stop any current timeouts

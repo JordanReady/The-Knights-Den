@@ -18,8 +18,7 @@ function Home() {
   const handleMove = (move, color) => {
     if (color === "b") {
       setWhiteMoves([...whiteMoves, move]);
-    }
-    if (color === "w") {
+    } else {
       setBlackMoves([...blackMoves, move]);
     }
   };
@@ -34,6 +33,17 @@ function Home() {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const element = document.getElementsByClassName("move-list")[0];
+    const element2 = document.getElementsByClassName("move-list")[1];
+    if (element.scrollHeight > element.clientHeight) {
+      element.scrollTop = element.scrollHeight;
+    }
+    if (element2.scrollHeight > element2.clientHeight) {
+      element2.scrollTop = element2.scrollHeight;
+    }
+  }, [whiteMoves, blackMoves]);
 
   function getSelectedBoard() {
     switch (selectedBoard) {
@@ -82,7 +92,7 @@ function Home() {
                 <div className="col-12">
                   <h3 className="game-mode-header">Select game mode</h3>
                 </div>
-                <div className="col-12">
+                <div className="col-4 col-lg-12">
                   <button
                     className="game-btn select-btn"
                     onClick={() => {
@@ -92,7 +102,7 @@ function Home() {
                     Practice Board
                   </button>
                 </div>
-                <div className="col-12">
+                <div className="col-4 col-lg-12">
                   <button
                     className="game-btn select-btn"
                     onClick={() => {
@@ -102,7 +112,7 @@ function Home() {
                     Player vs Bot
                   </button>
                 </div>
-                <div className="col-12">
+                <div className="col-4 col-lg-12">
                   <button
                     className="game-btn select-btn"
                     onClick={() => {
@@ -114,33 +124,53 @@ function Home() {
                 </div>
               </div>
               <div className="col-12">
-                <h3>Move History</h3>
+                <h3 className="move-history-header">Move History</h3>
               </div>
               <div className="col-12">
                 <div className="row">
                   <div className="col-6">
-                    <h4>White</h4>
-                    <ul>
+                    <h4 className="color-label">White</h4>
+                    <ul className="move-list">
                       {whiteMoves && whiteMoves.length ? (
                         whiteMoves.map((move, index) => {
-                          if (move) return <li key={index}>{move.san}</li>;
-                          else return <li key={index}>null</li>;
+                          if (move)
+                            return (
+                              <li className="move" key={index + 1}>
+                                {(index + 1) * 2 - 1}.{move.san}
+                              </li>
+                            );
+                          else
+                            return (
+                              <li className="move" key={index + 1}>
+                                null
+                              </li>
+                            );
                         })
                       ) : (
-                        <li>no moves</li>
+                        <li className="move"></li>
                       )}
                     </ul>
                   </div>
                   <div className="col-6">
-                    <h4>Black</h4>
-                    <ul>
+                    <h4 className="color-label">Black</h4>
+                    <ul className="move-list">
                       {blackMoves && blackMoves.length ? (
                         blackMoves.map((move, index) => {
-                          if (move) return <li key={index}>{move.san}</li>;
-                          else return <li key={index}>null</li>;
+                          if (move)
+                            return (
+                              <li className="move" key={index}>
+                                {(index + 1) * 2}.{move.san}
+                              </li>
+                            );
+                          else
+                            return (
+                              <li className="move" key={index}>
+                                null
+                              </li>
+                            );
                         })
                       ) : (
-                        <li>no moves</li>
+                        <li className="move"></li>
                       )}
                     </ul>
                   </div>
