@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
 
+import "./board.scss";
+
 export default function PlayerVsBot(props) {
   const {
     boardWidth,
@@ -30,8 +32,6 @@ export default function PlayerVsBot(props) {
     const gameCopy = { ...game };
     const turn = gameCopy.turn();
     if (gameCopy.game_over()) {
-      console.log(turn);
-      console.log("game over");
       setGameOver(true);
       if (game.in_checkmate()) {
         setGameOverMessage("Checkmate! Game over.");
@@ -79,7 +79,7 @@ export default function PlayerVsBot(props) {
     // illegal move
     if (move === null) return false;
     // set moves
-    console.log("onDrop", move, gameCopy.turn());
+
     handleMove(move, gameCopy.turn());
     // store timeout so it can be cleared on undo/reset so computer doesn't execute move
     const newTimeout = setTimeout(makeRandomMove, 200);
@@ -128,7 +128,7 @@ export default function PlayerVsBot(props) {
     safeGameMutate((game) => {
       const move = possibleMoves[randomIndex];
       const moveObj = game.move(move);
-      console.log("randomMove", game.move(move), gameCopy.turn());
+
       game.move(move);
       handleMove(moveObj, gameCopy.turn());
     });

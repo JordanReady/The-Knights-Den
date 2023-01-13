@@ -50,7 +50,14 @@ function Home() {
       case "DefaultBoard":
         return (
           <>
-            <DefaultBoard boardWidth={chessboardSize} />
+            <DefaultBoard
+              boardWidth={chessboardSize}
+              whiteMoves={whiteMoves}
+              blackMoves={blackMoves}
+              setWhiteMoves={setWhiteMoves}
+              setBlackMoves={setBlackMoves}
+              handleMove={handleMove}
+            />
             <br />
           </>
         );
@@ -71,7 +78,14 @@ function Home() {
       case "PlayerVsPlayer":
         return (
           <>
-            <PlayerVsPlayer boardWidth={chessboardSize} />
+            <PlayerVsPlayer
+              boardWidth={chessboardSize}
+              whiteMoves={whiteMoves}
+              blackMoves={blackMoves}
+              setWhiteMoves={setWhiteMoves}
+              setBlackMoves={setBlackMoves}
+              handleMove={handleMove}
+            />
             <br />
           </>
         );
@@ -97,6 +111,8 @@ function Home() {
                     className="game-btn select-btn"
                     onClick={() => {
                       setSelectedBoard("DefaultBoard");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
                     }}
                   >
                     Practice Board
@@ -107,6 +123,8 @@ function Home() {
                     className="game-btn select-btn"
                     onClick={() => {
                       setSelectedBoard("PlayerVsBot");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
                     }}
                   >
                     Player vs Bot
@@ -117,6 +135,8 @@ function Home() {
                     className="game-btn select-btn"
                     onClick={() => {
                       setSelectedBoard("PlayerVsPlayer");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
                     }}
                   >
                     Player vs Player
