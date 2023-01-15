@@ -13,6 +13,7 @@ export default function PlayerVsBot(props) {
     blackMoves = [],
     setBlackMoves,
     handleMove,
+    colorTheme,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -27,6 +28,29 @@ export default function PlayerVsBot(props) {
   const [gameWinner, setGameWinner] = useState("");
   const [moveNumber, setMoveNumber] = useState(0);
   const [playerColor, setPlayerColor] = useState("w");
+  const [selectedPiece, setSelectedPiece] = useState(null);
+  const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
+  const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
+
+  useEffect(() => {
+    // set colors
+    if (colorTheme === "blue") {
+      setDarkSquareColor("#4682b4");
+      setLightSquareColor("#add8e6");
+    } else if (colorTheme === "green") {
+      setDarkSquareColor("#2e8b57");
+      setLightSquareColor("#98fb98");
+    } else if (colorTheme === "red") {
+      setDarkSquareColor("#ec2323");
+      setLightSquareColor("#fdadad");
+    } else if (colorTheme === "purple") {
+      setDarkSquareColor("#581758");
+      setLightSquareColor("#e1a1fa");
+    } else {
+      setDarkSquareColor("#b58863");
+      setLightSquareColor("#f0d9b5");
+    }
+  }, [colorTheme]);
 
   useEffect(() => {
     const gameCopy = { ...game };
@@ -88,6 +112,12 @@ export default function PlayerVsBot(props) {
   }
 
   function getMoveOptions(square) {
+    if (square === selectedPiece) {
+      setOptionSquares({});
+      setSelectedPiece(null);
+      return;
+    }
+    setSelectedPiece(square);
     const moves = game.moves({
       square,
       verbose: true,
@@ -102,15 +132,11 @@ export default function PlayerVsBot(props) {
         background:
           game.get(move.to) &&
           game.get(move.to).color !== game.get(square).color
-            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
+            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%"
             : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
         borderRadius: "50%",
       };
-      return move;
     });
-    newSquares[square] = {
-      background: "rgba(255, 255, 0, 0.4)",
-    };
     setOptionSquares(newSquares);
   }
 
@@ -169,14 +195,14 @@ export default function PlayerVsBot(props) {
   }
 
   function onSquareRightClick(square) {
-    const colour = "rgba(0, 0, 255, 0.4)";
+    const color = "rgba(255, 0, 0, 0.4)";
     setRightClickedSquares({
       ...rightClickedSquares,
       [square]:
         rightClickedSquares[square] &&
-        rightClickedSquares[square].backgroundColor === colour
+        rightClickedSquares[square].backgroundColor === color
           ? undefined
-          : { backgroundColor: colour },
+          : { backgroundColor: color },
     });
   }
 
@@ -205,6 +231,12 @@ export default function PlayerVsBot(props) {
             ...moveSquares,
             ...optionSquares,
             ...rightClickedSquares,
+          }}
+          customDarkSquareStyle={{
+            backgroundColor: darkSquareColor,
+          }}
+          customLightSquareStyle={{
+            backgroundColor: lightSquareColor,
           }}
         />
         <div className="btn-row">

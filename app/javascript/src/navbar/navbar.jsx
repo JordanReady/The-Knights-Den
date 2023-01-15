@@ -2,7 +2,7 @@ import React from "react";
 
 import "./navbar.scss";
 
-const Navbar = () => {
+function Navbar() {
   return (
     <React.Fragment>
       <ul className="nav">
@@ -29,6 +29,6 @@ const Navbar = () => {
       </ul>
     </React.Fragment>
   );
-};
+}
 
 export default Navbar;

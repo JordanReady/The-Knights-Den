@@ -1,6 +1,22 @@
-$primary-color: #b58863;
+$dark-color: #b58863;
 $light-color: #f0d9b5;
 $outline-color: #8f6a46;
+//green theme
+$dark-green-color: #2e8b57;
+$light-green-color: #98fb98;
+$outline-green-color: #006400;
+//blue theme
+$dark-blue-color: #4682b4;
+$light-blue-color: #add8e6;
+$outline-blue-color: #00008b;
+//red theme
+$dark-red-color: #ec2323;
+$light-red-color: #fdadad;
+$outline-red-color: #8b2e2e;
+//purple theme
+$dark-purple-color: #581758;
+$light-purple-color: #e1a1fa;
+$outline-purple-color: #470e47;
 
 .containter {
   max-width: 1240px !important;
@@ -18,7 +34,7 @@ ul {
 }
 
 .game-btn {
-  background-color: $primary-color;
+  background-color: $dark-color;
   border: none;
   color: $light-color;
   padding: 10px 10px;
@@ -46,8 +62,8 @@ ul {
 
 .game-btn:hover {
   background-color: $light-color;
-  color: $primary-color;
-  border: 2px solid $primary-color;
+  color: $dark-color;
+  border: 2px solid $dark-color;
 }
 
 .chess {
@@ -94,8 +110,8 @@ ul {
 
 .game-mode-header {
   background-color: $light-color;
-  color: $primary-color;
-  border: 2px solid $primary-color;
+  color: $dark-color;
+  border: 2px solid $dark-color;
   border-radius: 8px;
   padding: 10px 10px;
   text-align: center;
@@ -114,8 +130,8 @@ ul {
 
 .move-history-header {
   background-color: $light-color;
-  color: $primary-color;
-  border: 2px solid $primary-color;
+  color: $dark-color;
+  border: 2px solid $dark-color;
   border-radius: 8px;
   padding: 10px 10px;
   width: 150px;
@@ -134,7 +150,7 @@ ul {
 }
 
 .color-label {
-  background-color: $primary-color;
+  background-color: $dark-color;
   color: $light-color;
   border: 2px solid $light-color;
   border-radius: 8px;
@@ -190,7 +206,7 @@ ul {
 }
 
 .move {
-  color: $primary-color;
+  color: $dark-color;
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -201,5 +217,513 @@ ul {
   @media screen and (max-width: 991px) {
     margin: 0;
     padding: 0;
+  }
+}
+
+//green theme
+.green {
+  .game-btn {
+    background-color: $dark-green-color;
+    border: none;
+    color: $light-green-color;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 2px solid $light-green-color;
+    border-radius: 8px;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  .game-btn:hover {
+    background-color: $light-green-color;
+    color: $dark-green-color;
+    border: 2px solid $dark-green-color;
+  }
+
+  .btn-col {
+    background-color: $light-green-color;
+    border: 2px solid $outline-green-color;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 518px;
+    height: 826px;
+    @media screen and (max-width: 1199px) {
+      max-width: 540px;
+      height: 745px;
+      margin-top: 50px !important;
+    }
+    @media screen and (max-width: 991px) {
+      max-width: 518px;
+      max-height: 258px;
+      margin-top: 10px !important;
+    }
+    @media screen and (max-width: 767px) {
+      max-height: 266px;
+      max-width: 95%;
+    }
+  }
+
+  .game-mode-header {
+    background-color: $light-green-color;
+    color: $dark-green-color;
+    border: 2px solid $dark-green-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .move-history-header {
+    background-color: $light-green-color;
+    color: $dark-green-color;
+    border: 2px solid $dark-green-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .color-label {
+    background-color: $dark-green-color;
+    color: $light-green-color;
+    border: 2px solid $light-green-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: auto;
+      padding: 7px;
+      max-width: 100px;
+    }
+  }
+
+  .move {
+    color: $dark-green-color;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin: 0 !important;
+    cursor: default;
+    z-index: 99;
+    @media screen and (max-width: 991px) {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+//red theme
+.red {
+  .game-btn {
+    background-color: $dark-red-color;
+    border: none;
+    color: $light-red-color;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 2px solid $light-red-color;
+    border-radius: 8px;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  .game-btn:hover {
+    background-color: $light-red-color;
+    color: $dark-red-color;
+    border: 2px solid $dark-red-color;
+  }
+
+  .btn-col {
+    background-color: $light-red-color;
+    border: 2px solid $outline-red-color;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 518px;
+    height: 826px;
+    @media screen and (max-width: 1199px) {
+      max-width: 540px;
+      height: 745px;
+      margin-top: 50px !important;
+    }
+    @media screen and (max-width: 991px) {
+      max-width: 518px;
+      max-height: 258px;
+      margin-top: 10px !important;
+    }
+    @media screen and (max-width: 767px) {
+      max-height: 266px;
+      max-width: 95%;
+    }
+  }
+
+  .game-mode-header {
+    background-color: $light-red-color;
+    color: $dark-red-color;
+    border: 2px solid $dark-red-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .move-history-header {
+    background-color: $light-red-color;
+    color: $dark-red-color;
+    border: 2px solid $dark-red-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .color-label {
+    background-color: $dark-red-color;
+    color: $light-red-color;
+    border: 2px solid $light-red-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: auto;
+      padding: 7px;
+      max-width: 100px;
+    }
+  }
+
+  .move {
+    color: $dark-red-color;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin: 0 !important;
+    cursor: default;
+    z-index: 99;
+    @media screen and (max-width: 991px) {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+//blue theme
+.blue {
+  .game-btn {
+    background-color: $dark-blue-color;
+    border: none;
+    color: $light-blue-color;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 2px solid $light-blue-color;
+    border-radius: 8px;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  .game-btn:hover {
+    background-color: $light-blue-color;
+    color: $dark-blue-color;
+    border: 2px solid $dark-blue-color;
+  }
+
+  .btn-col {
+    background-color: $light-blue-color;
+    border: 2px solid $outline-blue-color;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 518px;
+    height: 826px;
+    @media screen and (max-width: 1199px) {
+      max-width: 540px;
+      height: 745px;
+      margin-top: 50px !important;
+    }
+    @media screen and (max-width: 991px) {
+      max-width: 518px;
+      max-height: 258px;
+      margin-top: 10px !important;
+    }
+    @media screen and (max-width: 767px) {
+      max-height: 266px;
+      max-width: 95%;
+    }
+  }
+
+  .game-mode-header {
+    background-color: $light-blue-color;
+    color: $dark-blue-color;
+    border: 2px solid $dark-blue-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .move-history-header {
+    background-color: $light-blue-color;
+    color: $dark-blue-color;
+    border: 2px solid $dark-blue-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .color-label {
+    background-color: $dark-blue-color;
+    color: $light-blue-color;
+    border: 2px solid $light-blue-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: auto;
+      padding: 7px;
+      max-width: 100px;
+    }
+  }
+
+  .move {
+    color: $dark-blue-color;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin: 0 !important;
+    cursor: default;
+    z-index: 99;
+    @media screen and (max-width: 991px) {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+//purple theme
+.purple {
+  .game-btn {
+    background-color: $dark-purple-color;
+    border: none;
+    color: $light-purple-color;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 2px solid $light-purple-color;
+    border-radius: 8px;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  .game-btn:hover {
+    background-color: $light-purple-color;
+    color: $dark-purple-color;
+    border: 2px solid $dark-purple-color;
+  }
+
+  .btn-col {
+    background-color: $light-purple-color;
+    border: 2px solid $outline-purple-color;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 518px;
+    height: 826px;
+    @media screen and (max-width: 1199px) {
+      max-width: 540px;
+      height: 745px;
+      margin-top: 50px !important;
+    }
+    @media screen and (max-width: 991px) {
+      max-width: 518px;
+      max-height: 258px;
+      margin-top: 10px !important;
+    }
+    @media screen and (max-width: 767px) {
+      max-height: 266px;
+      max-width: 95%;
+    }
+  }
+
+  .game-mode-header {
+    background-color: $light-purple-color;
+    color: $dark-purple-color;
+    border: 2px solid $dark-purple-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .move-history-header {
+    background-color: $light-purple-color;
+    color: $dark-purple-color;
+    border: 2px solid $dark-purple-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: 5px 2px;
+      padding: 7px;
+    }
+  }
+
+  .color-label {
+    background-color: $dark-purple-color;
+    color: $light-purple-color;
+    border: 2px solid $light-purple-color;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: default;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 991px) {
+      margin: auto;
+      padding: 7px;
+      max-width: 100px;
+    }
+  }
+
+  .move {
+    color: $dark-purple-color;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin: 0 !important;
+    cursor: default;
+    z-index: 99;
+    @media screen and (max-width: 991px) {
+      margin: 0;
+      padding: 0;
+    }
   }
 }

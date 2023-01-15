@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 
+import "./board.scss";
+
 export default function PlayerVsPlayer(props) {
   const {
     boardWidth,
@@ -11,6 +13,7 @@ export default function PlayerVsPlayer(props) {
     blackMoves = [],
     setBlackMoves,
     handleMove,
+    colorTheme,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -22,6 +25,28 @@ export default function PlayerVsPlayer(props) {
   const [gameOver, setGameOver] = useState(false);
   const [gameOverMessage, setGameOverMessage] = useState("");
   const [gameWinner, setGameWinner] = useState("");
+  const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
+  const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
+
+  useEffect(() => {
+    // set colors
+    if (colorTheme === "blue") {
+      setDarkSquareColor("#4682b4");
+      setLightSquareColor("#add8e6");
+    } else if (colorTheme === "green") {
+      setDarkSquareColor("#2e8b57");
+      setLightSquareColor("#98fb98");
+    } else if (colorTheme === "red") {
+      setDarkSquareColor("#ec2323");
+      setLightSquareColor("#fdadad");
+    } else if (colorTheme === "purple") {
+      setDarkSquareColor("#581758");
+      setLightSquareColor("#e1a1fa");
+    } else {
+      setDarkSquareColor("#b58863");
+      setLightSquareColor("#f0d9b5");
+    }
+  }, [colorTheme]);
 
   useEffect(() => {
     const gameCopy = { ...game };
@@ -138,14 +163,14 @@ export default function PlayerVsPlayer(props) {
   }
 
   function onSquareRightClick(square) {
-    const colour = "rgba(0, 0, 255, 0.4)";
+    const color = "rgba(255, 0, 0, 0.4)";
     setRightClickedSquares({
       ...rightClickedSquares,
       [square]:
         rightClickedSquares[square] &&
-        rightClickedSquares[square].backgroundColor === colour
+        rightClickedSquares[square].backgroundColor === color
           ? undefined
-          : { backgroundColor: colour },
+          : { backgroundColor: color },
     });
   }
 
@@ -174,6 +199,12 @@ export default function PlayerVsPlayer(props) {
             ...moveSquares,
             ...optionSquares,
             ...rightClickedSquares,
+          }}
+          customDarkSquareStyle={{
+            backgroundColor: darkSquareColor,
+          }}
+          customLightSquareStyle={{
+            backgroundColor: lightSquareColor,
           }}
         />
         <div className="btn-row">
