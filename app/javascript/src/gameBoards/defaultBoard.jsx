@@ -28,6 +28,7 @@ export default function DefaultBoard(props) {
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
+  const [autoFlip, setAutoFlip] = useState(false);
 
   useEffect(() => {
     // set colors
@@ -50,6 +51,7 @@ export default function DefaultBoard(props) {
   }, [colorTheme]);
 
   useEffect(() => {
+    // check for game over
     const gameCopy = { ...game };
     const turn = gameCopy.turn();
     if (gameCopy.game_over()) {
@@ -70,6 +72,14 @@ export default function DefaultBoard(props) {
         setGameOverMessage("Threefold repetition! Game over.");
       } else if (game.in_draw()) {
         setGameOverMessage("Draw! Game over.");
+      }
+    }
+    //if auto flip is on, flip board when it's the other player's turn
+    if (autoFlip) {
+      if (turn === "w") {
+        setBoardOrientation("white");
+      } else {
+        setBoardOrientation("black");
       }
     }
   }, [game]);
@@ -246,6 +256,18 @@ export default function DefaultBoard(props) {
           >
             Flip Board
           </button>
+          {autoFlip ? (
+            <button
+              className="board-btn active-btn"
+              onClick={() => setAutoFlip(false)}
+            >
+              Auto Flip
+            </button>
+          ) : (
+            <button className="board-btn" onClick={() => setAutoFlip(true)}>
+              Auto Flip
+            </button>
+          )}
         </div>
       </div>
     </div>

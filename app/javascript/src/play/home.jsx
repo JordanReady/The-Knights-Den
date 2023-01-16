@@ -113,54 +113,94 @@ function Home() {
         <div className="row justify-content-around">
           <div className="chess col-12 col-lg-9 mt-3">{getSelectedBoard()}</div>
           <div className="col-12 col-lg-3 mt-3 btn-col">
+            <select className="mt-1" onChange={handleColorChange}>
+              <option value={colorTheme}>Theme</option>
+              <option value="default">Brown</option>
+              <option value="purple">Purple</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="red">Red</option>
+            </select>
             <div className="row row-cols-2 row-cols-lg-1">
               <div className="col-12">
                 <h3 className="game-mode-header">Select game mode</h3>
               </div>
               <div className="col-4 col-lg-12">
-                <button
-                  className="game-btn select-btn"
-                  onClick={() => {
-                    setSelectedBoard("DefaultBoard");
-                    setBlackMoves([]);
-                    setWhiteMoves([]);
-                  }}
-                >
-                  Practice Board
-                </button>
+                {selectedBoard === "DefaultBoard" ? (
+                  <button
+                    className="game-btn select-btn active-btn"
+                    onClick={() => {
+                      setSelectedBoard("DefaultBoard");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
+                    }}
+                  >
+                    Practice Board
+                  </button>
+                ) : (
+                  <button
+                    className="game-btn select-btn"
+                    onClick={() => {
+                      setSelectedBoard("DefaultBoard");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
+                    }}
+                  >
+                    Practice Board
+                  </button>
+                )}
               </div>
               <div className="col-4 col-lg-12">
-                <button
-                  className="game-btn select-btn"
-                  onClick={() => {
-                    setSelectedBoard("PlayerVsBot");
-                    setBlackMoves([]);
-                    setWhiteMoves([]);
-                  }}
-                >
-                  Player vs Bot
-                </button>
+                {selectedBoard === "PlayerVsBot" ? (
+                  <button
+                    className="game-btn select-btn active-btn"
+                    onClick={() => {
+                      setSelectedBoard("PlayerVsBot");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
+                    }}
+                  >
+                    Player vs Bot
+                  </button>
+                ) : (
+                  <button
+                    className="game-btn select-btn"
+                    onClick={() => {
+                      setSelectedBoard("PlayerVsBot");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
+                    }}
+                  >
+                    Player vs Bot
+                  </button>
+                )}
               </div>
               <div className="col-4 col-lg-12">
-                <button
-                  className="game-btn select-btn"
-                  onClick={() => {
-                    setSelectedBoard("PlayerVsPlayer");
-                    setBlackMoves([]);
-                    setWhiteMoves([]);
-                  }}
-                >
-                  Player vs Player
-                </button>
+                {selectedBoard === "PlayerVsPlayer" ? (
+                  <button
+                    className="game-btn select-btn active-btn"
+                    onClick={() => {
+                      setSelectedBoard("PlayerVsPlayer");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
+                    }}
+                  >
+                    Player vs Player
+                  </button>
+                ) : (
+                  <button
+                    className="game-btn select-btn"
+                    onClick={() => {
+                      setSelectedBoard("PlayerVsPlayer");
+                      setBlackMoves([]);
+                      setWhiteMoves([]);
+                    }}
+                  >
+                    Player vs Player
+                  </button>
+                )}
               </div>
             </div>
-            <select onChange={handleColorChange}>
-              <option value="default">Default</option>
-              <option value="red">Red</option>
-              <option value="blue">Blue</option>
-              <option value="green">Green</option>
-              <option value="purple">Purple</option>
-            </select>
             <div className="col-12">
               <h3 className="move-history-header">Move History</h3>
             </div>

@@ -3,12 +3,6 @@ import React from "react";
 import "./lessons.scss";
 
 export default function OtherRules(props) {
-  function handleClick(e) {
-    e.preventDefault();
-    let lesson = e.target.id;
-    props.changeLesson(lesson);
-  }
-
   return (
     <div className="container">
       <div className="row lesson-row">
@@ -48,25 +42,6 @@ export default function OtherRules(props) {
             it is important to be aware of this rule in case a benificial
             oportunity to use it occurs.
           </p>
-          <div className="lesson-btn-row">
-            <button id="0" className="lesson-btn" onClick={handleClick}>
-              Terms
-            </button>
-            <button
-              id="9"
-              className="lesson-btn prev-btn"
-              onClick={handleClick}
-            >
-              Prev
-            </button>
-            <button
-              id="10"
-              className=" lesson-btn next-btn disabled"
-              onClick={handleClick}
-            >
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>

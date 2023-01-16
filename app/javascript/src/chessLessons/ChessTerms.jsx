@@ -2,13 +2,7 @@ import React from "react";
 
 import "./lessons.scss";
 
-export default function ChessTerms(props) {
-  function handleClick(e) {
-    e.preventDefault();
-    let lesson = e.target.id;
-    props.changeLesson(lesson);
-  }
-
+export default function ChessTerms() {
   return (
     <div className="container">
       <div className="row lesson-row">
@@ -62,11 +56,6 @@ export default function ChessTerms(props) {
             game, where there are few pieces left on the board and players try
             to checkmate their opponent's king.
           </p>
-          <div className="lesson-btn-row">
-            <button id="1" className="lesson-btn" onClick={handleClick}>
-              Lessons
-            </button>
-          </div>
         </div>
       </div>
     </div>

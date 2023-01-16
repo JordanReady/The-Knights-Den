@@ -3,12 +3,6 @@ import React from "react";
 import "./lessons.scss";
 
 export default function TheKing(props) {
-  function handleClick(e) {
-    e.preventDefault();
-    let lesson = e.target.id;
-    props.changeLesson(lesson);
-  }
-
   return (
     <div className="container">
       <div className="row lesson-row">
@@ -27,25 +21,6 @@ export default function TheKing(props) {
             and defend against the opponent's pieces. Always make sure to
             protect you king!
           </p>
-          <div className="lesson-btn-row">
-            <button id="0" className="lesson-btn" onClick={handleClick}>
-              Terms
-            </button>
-            <button
-              id="8"
-              className="lesson-btn prev-btn"
-              onClick={handleClick}
-            >
-              Prev
-            </button>
-            <button
-              id="10"
-              className=" lesson-btn next-btn"
-              onClick={handleClick}
-            >
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>

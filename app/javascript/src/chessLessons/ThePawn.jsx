@@ -3,12 +3,6 @@ import React from "react";
 import "./lessons.scss";
 
 export default function ThePawn(props) {
-  function handleClick(e) {
-    e.preventDefault();
-    let lesson = e.target.id;
-    props.changeLesson(lesson);
-  }
-
   return (
     <div className="container">
       <div className="row lesson-row">
@@ -48,25 +42,6 @@ export default function ThePawn(props) {
             passant but we will cover that in a later section of special moves
             to reduce confusion.
           </p>
-          <div className="lesson-btn-row">
-            <button id="0" className="lesson-btn" onClick={handleClick}>
-              Terms
-            </button>
-            <button
-              id="3"
-              className="lesson-btn prev-btn"
-              onClick={handleClick}
-            >
-              Prev
-            </button>
-            <button
-              id="5"
-              className=" lesson-btn next-btn"
-              onClick={handleClick}
-            >
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -3,12 +3,6 @@ import React from "react";
 import "./lessons.scss";
 
 export default function PlacingPieces(props) {
-  function handleClick(e) {
-    e.preventDefault();
-    let lesson = e.target.id;
-    props.changeLesson(lesson);
-  }
-
   return (
     <div className="container">
       <div className="row">
@@ -44,25 +38,6 @@ export default function PlacingPieces(props) {
             dark square d8 with her king on e8. And that is how every game of
             chess will start!
           </p>
-          <div className="lesson-btn-row">
-            <button id="0" className="lesson-btn" onClick={handleClick}>
-              Terms
-            </button>
-            <button
-              id="1"
-              className="lesson-btn prev-btn"
-              onClick={handleClick}
-            >
-              Prev
-            </button>
-            <button
-              id="3"
-              className=" lesson-btn next-btn"
-              onClick={handleClick}
-            >
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>
