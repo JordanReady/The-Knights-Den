@@ -19,7 +19,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./learn.scss";
 
-function Learn() {
+function Learn(props) {
+  const { colorTheme } = props;
   const [lesson, setLesson] = useState("1");
 
   function getLesson() {
@@ -57,7 +58,7 @@ function Learn() {
   return (
     <>
       <div className="learn">
-        <Navbar />
+        <Navbar colorTheme={colorTheme} />
         <LearnNavbar changeLesson={changeLesson} />
         <div className="container">
           <div className="lesson">{getLesson()}</div>

@@ -25,6 +25,7 @@ export default function DefaultBoard(props) {
   const [gameOver, setGameOver] = useState(false);
   const [gameOverMessage, setGameOverMessage] = useState("");
   const [gameWinner, setGameWinner] = useState("");
+  const [selectedPiece, setSelectedPiece] = useState(null);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
 
@@ -98,6 +99,12 @@ export default function DefaultBoard(props) {
   }
 
   function getMoveOptions(square) {
+    if (square === selectedPiece) {
+      setOptionSquares({});
+      setSelectedPiece(null);
+      return;
+    }
+    setSelectedPiece(square);
     const moves = game.moves({
       square,
       verbose: true,
@@ -112,15 +119,11 @@ export default function DefaultBoard(props) {
         background:
           game.get(move.to) &&
           game.get(move.to).color !== game.get(square).color
-            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
+            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%"
             : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
         borderRadius: "50%",
       };
-      return move;
     });
-    newSquares[square] = {
-      background: "rgba(255, 255, 0, 0.4)",
-    };
     setOptionSquares(newSquares);
   }
 

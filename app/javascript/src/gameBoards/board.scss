@@ -199,7 +199,30 @@ body {
     border: 2px solid $outline-green-color;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(240, 217, 181, 0.9);
+    background-color: rgba(152, 251, 152, 0.9);
+    @media screen and (max-width: 1398px) {
+      font-size: 30px;
+      transform: translate(-81%, -55%);
+      width: 544px;
+    }
+    @media screen and (max-width: 1199px) {
+      font-size: 30px;
+      transform: translate(-74%, -58%);
+      width: 500px;
+    }
+    @media screen and (max-width: 990px) {
+      font-size: 26px;
+      transform: translate(-50%, -85%);
+      width: 365px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      transform: translate(-50%, -85%);
+      max-width: 80%;
+      padding: 18px;
+    }
   }
 
   .chessboard {
@@ -280,7 +303,30 @@ body {
     border: 2px solid $outline-blue-color;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(240, 217, 181, 0.9);
+    background-color: rgb(173, 216, 230, 0.9);
+    @media screen and (max-width: 1398px) {
+      font-size: 30px;
+      transform: translate(-81%, -55%);
+      width: 544px;
+    }
+    @media screen and (max-width: 1199px) {
+      font-size: 30px;
+      transform: translate(-74%, -58%);
+      width: 500px;
+    }
+    @media screen and (max-width: 990px) {
+      font-size: 26px;
+      transform: translate(-50%, -85%);
+      width: 365px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      transform: translate(-50%, -85%);
+      max-width: 80%;
+      padding: 18px;
+    }
   }
 
   .chessboard {
@@ -357,7 +403,30 @@ body {
     border: 2px solid $outline-red-color;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(240, 217, 181, 0.9);
+    background-color: rgba(253, 173, 173, 0.9);
+    @media screen and (max-width: 1398px) {
+      font-size: 30px;
+      transform: translate(-81%, -55%);
+      width: 544px;
+    }
+    @media screen and (max-width: 1199px) {
+      font-size: 30px;
+      transform: translate(-74%, -58%);
+      width: 500px;
+    }
+    @media screen and (max-width: 990px) {
+      font-size: 26px;
+      transform: translate(-50%, -85%);
+      width: 365px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      transform: translate(-50%, -85%);
+      max-width: 80%;
+      padding: 18px;
+    }
   }
 
   .chessboard {
@@ -434,7 +503,30 @@ body {
     border: 2px solid $outline-purple-color;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(240, 217, 181, 0.9);
+    background-color: rgba(225, 161, 250, 0.9);
+    @media screen and (max-width: 1398px) {
+      font-size: 30px;
+      transform: translate(-81%, -55%);
+      width: 544px;
+    }
+    @media screen and (max-width: 1199px) {
+      font-size: 30px;
+      transform: translate(-74%, -58%);
+      width: 500px;
+    }
+    @media screen and (max-width: 990px) {
+      font-size: 26px;
+      transform: translate(-50%, -85%);
+      width: 365px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      transform: translate(-50%, -85%);
+      max-width: 80%;
+      padding: 18px;
+    }
   }
 
   .chessboard {

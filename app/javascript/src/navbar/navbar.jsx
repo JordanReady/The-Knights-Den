@@ -2,9 +2,10 @@ import React from "react";
 
 import "./navbar.scss";
 
-function Navbar() {
+function Navbar(props) {
+  const { colorTheme } = props;
   return (
-    <React.Fragment>
+    <div className={colorTheme}>
       <ul className="nav">
         <li className="nav-item">
           <a className="nav-link" href="/">
@@ -27,7 +28,7 @@ function Navbar() {
           </a>
         </li>
       </ul>
-    </React.Fragment>
+    </div>
   );
 }
 

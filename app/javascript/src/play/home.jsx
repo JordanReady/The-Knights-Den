@@ -107,14 +107,7 @@ function Home() {
 
   return (
     <div className={colorTheme}>
-      <Navbar />
-      <select onChange={handleColorChange}>
-        <option value="default">Default</option>
-        <option value="red">Red</option>
-        <option value="blue">Blue</option>
-        <option value="green">Green</option>
-        <option value="purple">Purple</option>
-      </select>
+      <Navbar colorTheme={colorTheme} />
 
       <div className="container">
         <div className="row justify-content-around">
@@ -161,6 +154,13 @@ function Home() {
                 </button>
               </div>
             </div>
+            <select onChange={handleColorChange}>
+              <option value="default">Default</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="purple">Purple</option>
+            </select>
             <div className="col-12">
               <h3 className="move-history-header">Move History</h3>
             </div>

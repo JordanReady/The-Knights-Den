@@ -1,1 +1,1 @@
-import '../src/play/home';
+import "../src/play/home";
