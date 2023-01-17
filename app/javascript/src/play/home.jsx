@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./home.scss";
+import ThemePicker from "../themePicker/themePicker";
 
 function Home() {
   const [chessboardSize, setChessboardSize] = useState(undefined);
@@ -113,20 +114,10 @@ function Home() {
         <div className="row justify-content-around">
           <div className="chess col-12 col-lg-9 mt-3">{getSelectedBoard()}</div>
           <div className="col-12 col-lg-3 mt-3 btn-col">
-            <select
-              defaultValue=""
-              className="mt-1"
-              onChange={handleColorChange}
-            >
-              <option value="" disabled selected className="hidden">
-                Theme
-              </option>
-              <option value="default">Brown</option>
-              <option value="purple">Purple</option>
-              <option value="green">Green</option>
-              <option value="blue">Blue</option>
-              <option value="red">Red</option>
-            </select>
+            <ThemePicker
+              colorTheme={colorTheme}
+              handleColorChange={handleColorChange}
+            />
             <div className="row row-cols-2 row-cols-lg-1">
               <div className="col-12">
                 <h3 className="game-mode-header">Select game mode</h3>

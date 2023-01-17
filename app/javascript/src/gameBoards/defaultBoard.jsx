@@ -36,13 +36,13 @@ export default function DefaultBoard(props) {
       setDarkSquareColor("#4682b4");
       setLightSquareColor("#add8e6");
     } else if (colorTheme === "green") {
-      setDarkSquareColor("#2e8b57");
-      setLightSquareColor("#98fb98");
+      setDarkSquareColor("#4f583c");
+      setLightSquareColor("#acb192");
     } else if (colorTheme === "red") {
       setDarkSquareColor("#ec2323");
       setLightSquareColor("#fdadad");
     } else if (colorTheme === "purple") {
-      setDarkSquareColor("#581758");
+      setDarkSquareColor("#462578");
       setLightSquareColor("#e1a1fa");
     } else {
       setDarkSquareColor("#b58863");

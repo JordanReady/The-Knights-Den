@@ -8,7 +8,7 @@ class StatsBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "Username",
+      username: "PlayerName",
       games: 27,
       wins: 19,
       losses: 5,

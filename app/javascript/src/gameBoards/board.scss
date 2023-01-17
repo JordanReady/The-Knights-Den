@@ -2,9 +2,9 @@ $dark-color: #b58863;
 $light-color: #f0d9b5;
 $outline-color: #8f6a46;
 //green theme
-$dark-green-color: #2e8b57;
-$light-green-color: #98fb98;
-$outline-green-color: #006400;
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+$outline-green-color: #485234;
 //blue theme
 $dark-blue-color: #4682b4;
 $light-blue-color: #add8e6;
@@ -14,9 +14,9 @@ $dark-red-color: #ec2323;
 $light-red-color: #fdadad;
 $outline-red-color: #8b2e2e;
 //purple theme
-$dark-purple-color: #581758;
+$dark-purple-color: #462578;
 $light-purple-color: #e1a1fa;
-$outline-purple-color: #470e47;
+$outline-purple-color: #371d5f;
 
 body {
   margin: 0;
@@ -199,7 +199,7 @@ body {
     border: 2px solid $outline-green-color;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(152, 251, 152, 0.9);
+    background-color: rgba(172, 177, 146, 0.9);
     @media screen and (max-width: 1398px) {
       font-size: 30px;
       transform: translate(-81%, -55%);

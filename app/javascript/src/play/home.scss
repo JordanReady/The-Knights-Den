@@ -2,9 +2,9 @@ $dark-color: #b58863;
 $light-color: #f0d9b5;
 $outline-color: #8f6a46;
 //green theme
-$dark-green-color: #2e8b57;
-$light-green-color: #98fb98;
-$outline-green-color: #006400;
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+$outline-green-color: #485234;
 //blue theme
 $dark-blue-color: #4682b4;
 $light-blue-color: #add8e6;
@@ -12,11 +12,11 @@ $outline-blue-color: #00008b;
 //red theme
 $dark-red-color: #ec2323;
 $light-red-color: #fdadad;
-$outline-red-color: #8b2e2e;
+$outline-red-color: #a82f2f;
 //purple theme
-$dark-purple-color: #581758;
+$dark-purple-color: #462578;
 $light-purple-color: #e1a1fa;
-$outline-purple-color: #470e47;
+$outline-purple-color: #371d5f;
 
 .containter {
   max-width: 1240px !important;
@@ -376,14 +376,6 @@ select {
     border-radius: 8px;
   }
 
-  select {
-    word-wrap: normal;
-    background-color: $light-green-color;
-    color: $dark-green-color;
-    border: 2px solid $dark-green-color;
-    border-radius: 8px;
-  }
-
   .active-btn {
     background-color: $light-green-color !important;
     color: $dark-green-color !important;
@@ -519,13 +511,6 @@ select {
     }
   }
 
-  select {
-    word-wrap: normal;
-    background-color: $light-red-color;
-    color: $dark-red-color;
-    border: 2px solid $dark-red-color;
-    border-radius: 8px;
-  }
   select {
     word-wrap: normal;
     background-color: $light-red-color;
@@ -676,13 +661,6 @@ select {
     border: 2px solid $dark-blue-color;
     border-radius: 8px;
   }
-  select {
-    word-wrap: normal;
-    background-color: $light-blue-color;
-    color: $dark-blue-color;
-    border: 2px solid $dark-blue-color;
-    border-radius: 8px;
-  }
 
   .active-btn {
     background-color: $light-blue-color !important;
@@ -817,14 +795,6 @@ select {
       margin: 0;
       padding: 0;
     }
-  }
-
-  select {
-    word-wrap: normal;
-    background-color: $light-purple-color;
-    color: $dark-purple-color;
-    border: 2px solid $dark-purple-color;
-    border-radius: 8px;
   }
 
   select {

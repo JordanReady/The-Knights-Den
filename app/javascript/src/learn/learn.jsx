@@ -18,11 +18,18 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./learn.scss";
+import ThemePicker from "../themePicker/themePicker";
 
 function Learn(props) {
-  const { colorTheme } = props;
+  const [colorTheme, setColorTheme] = useState("default");
   const [lesson, setLesson] = useState(1);
   const [currentLesson, setCurrentLesson] = useState(1);
+
+  const handleColorChange = (e) => {
+    const newColor = e.target.value;
+    console.log(newColor);
+    setColorTheme(newColor);
+  };
 
   useEffect(() => {
     getLesson();
@@ -87,7 +94,7 @@ function Learn(props) {
   }
 
   return (
-    <>
+    <div className={colorTheme}>
       <div className="learn">
         <Navbar />
         <LearnNavbar
@@ -101,6 +108,14 @@ function Learn(props) {
         </div>
         {lesson > 0 ? (
           <div className="lesson-btn-row">
+            <button className="theme-btn">
+              <ThemePicker
+                colorTheme={colorTheme}
+                setColorTheme={setColorTheme}
+                handleColorChange={handleColorChange}
+                style="learn-style"
+              />
+            </button>
             <button id="0" className="lesson-btn" onClick={handleTerms}>
               Terms
             </button>
@@ -127,7 +142,7 @@ function Learn(props) {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

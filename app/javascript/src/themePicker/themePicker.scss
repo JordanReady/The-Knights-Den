@@ -1,0 +1,126 @@
+$dark-color: #b58863;
+$light-color: #f0d9b5;
+//green theme
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+//blue theme
+$dark-blue-color: #4682b4;
+$light-blue-color: #add8e6;
+//red theme
+$dark-red-color: #ec2323;
+$light-red-color: #fdadad;
+//purple theme
+$dark-purple-color: #462578;
+$light-purple-color: #e1a1fa;
+
+select {
+  word-wrap: normal;
+  text-align: center !important;
+  background-color: $light-color;
+  color: $dark-color;
+  border-radius: 8px;
+}
+
+.learn-style {
+  select {
+    word-wrap: normal;
+    text-align: center !important;
+    background-color: $dark-color;
+    color: $light-color;
+    border-radius: 8px;
+    padding: 4px;
+    border: 2px solid;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+//green theme
+.green {
+  select {
+    word-wrap: normal;
+    text-align: center !important;
+    background-color: $light-green-color;
+    color: $dark-green-color;
+    border-radius: 8px;
+  }
+  .learn-style {
+    select {
+      word-wrap: normal;
+      text-align: center !important;
+      background-color: $dark-green-color;
+      color: $light-green-color;
+      border-radius: 8px;
+      padding: 4px;
+      border: 2px solid;
+    }
+  }
+}
+
+//blue theme
+.blue {
+  select {
+    word-wrap: normal;
+    text-align: center !important;
+    background-color: $light-blue-color;
+    color: $dark-blue-color;
+    border-radius: 8px;
+  }
+  .learn-style {
+    select {
+      word-wrap: normal;
+      text-align: center !important;
+      background-color: $dark-blue-color;
+      color: $light-blue-color;
+      border-radius: 8px;
+      padding: 4px;
+      border: 2px solid;
+    }
+  }
+}
+
+//red theme
+.red {
+  select {
+    word-wrap: normal;
+    text-align: center !important;
+    background-color: $light-red-color;
+    color: $dark-red-color;
+    border-radius: 8px;
+  }
+  .learn-style {
+    select {
+      word-wrap: normal;
+      text-align: center !important;
+      background-color: $dark-red-color;
+      color: $light-red-color;
+      border-radius: 8px;
+      padding: 4px;
+      border: 2px solid;
+    }
+  }
+}
+
+//purple theme
+.purple {
+  select {
+    word-wrap: normal;
+    text-align: center !important;
+    background-color: $light-purple-color;
+    color: $dark-purple-color;
+    border-radius: 8px;
+  }
+  .learn-style {
+    select {
+      word-wrap: normal;
+      text-align: center !important;
+      background-color: $dark-purple-color;
+      color: $light-purple-color;
+      border-radius: 8px;
+      padding: 4px;
+      border: 2px solid;
+    }
+  }
+}

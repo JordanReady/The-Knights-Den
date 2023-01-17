@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./lessons.scss";
+import "../learn/learn.scss";
 
 export default function ThePawn(props) {
   return (
