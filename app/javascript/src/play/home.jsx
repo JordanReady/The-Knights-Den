@@ -113,8 +113,14 @@ function Home() {
         <div className="row justify-content-around">
           <div className="chess col-12 col-lg-9 mt-3">{getSelectedBoard()}</div>
           <div className="col-12 col-lg-3 mt-3 btn-col">
-            <select className="mt-1" onChange={handleColorChange}>
-              <option value={colorTheme}>Theme</option>
+            <select
+              defaultValue=""
+              className="mt-1"
+              onChange={handleColorChange}
+            >
+              <option value="" disabled selected className="hidden">
+                Theme
+              </option>
               <option value="default">Brown</option>
               <option value="purple">Purple</option>
               <option value="green">Green</option>

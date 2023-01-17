@@ -230,6 +230,10 @@ select {
   border-radius: 8px;
 }
 
+.hidden {
+  display: none;
+}
+
 .active-btn {
   background-color: $light-color !important;
   color: $dark-color !important;
