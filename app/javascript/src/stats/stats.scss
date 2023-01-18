@@ -43,6 +43,17 @@ body {
   border: 2px solid $light-color;
   border-radius: 8px;
   padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  transform: translate(-50%, 50%);
+  @media screen and (max-width: 991px) {
+    top: 9%;
+  }
+  @media screen and (max-width: 767px) {
+    top: 0;
+    transform: translate(-50%, 35%);
+  }
 }
 
 .stat-tile {

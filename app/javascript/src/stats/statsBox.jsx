@@ -18,7 +18,7 @@ class StatsBox extends React.Component {
 
   render() {
     return (
-      <div className="stats-box shadow p-4">
+      <div className="container my-5 stats-box shadow p-4">
         <div className="row">
           <div className="col-12">
             <h2 className="mb-4 username shadow">{this.state.username}</h2>

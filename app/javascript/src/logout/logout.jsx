@@ -8,21 +8,19 @@ import "./logout.scss";
 import LogoutBox from "./logoutBox";
 
 function Logout() {
-  function handleClick() {
+  const colorTheme = "blue";
+
+  function logout() {
     console.log("logout");
   }
 
   return (
-    <>
+    <div className={colorTheme}>
       <div className="logout">
         <Navbar />
-        <div className="container">
-          <div className="row">
-            <LogoutBox />
-          </div>
-        </div>
+        <LogoutBox logout={logout} />
       </div>
-    </>
+    </div>
   );
 }
 

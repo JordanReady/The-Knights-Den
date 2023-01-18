@@ -8,19 +8,13 @@ import "./stats.scss";
 import StatsBox from "./statsBox";
 
 function Stats() {
-  const colorTheme = "purple";
+  const colorTheme = "default";
 
   return (
     <div className={colorTheme}>
       <div className="stats">
         <Navbar />
-        <div className="container">
-          <div className="row">
-            <div className="col-12 my-4">
-              <StatsBox />
-            </div>
-          </div>
-        </div>
+        <StatsBox />
       </div>
     </div>
   );

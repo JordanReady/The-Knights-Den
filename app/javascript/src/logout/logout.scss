@@ -1,27 +1,44 @@
-$primary-color: #b58863;
+$dark-color: #b58863;
 $light-color: #f0d9b5;
+//green theme
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+//blue theme
+$dark-blue-color: #4682b4;
+$light-blue-color: #add8e6;
+//red theme
+$dark-red-color: #ec2323;
+$light-red-color: #fdadad;
+//purple theme
+$dark-purple-color: #462578;
+$light-purple-color: #e1a1fa;
 
 .btn {
   background-color: $light-color !important;
-  color: $primary-color !important;
+  color: $dark-color !important;
   font-size: larger;
 }
 
 .btn:hover {
-  background-color: $primary-color !important;
+  background-color: $dark-color !important;
   color: $light-color !important;
   border: 1px solid $light-color !important;
 }
 
 .message-border {
-  background-color: $primary-color !important;
+  background-color: $dark-color !important;
   border: 2px solid $light-color !important;
   border-radius: 8px !important;
   padding: 1rem !important;
-  position: fixed;
-  top: 50%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: absolute;
   left: 50%;
-  transform: translate(-50%, -50%);
+  top: 22%;
+  transform: translate(-50%, 50%);
 }
 
 .message {
@@ -34,4 +51,160 @@ $light-color: #f0d9b5;
 
 .header {
   color: $light-color !important;
+}
+
+//green theme
+.green {
+  .btn {
+    background-color: $light-green-color !important;
+    color: $dark-green-color !important;
+    font-size: larger;
+  }
+
+  .btn:hover {
+    background-color: $dark-green-color !important;
+    color: $light-green-color !important;
+    border: 1px solid $light-green-color !important;
+  }
+
+  .message-border {
+    background-color: $dark-green-color !important;
+    border: 2px solid $light-green-color !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header {
+    color: $light-green-color !important;
+  }
+}
+
+//red theme
+.red {
+  .btn {
+    background-color: $light-red-color !important;
+    color: $dark-red-color !important;
+    font-size: larger;
+  }
+
+  .btn:hover {
+    background-color: $dark-red-color !important;
+    color: $light-red-color !important;
+    border: 1px solid $light-red-color !important;
+  }
+
+  .message-border {
+    background-color: $dark-red-color !important;
+    border: 2px solid $light-red-color !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header {
+    color: $light-red-color !important;
+  }
+}
+
+//purple theme
+.purple {
+  .btn {
+    background-color: $light-purple-color !important;
+    color: $dark-purple-color !important;
+    font-size: larger;
+  }
+
+  .btn:hover {
+    background-color: $dark-purple-color !important;
+    color: $light-purple-color !important;
+    border: 1px solid $light-purple-color !important;
+  }
+
+  .message-border {
+    background-color: $dark-purple-color !important;
+    border: 2px solid $light-purple-color !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header {
+    color: $light-purple-color !important;
+  }
+}
+
+//blue theme
+.blue {
+  .btn {
+    background-color: $light-blue-color !important;
+    color: $dark-blue-color !important;
+    font-size: larger;
+  }
+
+  .btn:hover {
+    background-color: $dark-blue-color !important;
+    color: $light-blue-color !important;
+    border: 1px solid $light-blue-color !important;
+  }
+
+  .message-border {
+    background-color: $dark-blue-color !important;
+    border: 2px solid $light-blue-color !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header {
+    color: $light-blue-color !important;
+  }
 }
