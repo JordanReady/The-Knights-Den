@@ -1,5 +1,17 @@
-$light-color: #b58863;
-$primary-color: #f0d9b5;
+$dark-color: #b58863;
+$light-color: #f0d9b5;
+//green theme
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+//blue theme
+$dark-blue-color: #4682b4;
+$light-blue-color: #add8e6;
+//red theme
+$dark-red-color: #ec2323;
+$light-red-color: #fdadad;
+//purple theme
+$dark-purple-color: #462578;
+$light-purple-color: #e1a1fa;
 
 body {
   margin: 0;
@@ -8,55 +20,303 @@ body {
 }
 
 .username {
-  color: $light-color;
+  color: $dark-color;
   font-size: 35px;
-  border: 1px solid $light-color;
+  border: 1px solid $dark-color;
   border-radius: 8px;
-  background-color: $primary-color;
+  background-color: $light-color;
   padding: 0.5rem;
-  max-width: max-content;
+  display: flex;
+  justify-content: center;
   margin: auto;
+  align-items: center;
+  max-width: max-content;
   cursor: default;
 }
 
 .stats-box {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  background-color: $light-color;
-  border: 2px solid $primary-color;
+  background-color: $dark-color;
+  border: 2px solid $light-color;
   border-radius: 8px;
+  padding: 0;
 }
 
 .stat-tile {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  background-color: $primary-color;
-  border: 1px solid $light-color;
+  background-color: $light-color;
+  border: 1px solid $dark-color;
   border-radius: 8px;
-  max-width: 120px;
+  max-width: 24%;
   margin: auto;
   cursor: default;
+  @media screen and (max-width: 992px) {
+    max-width: 45%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 75%;
+  }
 }
 
 .stat-header {
-  color: $light-color;
+  color: $dark-color;
   font-size: 28px;
   padding: 0.25rem;
-  max-width: max-content;
-  margin: auto;
   cursor: default;
 }
 
 .stat-num {
-  color: $light-color;
+  color: $dark-color;
   cursor: default;
+}
+
+//green theme
+.green {
+  .username {
+    color: $dark-green-color;
+    font-size: 35px;
+    border: 1px solid $dark-green-color;
+    border-radius: 8px;
+    background-color: $light-green-color;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    max-width: max-content;
+    cursor: default;
+  }
+
+  .stats-box {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $dark-green-color;
+    border: 2px solid $light-green-color;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .stat-tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $light-green-color;
+    border: 1px solid $dark-green-color;
+    border-radius: 8px;
+    max-width: 24%;
+    margin: auto;
+    cursor: default;
+    @media screen and (max-width: 992px) {
+      max-width: 45%;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 75%;
+    }
+  }
+
+  .stat-header {
+    color: $dark-green-color;
+    font-size: 28px;
+    padding: 0.25rem;
+    cursor: default;
+  }
+
+  .stat-num {
+    color: $dark-green-color;
+    cursor: default;
+  }
+}
+
+//red theme
+.red {
+  .username {
+    color: $dark-red-color;
+    font-size: 35px;
+    border: 1px solid $dark-red-color;
+    border-radius: 8px;
+    background-color: $light-red-color;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    max-width: max-content;
+    cursor: default;
+  }
+
+  .stats-box {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $dark-red-color;
+    border: 2px solid $light-red-color;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .stat-tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $light-red-color;
+    border: 1px solid $dark-red-color;
+    border-radius: 8px;
+    max-width: 24%;
+    margin: auto;
+    cursor: default;
+    @media screen and (max-width: 992px) {
+      max-width: 45%;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 75%;
+    }
+  }
+
+  .stat-header {
+    color: $dark-red-color;
+    font-size: 28px;
+    padding: 0.25rem;
+    cursor: default;
+  }
+
+  .stat-num {
+    color: $dark-red-color;
+    cursor: default;
+  }
+}
+
+//blue theme
+.blue {
+  .username {
+    color: $dark-blue-color;
+    font-size: 35px;
+    border: 1px solid $dark-blue-color;
+    border-radius: 8px;
+    background-color: $light-blue-color;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    max-width: max-content;
+    cursor: default;
+  }
+
+  .stats-box {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $dark-blue-color;
+    border: 2px solid $light-blue-color;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .stat-tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $light-blue-color;
+    border: 1px solid $dark-blue-color;
+    border-radius: 8px;
+    max-width: 24%;
+    margin: auto;
+    cursor: default;
+    @media screen and (max-width: 992px) {
+      max-width: 45%;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 75%;
+    }
+  }
+
+  .stat-header {
+    color: $dark-blue-color;
+    font-size: 28px;
+    padding: 0.25rem;
+    cursor: default;
+  }
+
+  .stat-num {
+    color: $dark-blue-color;
+    cursor: default;
+  }
+}
+
+//purple theme
+.purple {
+  .username {
+    color: $dark-purple-color;
+    font-size: 35px;
+    border: 1px solid $dark-purple-color;
+    border-radius: 8px;
+    background-color: $light-purple-color;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    max-width: max-content;
+    cursor: default;
+  }
+
+  .stats-box {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $dark-purple-color;
+    border: 2px solid $light-purple-color;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .stat-tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $light-purple-color;
+    border: 1px solid $dark-purple-color;
+    border-radius: 8px;
+    max-width: 24%;
+    margin: auto;
+    cursor: default;
+    @media screen and (max-width: 992px) {
+      max-width: 45%;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 75%;
+    }
+  }
+
+  .stat-header {
+    color: $dark-purple-color;
+    font-size: 28px;
+    padding: 0.25rem;
+    cursor: default;
+  }
+
+  .stat-num {
+    color: $dark-purple-color;
+    cursor: default;
+  }
 }
