@@ -111,13 +111,15 @@ function Home() {
       <Navbar colorTheme={colorTheme} />
 
       <div className="container">
-        <div className="row justify-content-around">
-          <div className="chess col-12 col-lg-9 mt-3">{getSelectedBoard()}</div>
-          <div className="col-12 col-lg-3 mt-3 btn-col">
-            <ThemePicker
-              colorTheme={colorTheme}
-              handleColorChange={handleColorChange}
-            />
+        <div className="row play-row justify-content-around">
+          <div className="chess col-12 col-lg-9 mt-4">{getSelectedBoard()}</div>
+          <div className="btn-col col-12 col-lg-3 mt-4">
+            <div className="col-12">
+              <ThemePicker
+                colorTheme={colorTheme}
+                handleColorChange={handleColorChange}
+              />
+            </div>
             <div className="row row-cols-2 row-cols-lg-1">
               <div className="col-12">
                 <h3 className="game-mode-header">Select game mode</h3>

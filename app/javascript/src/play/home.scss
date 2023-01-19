@@ -53,7 +53,7 @@ ul {
 .select-btn {
   min-width: 126px;
   @media screen and (max-width: 991px) {
-    min-width: 110px;
+    min-width: 75px;
     font-size: 14px;
     padding: 5px;
     margin: 0;
@@ -69,18 +69,16 @@ ul {
 .chess {
   max-width: 800px;
   max-height: 800px;
-  margin-top: 15px !important;
-  @media screen and (max-width: 1199px) {
-    margin-top: 50px !important;
-  }
+}
+
+.play-row {
+  display: flex;
+  justify-content: space-around;
+
   @media screen and (max-width: 991px) {
-    margin: 25px auto !important;
-    position: fixed;
-    top: 66%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 540px;
-    max-height: 600px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column-reverse;
   }
 }
 
@@ -90,21 +88,11 @@ ul {
   border-radius: 8px;
   text-align: center;
   margin: 0 auto;
-  max-width: 518px;
-  height: 826px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @media screen and (max-width: 1199px) {
-    max-width: 540px;
-    height: 745px;
-    margin-top: 50px !important;
-  }
-  @media screen and (max-width: 991px) {
-    max-width: 518px;
-    max-height: 258px;
-    margin-top: 10px !important;
-  }
-  @media screen and (max-width: 767px) {
-    max-height: 266px;
-    max-width: 95%;
+    max-height: 745px;
   }
 }
 
@@ -185,15 +173,8 @@ ul {
     padding-top: 3px;
   }
   @media screen and (max-width: 991px) {
-    height: 58px;
-    padding-top: 10px;
-  }
-  @media screen and (max-width: 767px) {
-    height: 62px;
-    padding-top: 15px;
-  }
-  @media screen and (max-width: 575px) {
-    height: 65px;
+    height: 95px;
+    padding-top: 0;
   }
 }
 
@@ -246,19 +227,8 @@ select {
 .green {
   .game-btn {
     background-color: $dark-green-color;
-    border: none;
     color: $light-green-color;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-green-color;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
   .game-btn:hover {
     background-color: $light-green-color;
@@ -269,119 +239,40 @@ select {
   .btn-col {
     background-color: $light-green-color;
     border: 2px solid $outline-green-color;
-    border-radius: 8px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 518px;
-    height: 826px;
-    @media screen and (max-width: 1199px) {
-      max-width: 540px;
-      height: 745px;
-      margin-top: 50px !important;
-    }
-    @media screen and (max-width: 991px) {
-      max-width: 518px;
-      max-height: 258px;
-      margin-top: 10px !important;
-    }
-    @media screen and (max-width: 767px) {
-      max-height: 266px;
-      max-width: 95%;
-    }
   }
 
   .game-mode-header {
     background-color: $light-green-color;
     color: $dark-green-color;
     border: 2px solid $dark-green-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .move-history-header {
     background-color: $light-green-color;
     color: $dark-green-color;
     border: 2px solid $dark-green-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .color-label {
     background-color: $dark-green-color;
     color: $light-green-color;
     border: 2px solid $light-green-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: auto;
-      padding: 7px;
-      max-width: 100px;
-    }
   }
 
   .move {
     color: $dark-green-color;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    margin: 0 !important;
-    cursor: default;
-    z-index: 99;
-    @media screen and (max-width: 991px) {
-      margin: 0;
-      padding: 0;
-    }
   }
 
   select {
-    word-wrap: normal;
     background-color: $light-green-color;
     color: $dark-green-color;
     border: 2px solid $dark-green-color;
-    border-radius: 8px;
   }
 
   .active-btn {
     background-color: $light-green-color !important;
     color: $dark-green-color !important;
     border: 2px solid $dark-green-color !important;
-    box-shadow: 0 0 10px 0 rgba(82, 45, 10, 0.2);
-    font-weight: bold;
   }
 }
 
@@ -389,19 +280,8 @@ select {
 .red {
   .game-btn {
     background-color: $dark-red-color;
-    border: none;
     color: $light-red-color;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-red-color;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
   .game-btn:hover {
     background-color: $light-red-color;
@@ -412,119 +292,40 @@ select {
   .btn-col {
     background-color: $light-red-color;
     border: 2px solid $outline-red-color;
-    border-radius: 8px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 518px;
-    height: 826px;
-    @media screen and (max-width: 1199px) {
-      max-width: 540px;
-      height: 745px;
-      margin-top: 50px !important;
-    }
-    @media screen and (max-width: 991px) {
-      max-width: 518px;
-      max-height: 258px;
-      margin-top: 10px !important;
-    }
-    @media screen and (max-width: 767px) {
-      max-height: 266px;
-      max-width: 95%;
-    }
   }
 
   .game-mode-header {
     background-color: $light-red-color;
     color: $dark-red-color;
     border: 2px solid $dark-red-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .move-history-header {
     background-color: $light-red-color;
     color: $dark-red-color;
     border: 2px solid $dark-red-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .color-label {
     background-color: $dark-red-color;
     color: $light-red-color;
     border: 2px solid $light-red-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: auto;
-      padding: 7px;
-      max-width: 100px;
-    }
   }
 
   .move {
     color: $dark-red-color;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    margin: 0 !important;
-    cursor: default;
-    z-index: 99;
-    @media screen and (max-width: 991px) {
-      margin: 0;
-      padding: 0;
-    }
   }
 
   select {
-    word-wrap: normal;
     background-color: $light-red-color;
     color: $dark-red-color;
     border: 2px solid $dark-red-color;
-    border-radius: 8px;
   }
 
   .active-btn {
     background-color: $light-red-color !important;
     color: $dark-red-color !important;
     border: 2px solid $dark-red-color !important;
-    box-shadow: 0 0 10px 0 rgba(82, 45, 10, 0.2);
-    font-weight: bold;
   }
 }
 
@@ -532,19 +333,8 @@ select {
 .blue {
   .game-btn {
     background-color: $dark-blue-color;
-    border: none;
     color: $light-blue-color;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-blue-color;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
   .game-btn:hover {
     background-color: $light-blue-color;
@@ -555,119 +345,40 @@ select {
   .btn-col {
     background-color: $light-blue-color;
     border: 2px solid $outline-blue-color;
-    border-radius: 8px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 518px;
-    height: 826px;
-    @media screen and (max-width: 1199px) {
-      max-width: 540px;
-      height: 745px;
-      margin-top: 50px !important;
-    }
-    @media screen and (max-width: 991px) {
-      max-width: 518px;
-      max-height: 258px;
-      margin-top: 10px !important;
-    }
-    @media screen and (max-width: 767px) {
-      max-height: 266px;
-      max-width: 95%;
-    }
   }
 
   .game-mode-header {
     background-color: $light-blue-color;
     color: $dark-blue-color;
     border: 2px solid $dark-blue-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .move-history-header {
     background-color: $light-blue-color;
     color: $dark-blue-color;
     border: 2px solid $dark-blue-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .color-label {
     background-color: $dark-blue-color;
     color: $light-blue-color;
     border: 2px solid $light-blue-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: auto;
-      padding: 7px;
-      max-width: 100px;
-    }
   }
 
   .move {
     color: $dark-blue-color;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    margin: 0 !important;
-    cursor: default;
-    z-index: 99;
-    @media screen and (max-width: 991px) {
-      margin: 0;
-      padding: 0;
-    }
   }
 
   select {
-    word-wrap: normal;
     background-color: $light-blue-color;
     color: $dark-blue-color;
     border: 2px solid $dark-blue-color;
-    border-radius: 8px;
   }
 
   .active-btn {
     background-color: $light-blue-color !important;
     color: $dark-blue-color !important;
     border: 2px solid $dark-blue-color !important;
-    box-shadow: 0 0 10px 0 rgba(82, 45, 10, 0.2);
-    font-weight: bold;
   }
 }
 
@@ -675,19 +386,8 @@ select {
 .purple {
   .game-btn {
     background-color: $dark-purple-color;
-    border: none;
     color: $light-purple-color;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-purple-color;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
   .game-btn:hover {
     background-color: $light-purple-color;
@@ -698,118 +398,39 @@ select {
   .btn-col {
     background-color: $light-purple-color;
     border: 2px solid $outline-purple-color;
-    border-radius: 8px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 518px;
-    height: 826px;
-    @media screen and (max-width: 1199px) {
-      max-width: 540px;
-      height: 745px;
-      margin-top: 50px !important;
-    }
-    @media screen and (max-width: 991px) {
-      max-width: 518px;
-      max-height: 258px;
-      margin-top: 10px !important;
-    }
-    @media screen and (max-width: 767px) {
-      max-height: 266px;
-      max-width: 95%;
-    }
   }
 
   .game-mode-header {
     background-color: $light-purple-color;
     color: $dark-purple-color;
     border: 2px solid $dark-purple-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .move-history-header {
     background-color: $light-purple-color;
     color: $dark-purple-color;
     border: 2px solid $dark-purple-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: 5px 2px;
-      padding: 7px;
-    }
   }
 
   .color-label {
     background-color: $dark-purple-color;
     color: $light-purple-color;
     border: 2px solid $light-purple-color;
-    border-radius: 8px;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: default;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    @media screen and (max-width: 991px) {
-      margin: auto;
-      padding: 7px;
-      max-width: 100px;
-    }
   }
 
   .move {
     color: $dark-purple-color;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    margin: 0 !important;
-    cursor: default;
-    z-index: 99;
-    @media screen and (max-width: 991px) {
-      margin: 0;
-      padding: 0;
-    }
   }
 
   select {
-    word-wrap: normal;
     background-color: $light-purple-color;
     color: $dark-purple-color;
     border: 2px solid $dark-purple-color;
-    border-radius: 8px;
   }
 
   .active-btn {
     background-color: $light-purple-color !important;
     color: $dark-purple-color !important;
     border: 2px solid $dark-purple-color !important;
-    box-shadow: 0 0 10px 0 rgba(82, 45, 10, 0.2) !important;
-    font-weight: bold;
   }
 }
