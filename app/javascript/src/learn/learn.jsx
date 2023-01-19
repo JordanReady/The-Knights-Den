@@ -33,6 +33,7 @@ function Learn(props) {
 
   useEffect(() => {
     getLesson();
+    window.scrollTo(0, 0);
   }, [lesson]);
 
   function getLesson() {
@@ -64,7 +65,6 @@ function Learn(props) {
 
   function changeLesson(les) {
     setLesson(les);
-    window.scrollTo(0, 0);
   }
 
   function handleTerms(e) {

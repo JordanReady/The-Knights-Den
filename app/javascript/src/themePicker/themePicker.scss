@@ -21,6 +21,10 @@ select {
   border-radius: 8px;
 }
 
+select:focus {
+  outline: none;
+}
+
 .learn-style {
   select {
     appearance: none;

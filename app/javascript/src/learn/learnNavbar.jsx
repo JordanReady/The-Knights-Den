@@ -11,6 +11,8 @@ const LearnNavbar = (props) => {
     lesson = parseInt(lesson);
     setLesson(lesson);
     setCurrentLesson(lesson);
+    //scroll to top of page
+    window.scrollTo(0, 0);
   }
 
   return (
