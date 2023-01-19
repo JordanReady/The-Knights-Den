@@ -8,7 +8,7 @@ import "./logout.scss";
 import LogoutBox from "./logoutBox";
 
 function Logout() {
-  const colorTheme = "blue";
+  const colorTheme = "default";
 
   function logout() {
     console.log("logout");

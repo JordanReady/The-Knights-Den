@@ -25,6 +25,11 @@ $light-purple-color: #e1a1fa;
   border: 1px solid $light-color !important;
 }
 
+.viewport {
+  height: calc(100vh - 58px);
+  position: relative;
+}
+
 .message-border {
   background-color: $dark-color !important;
   border: 2px solid $light-color !important;
@@ -37,8 +42,8 @@ $light-purple-color: #e1a1fa;
   padding-right: 0 !important;
   position: absolute;
   left: 50%;
-  top: 22%;
-  transform: translate(-50%, 50%);
+  top: 50%;
+  transform: translate(-50%, -75%);
 }
 
 .message {

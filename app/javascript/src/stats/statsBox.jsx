@@ -18,26 +18,28 @@ class StatsBox extends React.Component {
 
   render() {
     return (
-      <div className="container my-5 stats-box shadow p-4">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="mb-4 username shadow">{this.state.username}</h2>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
-            <h3 className="stat-header mb-2">Games</h3>
-            <h3 className="stat-num">{this.state.games}</h3>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
-            <h3 className="stat-header mb-2">Wins</h3>
-            <h3 className="stat-num">{this.state.wins}</h3>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
-            <h3 className="stat-header mb-2">Losses</h3>
-            <h3 className="stat-num">{this.state.losses}</h3>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
-            <h3 className="stat-header mb-2">Draws</h3>
-            <h3 className="stat-num">{this.state.draws}</h3>
+      <div className="viewport">
+        <div className="container my-5 stats-box shadow p-4">
+          <div className="row">
+            <div className="col-12">
+              <h2 className="mb-4 username shadow">{this.state.username}</h2>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
+              <h3 className="stat-header mb-2">Games</h3>
+              <h3 className="stat-num">{this.state.games}</h3>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
+              <h3 className="stat-header mb-2">Wins</h3>
+              <h3 className="stat-num">{this.state.wins}</h3>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
+              <h3 className="stat-header mb-2">Losses</h3>
+              <h3 className="stat-num">{this.state.losses}</h3>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 stat-tile mb-2 shadow">
+              <h3 className="stat-header mb-2">Draws</h3>
+              <h3 className="stat-num">{this.state.draws}</h3>
+            </div>
           </div>
         </div>
       </div>

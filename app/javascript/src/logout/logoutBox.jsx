@@ -9,19 +9,21 @@ class LogoutBox extends React.Component {
 
   render() {
     return (
-      <div className="container my-5 message-border shadow">
-        <div className="row">
-          <div className="col-12">
-            <div className="p-4 message">
-              <h2 className="mb-4 header">Do you really want to logout?</h2>
-              <button
-                className="btn shadow"
-                onClick={() => {
-                  this.props.logout();
-                }}
-              >
-                Logout
-              </button>
+      <div className="viewport">
+        <div className="container my-5 message-border shadow">
+          <div className="row">
+            <div className="col-12">
+              <div className="p-4 message">
+                <h2 className="mb-4 header">Do you really want to logout?</h2>
+                <button
+                  className="btn shadow"
+                  onClick={() => {
+                    this.props.logout();
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
         </div>
