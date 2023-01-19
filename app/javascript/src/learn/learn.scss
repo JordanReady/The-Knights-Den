@@ -165,35 +165,15 @@ ul.nav {
 .green {
   .game-btn {
     background-color: $light-green-color;
-    border: none;
     color: $dark-green-color;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $dark-green-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .lesson-btn {
     background-color: $dark-green-color;
-    border: none;
     color: $light-green-color;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-green-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
@@ -204,19 +184,13 @@ ul.nav {
   }
 
   .disabled {
-    opacity: 0.5;
     background-color: $light-green-color;
     color: $dark-green-color;
     border: 2px solid $dark-green-color;
-    cursor: not-allowed;
   }
 
   .nav-header {
     color: $light-green-color;
-    font-size: 25px;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
   }
 
   .game-btn:hover {
@@ -225,60 +199,23 @@ ul.nav {
     border: 2px solid $light-green-color;
   }
 
-  ul.nav {
-    padding: 0;
-  }
-
   .active {
     background-color: $dark-green-color;
     color: $light-green-color;
     border: 2px solid $light-green-color;
   }
   .lesson-title {
-    font-size: 50px;
-    font-weight: bold;
     color: $dark-green-color;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    @media screen and (max-width: 768px) {
-      font-size: 40px;
-    }
   }
 
   .content {
-    font-size: 24px;
-    font-weight: bold;
     color: $dark-green-color;
-    padding-bottom: 30px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-
-  .lesson-btn-row {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 5px;
-    margin-right: 40px;
-    @media screen and (max-width: 768px) {
-      margin-right: 20px;
-    }
   }
 
   .term {
-    font-size: 25px;
-    font-weight: normal;
-    padding: 2px 4px !important;
     color: $light-green-color;
     background-color: $dark-green-color;
     border: 2px solid $light-green-color;
-    border-radius: 5px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 21px;
-    }
   }
 }
 
@@ -286,35 +223,15 @@ ul.nav {
 .red {
   .game-btn {
     background-color: $light-red-color;
-    border: none;
     color: $dark-red-color;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $dark-red-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .lesson-btn {
     background-color: $dark-red-color;
-    border: none;
     color: $light-red-color;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-red-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
@@ -325,19 +242,13 @@ ul.nav {
   }
 
   .disabled {
-    opacity: 0.5;
     background-color: $light-red-color;
     color: $dark-red-color;
     border: 2px solid $dark-red-color;
-    cursor: not-allowed;
   }
 
   .nav-header {
     color: $light-red-color;
-    font-size: 25px;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
   }
 
   .game-btn:hover {
@@ -346,60 +257,23 @@ ul.nav {
     border: 2px solid $light-red-color;
   }
 
-  ul.nav {
-    padding: 0;
-  }
-
   .active {
     background-color: $dark-red-color;
     color: $light-red-color;
     border: 2px solid $light-red-color;
   }
   .lesson-title {
-    font-size: 50px;
-    font-weight: bold;
     color: $dark-red-color;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    @media screen and (max-width: 768px) {
-      font-size: 40px;
-    }
   }
 
   .content {
-    font-size: 24px;
-    font-weight: bold;
     color: $dark-red-color;
-    padding-bottom: 30px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-
-  .lesson-btn-row {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 5px;
-    margin-right: 40px;
-    @media screen and (max-width: 768px) {
-      margin-right: 20px;
-    }
   }
 
   .term {
-    font-size: 25px;
-    font-weight: normal;
-    padding: 2px 4px !important;
     color: $light-red-color;
     background-color: $dark-red-color;
     border: 2px solid $light-red-color;
-    border-radius: 5px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 21px;
-    }
   }
 }
 
@@ -407,35 +281,15 @@ ul.nav {
 .blue {
   .game-btn {
     background-color: $light-blue-color;
-    border: none;
     color: $dark-blue-color;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $dark-blue-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .lesson-btn {
     background-color: $dark-blue-color;
-    border: none;
     color: $light-blue-color;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-blue-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
@@ -446,19 +300,13 @@ ul.nav {
   }
 
   .disabled {
-    opacity: 0.5;
     background-color: $light-blue-color;
     color: $dark-blue-color;
     border: 2px solid $dark-blue-color;
-    cursor: not-allowed;
   }
 
   .nav-header {
     color: $light-blue-color;
-    font-size: 25px;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
   }
 
   .game-btn:hover {
@@ -467,60 +315,23 @@ ul.nav {
     border: 2px solid $light-blue-color;
   }
 
-  ul.nav {
-    padding: 0;
-  }
-
   .active {
     background-color: $dark-blue-color;
     color: $light-blue-color;
     border: 2px solid $light-blue-color;
   }
   .lesson-title {
-    font-size: 50px;
-    font-weight: bold;
     color: $dark-blue-color;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    @media screen and (max-width: 768px) {
-      font-size: 40px;
-    }
   }
 
   .content {
-    font-size: 24px;
-    font-weight: bold;
     color: $dark-blue-color;
-    padding-bottom: 30px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-
-  .lesson-btn-row {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 5px;
-    margin-right: 40px;
-    @media screen and (max-width: 768px) {
-      margin-right: 20px;
-    }
   }
 
   .term {
-    font-size: 25px;
-    font-weight: normal;
-    padding: 2px 4px !important;
     color: $light-blue-color;
     background-color: $dark-blue-color;
     border: 2px solid $light-blue-color;
-    border-radius: 5px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 21px;
-    }
   }
 }
 
@@ -528,35 +339,15 @@ ul.nav {
 .purple {
   .game-btn {
     background-color: $light-purple-color;
-    border: none;
     color: $dark-purple-color;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $dark-purple-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .lesson-btn {
     background-color: $dark-purple-color;
-    border: none;
     color: $light-purple-color;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-purple-color;
-    border-radius: 8px;
-    z-index: 99;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
@@ -567,19 +358,13 @@ ul.nav {
   }
 
   .disabled {
-    opacity: 0.5;
     background-color: $light-purple-color;
     color: $dark-purple-color;
     border: 2px solid $dark-purple-color;
-    cursor: not-allowed;
   }
 
   .nav-header {
     color: $light-purple-color;
-    font-size: 25px;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
   }
 
   .game-btn:hover {
@@ -588,59 +373,22 @@ ul.nav {
     border: 2px solid $light-purple-color;
   }
 
-  ul.nav {
-    padding: 0;
-  }
-
   .active {
     background-color: $dark-purple-color;
     color: $light-purple-color;
     border: 2px solid $light-purple-color;
   }
   .lesson-title {
-    font-size: 50px;
-    font-weight: bold;
     color: $dark-purple-color;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    @media screen and (max-width: 768px) {
-      font-size: 40px;
-    }
   }
 
   .content {
-    font-size: 24px;
-    font-weight: bold;
     color: $dark-purple-color;
-    padding-bottom: 30px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-
-  .lesson-btn-row {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 5px;
-    margin-right: 40px;
-    @media screen and (max-width: 768px) {
-      margin-right: 20px;
-    }
   }
 
   .term {
-    font-size: 25px;
-    font-weight: normal;
-    padding: 2px 4px !important;
     color: $light-purple-color;
     background-color: $dark-purple-color;
     border: 2px solid $light-purple-color;
-    border-radius: 5px;
-    margin-top: 0;
-    @media screen and (max-width: 768px) {
-      font-size: 21px;
-    }
   }
 }

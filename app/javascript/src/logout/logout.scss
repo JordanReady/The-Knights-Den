@@ -58,7 +58,6 @@ $light-purple-color: #e1a1fa;
   .btn {
     background-color: $light-green-color !important;
     color: $dark-green-color !important;
-    font-size: larger;
   }
 
   .btn:hover {
@@ -70,21 +69,6 @@ $light-purple-color: #e1a1fa;
   .message-border {
     background-color: $dark-green-color !important;
     border: 2px solid $light-green-color !important;
-    border-radius: 8px !important;
-    padding: 1rem !important;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
   }
 
   .header {
@@ -97,7 +81,6 @@ $light-purple-color: #e1a1fa;
   .btn {
     background-color: $light-red-color !important;
     color: $dark-red-color !important;
-    font-size: larger;
   }
 
   .btn:hover {
@@ -109,21 +92,6 @@ $light-purple-color: #e1a1fa;
   .message-border {
     background-color: $dark-red-color !important;
     border: 2px solid $light-red-color !important;
-    border-radius: 8px !important;
-    padding: 1rem !important;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
   }
 
   .header {
@@ -136,7 +104,6 @@ $light-purple-color: #e1a1fa;
   .btn {
     background-color: $light-purple-color !important;
     color: $dark-purple-color !important;
-    font-size: larger;
   }
 
   .btn:hover {
@@ -148,21 +115,6 @@ $light-purple-color: #e1a1fa;
   .message-border {
     background-color: $dark-purple-color !important;
     border: 2px solid $light-purple-color !important;
-    border-radius: 8px !important;
-    padding: 1rem !important;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
   }
 
   .header {
@@ -175,7 +127,6 @@ $light-purple-color: #e1a1fa;
   .btn {
     background-color: $light-blue-color !important;
     color: $dark-blue-color !important;
-    font-size: larger;
   }
 
   .btn:hover {
@@ -187,21 +138,6 @@ $light-purple-color: #e1a1fa;
   .message-border {
     background-color: $dark-blue-color !important;
     border: 2px solid $light-blue-color !important;
-    border-radius: 8px !important;
-    padding: 1rem !important;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
   }
 
   .header {

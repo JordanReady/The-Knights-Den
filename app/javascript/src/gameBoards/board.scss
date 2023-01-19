@@ -1,22 +1,27 @@
 $dark-color: #b58863;
 $light-color: #f0d9b5;
 $outline-color: #8f6a46;
+$message-color: rgba(240, 217, 181, 0.9);
 //green theme
 $dark-green-color: #4f583c;
 $light-green-color: #acb192;
 $outline-green-color: #485234;
+$message-green-color: rgba(172, 177, 146, 0.9);
 //blue theme
 $dark-blue-color: #4682b4;
 $light-blue-color: #add8e6;
-$outline-blue-color: #00008b;
+$outline-blue-color: #3b6d96;
+$message-blue-color: rgba(173, 216, 230, 0.9);
 //red theme
 $dark-red-color: #ec2323;
 $light-red-color: #fdadad;
 $outline-red-color: #8b2e2e;
+$message-red-color: rgba(253, 173, 173, 0.9);
 //purple theme
 $dark-purple-color: #462578;
 $light-purple-color: #e1a1fa;
 $outline-purple-color: #371d5f;
+$message-purple-color: rgba(225, 161, 250, 0.9);
 
 body {
   margin: 0;
@@ -43,7 +48,7 @@ body {
   border: 2px solid $outline-color;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  background-color: rgba(240, 217, 181, 0.9);
+  background-color: $message-color;
   @media screen and (max-width: 1398px) {
     font-size: 30px;
     transform: translate(-81%, -55%);
@@ -175,54 +180,13 @@ body {
 //green theme
 .green {
   body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
     background-color: $light-green-color;
   }
 
   .game-over-message {
-    font-size: 30px;
-    font-weight: bold;
     color: $dark-green-color;
-    margin: 0;
-    padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-98%, -55%);
-    text-align: center;
-    width: 50%;
-    max-width: 543px;
-    z-index: 99;
     border: 2px solid $outline-green-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(172, 177, 146, 0.9);
-    @media screen and (max-width: 1398px) {
-      font-size: 30px;
-      transform: translate(-81%, -55%);
-      width: 544px;
-    }
-    @media screen and (max-width: 1199px) {
-      font-size: 30px;
-      transform: translate(-74%, -58%);
-      width: 500px;
-    }
-    @media screen and (max-width: 990px) {
-      font-size: 26px;
-      transform: translate(-50%, -85%);
-      width: 365px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-    }
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      transform: translate(-50%, -85%);
-      max-width: 80%;
-      padding: 18px;
-    }
+    background-color: $message-green-color;
   }
 
   .chessboard {
@@ -232,29 +196,12 @@ body {
       $light-green-color
     );
     border: 2px solid $outline-green-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .board-btn {
     background-color: $dark-green-color !important;
-    border: none;
     color: $light-green-color !important;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-green-color !important;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
-    @media screen and (max-width: 768px) {
-      font-size: 12px;
-    }
   }
 
   .board-btn:hover {
@@ -266,95 +213,30 @@ body {
   .btn-row {
     background-color: $light-green-color;
     border-top: 2px solid $outline-green-color;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    min-width: 100%;
-    margin: auto;
-    justify-content: space-around !important;
   }
 }
 
 //blue theme
 .blue {
   body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
     background-color: $light-blue-color;
   }
 
   .game-over-message {
-    font-size: 30px;
-    font-weight: bold;
     color: $dark-blue-color;
-    margin: 0;
-    padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-98%, -55%);
-    text-align: center;
-    width: 50%;
-    max-width: 543px;
-    z-index: 99;
     border: 2px solid $outline-blue-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgb(173, 216, 230, 0.9);
-    @media screen and (max-width: 1398px) {
-      font-size: 30px;
-      transform: translate(-81%, -55%);
-      width: 544px;
-    }
-    @media screen and (max-width: 1199px) {
-      font-size: 30px;
-      transform: translate(-74%, -58%);
-      width: 500px;
-    }
-    @media screen and (max-width: 990px) {
-      font-size: 26px;
-      transform: translate(-50%, -85%);
-      width: 365px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-    }
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      transform: translate(-50%, -85%);
-      max-width: 80%;
-      padding: 18px;
-    }
+    background-color: $message-blue-color;
   }
 
   .chessboard {
     background: linear-gradient(to right, $dark-blue-color, $light-blue-color);
     border: 2px solid $outline-blue-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .board-btn {
     background-color: $dark-blue-color !important;
-    border: none;
     color: $light-blue-color !important;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-blue-color !important;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
-    @media screen and (max-width: 768px) {
-      font-size: 12px;
-    }
   }
 
   .board-btn:hover {
@@ -366,95 +248,31 @@ body {
   .btn-row {
     background-color: $light-blue-color;
     border-top: 2px solid $outline-blue-color;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    min-width: 100%;
-    margin: auto;
-    justify-content: space-around !important;
   }
 }
 
 //red theme
 .red {
   body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
     background-color: $light-red-color;
   }
 
   .game-over-message {
-    font-size: 30px;
-    font-weight: bold;
     color: $dark-red-color;
-    margin: 0;
-    padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-98%, -55%);
-    text-align: center;
-    width: 50%;
-    max-width: 543px;
-    z-index: 99;
     border: 2px solid $outline-red-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(253, 173, 173, 0.9);
-    @media screen and (max-width: 1398px) {
-      font-size: 30px;
-      transform: translate(-81%, -55%);
-      width: 544px;
-    }
-    @media screen and (max-width: 1199px) {
-      font-size: 30px;
-      transform: translate(-74%, -58%);
-      width: 500px;
-    }
-    @media screen and (max-width: 990px) {
-      font-size: 26px;
-      transform: translate(-50%, -85%);
-      width: 365px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-    }
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      transform: translate(-50%, -85%);
-      max-width: 80%;
-      padding: 18px;
-    }
+
+    background-color: $message-red-color;
   }
 
   .chessboard {
     background: linear-gradient(to right, $dark-red-color, $light-red-color);
     border: 2px solid $outline-red-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .board-btn {
     background-color: $dark-red-color !important;
-    border: none;
     color: $light-red-color !important;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-red-color !important;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
-    @media screen and (max-width: 768px) {
-      font-size: 12px;
-    }
   }
 
   .board-btn:hover {
@@ -466,67 +284,19 @@ body {
   .btn-row {
     background-color: $light-red-color;
     border-top: 2px solid $outline-red-color;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    min-width: 100%;
-    margin: auto;
-    justify-content: space-around !important;
   }
 }
 
 //purple theme
 .purple {
   body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
     background-color: $light-purple-color;
   }
 
   .game-over-message {
-    font-size: 30px;
-    font-weight: bold;
     color: $dark-purple-color;
-    margin: 0;
-    padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-98%, -55%);
-    text-align: center;
-    width: 50%;
-    max-width: 543px;
-    z-index: 99;
     border: 2px solid $outline-purple-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(225, 161, 250, 0.9);
-    @media screen and (max-width: 1398px) {
-      font-size: 30px;
-      transform: translate(-81%, -55%);
-      width: 544px;
-    }
-    @media screen and (max-width: 1199px) {
-      font-size: 30px;
-      transform: translate(-74%, -58%);
-      width: 500px;
-    }
-    @media screen and (max-width: 990px) {
-      font-size: 26px;
-      transform: translate(-50%, -85%);
-      width: 365px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-    }
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      transform: translate(-50%, -85%);
-      max-width: 80%;
-      padding: 18px;
-    }
+    background-color: $message-purple-color;
   }
 
   .chessboard {
@@ -536,29 +306,12 @@ body {
       $light-purple-color
     );
     border: 2px solid $outline-purple-color;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .board-btn {
     background-color: $dark-purple-color !important;
-    border: none;
     color: $light-purple-color !important;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: 2px solid $light-purple-color !important;
-    border-radius: 8px;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
-    @media screen and (max-width: 768px) {
-      font-size: 12px;
-    }
   }
 
   .board-btn:hover {
@@ -570,12 +323,5 @@ body {
   .btn-row {
     background-color: $light-purple-color;
     border-top: 2px solid $outline-purple-color;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    min-width: 100%;
-    margin: auto;
-    justify-content: space-around !important;
   }
 }

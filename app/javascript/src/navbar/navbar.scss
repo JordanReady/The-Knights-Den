@@ -27,7 +27,6 @@ body {
 .nav {
   background: $dark-color;
   color: #fff;
-  box-shadow: 0 2px 6px rgba(181, 136, 99, 0.4);
   height: 58px;
   width: 100%;
   margin: 0;
@@ -100,73 +99,22 @@ li {
 .green {
   .nav {
     background: $dark-green-color;
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(31, 238, 111, 0.4);
-    height: 58px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-around !important;
   }
 
   .nav a {
     color: $light-green-color;
-    text-decoration: none;
-    font-size: 25px !important;
-    padding-top: 0;
-
-    @media only screen and (max-width: 768px) {
-      font-size: 20px !important;
-      padding: 0 0.5rem;
-      margin-left: 2px !important;
-    }
   }
 
   .nav-link {
-    position: relative;
-    text-decoration: none;
-    padding-left: 3px !important;
-    padding-right: 4px !important;
-    padding-bottom: 1px !important;
     color: $light-green-color;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: flex !important;
-    align-items: center !important;
   }
 
   .nav-link:after {
-    content: "" !important;
-    position: absolute !important;
-    width: 0 !important;
-    height: 2px !important;
-    left: 0 !important;
-    bottom: 0 !important;
     background-color: $light-green-color !important;
-    transition: width 0.3s !important;
   }
 
   .nav-link:hover {
     color: $light-green-color !important;
-    cursor: default !important;
-  }
-  .nav-link:hover:after {
-    width: 100% !important;
-  }
-
-  ul .nav {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 }
 
@@ -174,73 +122,22 @@ li {
 .blue {
   .nav {
     background: $dark-blue-color;
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(42, 164, 245, 0.4);
-    height: 58px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-around !important;
   }
 
   .nav a {
     color: $light-blue-color;
-    text-decoration: none;
-    font-size: 25px !important;
-    padding-top: 0;
-
-    @media only screen and (max-width: 768px) {
-      font-size: 20px !important;
-      padding: 0 0.5rem;
-      margin-left: 2px !important;
-    }
   }
 
   .nav-link {
-    position: relative;
-    text-decoration: none;
-    padding-left: 3px !important;
-    padding-right: 4px !important;
-    padding-bottom: 1px !important;
     color: $light-blue-color;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: flex !important;
-    align-items: center !important;
   }
 
   .nav-link:after {
-    content: "" !important;
-    position: absolute !important;
-    width: 0 !important;
-    height: 2px !important;
-    left: 0 !important;
-    bottom: 0 !important;
     background-color: $light-blue-color !important;
-    transition: width 0.3s !important;
   }
 
   .nav-link:hover {
     color: $light-blue-color !important;
-    cursor: default !important;
-  }
-  .nav-link:hover:after {
-    width: 100% !important;
-  }
-
-  ul .nav {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 }
 
@@ -248,73 +145,22 @@ li {
 .red {
   .nav {
     background: $dark-red-color;
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(240, 28, 28, 0.4);
-    height: 58px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-around !important;
   }
 
   .nav a {
     color: $light-red-color;
-    text-decoration: none;
-    font-size: 25px !important;
-    padding-top: 0;
-
-    @media only screen and (max-width: 768px) {
-      font-size: 20px !important;
-      padding: 0 0.5rem;
-      margin-left: 2px !important;
-    }
   }
 
   .nav-link {
-    position: relative;
-    text-decoration: none;
-    padding-left: 3px !important;
-    padding-right: 4px !important;
-    padding-bottom: 1px !important;
     color: $light-red-color;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: flex !important;
-    align-items: center !important;
   }
 
   .nav-link:after {
-    content: "" !important;
-    position: absolute !important;
-    width: 0 !important;
-    height: 2px !important;
-    left: 0 !important;
-    bottom: 0 !important;
     background-color: $light-red-color !important;
-    transition: width 0.3s !important;
   }
 
   .nav-link:hover {
     color: $light-red-color !important;
-    cursor: default !important;
-  }
-  .nav-link:hover:after {
-    width: 100% !important;
-  }
-
-  ul .nav {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 }
 
@@ -322,72 +168,21 @@ li {
 .purple {
   .nav {
     background: $dark-purple-color;
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(145, 60, 179, 0.4);
-    height: 58px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-around !important;
   }
 
   .nav a {
     color: $light-purple-color;
-    text-decoration: none;
-    font-size: 25px !important;
-    padding-top: 0;
-
-    @media only screen and (max-width: 768px) {
-      font-size: 20px !important;
-      padding: 0 0.5rem;
-      margin-left: 2px !important;
-    }
   }
 
   .nav-link {
-    position: relative;
-    text-decoration: none;
-    padding-left: 3px !important;
-    padding-right: 4px !important;
-    padding-bottom: 1px !important;
     color: $light-purple-color;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: flex !important;
-    align-items: center !important;
   }
 
   .nav-link:after {
-    content: "" !important;
-    position: absolute !important;
-    width: 0 !important;
-    height: 2px !important;
-    left: 0 !important;
-    bottom: 0 !important;
     background-color: $light-purple-color !important;
-    transition: width 0.3s !important;
   }
 
   .nav-link:hover {
     color: $light-purple-color !important;
-    cursor: default !important;
-  }
-  .nav-link:hover:after {
-    width: 100% !important;
-  }
-
-  ul .nav {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 }
