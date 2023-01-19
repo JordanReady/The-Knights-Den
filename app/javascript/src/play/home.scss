@@ -33,6 +33,26 @@ ul {
   width: 98%;
 }
 
+.view-port {
+  display: flex;
+  height: calc(100vh - 58px);
+  justify-content: center;
+  align-items: center;
+}
+
+.fix-nav {
+  position: fixed;
+  justify-content: unsafe center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.spacer {
+  height: 58px;
+}
+
 .game-btn {
   background-color: $dark-color;
   border: none;
@@ -161,7 +181,7 @@ ul {
 
 .move-list {
   overflow-y: auto;
-  height: 480px;
+  height: 476px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -108,148 +108,154 @@ function Home() {
 
   return (
     <div className={colorTheme}>
-      <Navbar colorTheme={colorTheme} />
-
-      <div className="container">
-        <div className="row play-row justify-content-around">
-          <div className="chess col-12 col-lg-9 mt-4">{getSelectedBoard()}</div>
-          <div className="btn-col col-12 col-lg-3 mt-4">
-            <div className="col-12">
-              <ThemePicker
-                colorTheme={colorTheme}
-                handleColorChange={handleColorChange}
-              />
+      <div className="fix-nav">
+        <Navbar colorTheme={colorTheme} />
+      </div>
+      <div className="spacer"></div>
+      <div className="view-port">
+        <div className="container">
+          <div className="row play-row justify-content-around">
+            <div className="chess col-12 col-lg-9 mt-3">
+              {getSelectedBoard()}
             </div>
-            <div className="row row-cols-2 row-cols-lg-1">
+            <div className="btn-col col-12 col-lg-3 mt-3">
               <div className="col-12">
-                <h3 className="game-mode-header">Select game mode</h3>
+                <ThemePicker
+                  colorTheme={colorTheme}
+                  handleColorChange={handleColorChange}
+                />
               </div>
-              <div className="col-4 col-lg-12">
-                {selectedBoard === "DefaultBoard" ? (
-                  <button
-                    className="game-btn select-btn active-btn"
-                    onClick={() => {
-                      setSelectedBoard("DefaultBoard");
-                      setBlackMoves([]);
-                      setWhiteMoves([]);
-                    }}
-                  >
-                    Practice Board
-                  </button>
-                ) : (
-                  <button
-                    className="game-btn select-btn"
-                    onClick={() => {
-                      setSelectedBoard("DefaultBoard");
-                      setBlackMoves([]);
-                      setWhiteMoves([]);
-                    }}
-                  >
-                    Practice Board
-                  </button>
-                )}
-              </div>
-              <div className="col-4 col-lg-12">
-                {selectedBoard === "PlayerVsBot" ? (
-                  <button
-                    className="game-btn select-btn active-btn"
-                    onClick={() => {
-                      setSelectedBoard("PlayerVsBot");
-                      setBlackMoves([]);
-                      setWhiteMoves([]);
-                    }}
-                  >
-                    Player vs Bot
-                  </button>
-                ) : (
-                  <button
-                    className="game-btn select-btn"
-                    onClick={() => {
-                      setSelectedBoard("PlayerVsBot");
-                      setBlackMoves([]);
-                      setWhiteMoves([]);
-                    }}
-                  >
-                    Player vs Bot
-                  </button>
-                )}
-              </div>
-              <div className="col-4 col-lg-12">
-                {selectedBoard === "PlayerVsPlayer" ? (
-                  <button
-                    className="game-btn select-btn active-btn"
-                    onClick={() => {
-                      setSelectedBoard("PlayerVsPlayer");
-                      setBlackMoves([]);
-                      setWhiteMoves([]);
-                    }}
-                  >
-                    Player vs Player
-                  </button>
-                ) : (
-                  <button
-                    className="game-btn select-btn"
-                    onClick={() => {
-                      setSelectedBoard("PlayerVsPlayer");
-                      setBlackMoves([]);
-                      setWhiteMoves([]);
-                    }}
-                  >
-                    Player vs Player
-                  </button>
-                )}
-              </div>
-            </div>
-            <div className="col-12">
-              <h3 className="move-history-header">Move History</h3>
-            </div>
-            <div className="col-12">
-              <div className="row">
-                <div className="col-6">
-                  <h4 className="color-label">White</h4>
-                  <ul className="move-list">
-                    {whiteMoves && whiteMoves.length ? (
-                      whiteMoves.map((move, index) => {
-                        if (move)
-                          return (
-                            <li className="move" key={index + 1}>
-                              {(index + 1) * 2 - 1}.{move.san}
-                            </li>
-                          );
-                        else
-                          return (
-                            <li className="move" key={index + 1}>
-                              null
-                            </li>
-                          );
-                      })
-                    ) : (
-                      <li className="move"></li>
-                    )}
-                  </ul>
+              <div className="row row-cols-2 row-cols-lg-1">
+                <div className="col-12">
+                  <h3 className="game-mode-header">Select game mode</h3>
                 </div>
-                <div className="col-6">
-                  <h4 className="color-label">Black</h4>
-                  <ul className="move-list">
-                    {blackMoves && blackMoves.length ? (
-                      blackMoves.map((move, index) => {
-                        if (move)
-                          return (
-                            <li className="move" key={index}>
-                              {(index + 1) * 2}.{move.san}
-                            </li>
-                          );
-                        else
-                          return (
-                            <li className="move" key={index}>
-                              null
-                            </li>
-                          );
-                      })
-                    ) : (
-                      <li className="move"></li>
-                    )}
-                  </ul>
+                <div className="col-4 col-lg-12">
+                  {selectedBoard === "DefaultBoard" ? (
+                    <button
+                      className="game-btn select-btn active-btn"
+                      onClick={() => {
+                        setSelectedBoard("DefaultBoard");
+                        setBlackMoves([]);
+                        setWhiteMoves([]);
+                      }}
+                    >
+                      Practice Board
+                    </button>
+                  ) : (
+                    <button
+                      className="game-btn select-btn"
+                      onClick={() => {
+                        setSelectedBoard("DefaultBoard");
+                        setBlackMoves([]);
+                        setWhiteMoves([]);
+                      }}
+                    >
+                      Practice Board
+                    </button>
+                  )}
+                </div>
+                <div className="col-4 col-lg-12">
+                  {selectedBoard === "PlayerVsBot" ? (
+                    <button
+                      className="game-btn select-btn active-btn"
+                      onClick={() => {
+                        setSelectedBoard("PlayerVsBot");
+                        setBlackMoves([]);
+                        setWhiteMoves([]);
+                      }}
+                    >
+                      Player vs Bot
+                    </button>
+                  ) : (
+                    <button
+                      className="game-btn select-btn"
+                      onClick={() => {
+                        setSelectedBoard("PlayerVsBot");
+                        setBlackMoves([]);
+                        setWhiteMoves([]);
+                      }}
+                    >
+                      Player vs Bot
+                    </button>
+                  )}
+                </div>
+                <div className="col-4 col-lg-12">
+                  {selectedBoard === "PlayerVsPlayer" ? (
+                    <button
+                      className="game-btn select-btn active-btn"
+                      onClick={() => {
+                        setSelectedBoard("PlayerVsPlayer");
+                        setBlackMoves([]);
+                        setWhiteMoves([]);
+                      }}
+                    >
+                      Player vs Player
+                    </button>
+                  ) : (
+                    <button
+                      className="game-btn select-btn"
+                      onClick={() => {
+                        setSelectedBoard("PlayerVsPlayer");
+                        setBlackMoves([]);
+                        setWhiteMoves([]);
+                      }}
+                    >
+                      Player vs Player
+                    </button>
+                  )}
+                </div>
+              </div>
+              <div className="col-12">
+                <h3 className="move-history-header">Move History</h3>
+              </div>
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-6">
+                    <h4 className="color-label">White</h4>
+                    <ul className="move-list">
+                      {whiteMoves && whiteMoves.length ? (
+                        whiteMoves.map((move, index) => {
+                          if (move)
+                            return (
+                              <li className="move" key={index + 1}>
+                                {(index + 1) * 2 - 1}.{move.san}
+                              </li>
+                            );
+                          else
+                            return (
+                              <li className="move" key={index + 1}>
+                                null
+                              </li>
+                            );
+                        })
+                      ) : (
+                        <li className="move"></li>
+                      )}
+                    </ul>
+                  </div>
+                  <div className="col-6">
+                    <h4 className="color-label">Black</h4>
+                    <ul className="move-list">
+                      {blackMoves && blackMoves.length ? (
+                        blackMoves.map((move, index) => {
+                          if (move)
+                            return (
+                              <li className="move" key={index}>
+                                {(index + 1) * 2}.{move.san}
+                              </li>
+                            );
+                          else
+                            return (
+                              <li className="move" key={index}>
+                                null
+                              </li>
+                            );
+                        })
+                      ) : (
+                        <li className="move"></li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

@@ -40,37 +40,19 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-98%, -55%);
+  transform: translate(-50%, -67%);
   text-align: center;
-  width: 50%;
-  max-width: 543px;
+  width: 85%;
   z-index: 99;
   border: 2px solid $outline-color;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   background-color: $message-color;
-  @media screen and (max-width: 1398px) {
-    font-size: 30px;
-    transform: translate(-81%, -55%);
-    width: 544px;
-  }
-  @media screen and (max-width: 1199px) {
-    font-size: 30px;
-    transform: translate(-74%, -58%);
-    width: 500px;
-  }
-  @media screen and (max-width: 990px) {
-    font-size: 26px;
-    transform: translate(-50%, -85%);
-    width: 365px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
   @media screen and (max-width: 768px) {
-    font-size: 20px;
-    transform: translate(-50%, -85%);
-    max-width: 80%;
-    padding: 18px;
+    font-size: 22px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 18px;
   }
 }
 
@@ -132,6 +114,7 @@ body {
 }
 
 .chessboard {
+  position: relative;
   background: linear-gradient(to right, $dark-color, $light-color);
   border: 2px solid $outline-color;
   border-radius: 8px;
