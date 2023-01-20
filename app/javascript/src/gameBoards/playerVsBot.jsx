@@ -68,7 +68,7 @@ export default function PlayerVsBot(props) {
       } else if (game.in_stalemate()) {
         setGameOverMessage("Stalemate! Game over.");
       } else if (game.insufficient_material()) {
-        setGameOverMessage("insufficient material! Game over.");
+        setGameOverMessage("Insufficient material! Game over.");
       } else if (game.in_threefold_repetition()) {
         setGameOverMessage("Threefold repetition! Game over.");
       } else if (game.in_draw()) {
