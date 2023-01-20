@@ -117,7 +117,7 @@ function Home() {
           <div className="row play-row justify-content-around">
             <div className="chess col-12 col-lg-9">{getSelectedBoard()}</div>
             <div className="btn-col col-12 col-lg-3">
-              <div className="col-12">
+              <div className="col-12 btn-col-el">
                 <ThemePicker
                   colorTheme={colorTheme}
                   handleColorChange={handleColorChange}
@@ -125,12 +125,14 @@ function Home() {
               </div>
               <div className="row row-cols-2 row-cols-lg-1">
                 <div className="col-12">
-                  <h3 className="game-mode-header">Select game mode</h3>
+                  <h3 className="game-mode-header btn-col-el">
+                    Select game mode
+                  </h3>
                 </div>
                 <div className="col-4 col-lg-12">
                   {selectedBoard === "DefaultBoard" ? (
                     <button
-                      className="game-btn select-btn active-btn"
+                      className="game-btn select-btn active-btn btn-col-el"
                       onClick={() => {
                         setSelectedBoard("DefaultBoard");
                         setBlackMoves([]);
@@ -141,7 +143,7 @@ function Home() {
                     </button>
                   ) : (
                     <button
-                      className="game-btn select-btn"
+                      className="game-btn select-btn btn-col-el"
                       onClick={() => {
                         setSelectedBoard("DefaultBoard");
                         setBlackMoves([]);
@@ -155,7 +157,7 @@ function Home() {
                 <div className="col-4 col-lg-12">
                   {selectedBoard === "PlayerVsBot" ? (
                     <button
-                      className="game-btn select-btn active-btn"
+                      className="game-btn select-btn active-btn btn-col-el"
                       onClick={() => {
                         setSelectedBoard("PlayerVsBot");
                         setBlackMoves([]);
@@ -166,7 +168,7 @@ function Home() {
                     </button>
                   ) : (
                     <button
-                      className="game-btn select-btn"
+                      className="game-btn select-btn btn-col-el"
                       onClick={() => {
                         setSelectedBoard("PlayerVsBot");
                         setBlackMoves([]);
@@ -180,7 +182,7 @@ function Home() {
                 <div className="col-4 col-lg-12">
                   {selectedBoard === "PlayerVsPlayer" ? (
                     <button
-                      className="game-btn select-btn active-btn"
+                      className="game-btn select-btn active-btn btn-col-el"
                       onClick={() => {
                         setSelectedBoard("PlayerVsPlayer");
                         setBlackMoves([]);
@@ -191,7 +193,7 @@ function Home() {
                     </button>
                   ) : (
                     <button
-                      className="game-btn select-btn"
+                      className="game-btn select-btn btn-col-el"
                       onClick={() => {
                         setSelectedBoard("PlayerVsPlayer");
                         setBlackMoves([]);
@@ -204,12 +206,12 @@ function Home() {
                 </div>
               </div>
               <div className="col-12">
-                <h3 className="move-history-header">Move History</h3>
+                <h3 className="move-history-header btn-col-el">Move History</h3>
               </div>
               <div className="col-12">
                 <div className="row">
                   <div className="col-6">
-                    <h4 className="color-label">White</h4>
+                    <h4 className="color-label btn-col-el">White</h4>
                     <ul className="move-list">
                       {whiteMoves && whiteMoves.length ? (
                         whiteMoves.map((move, index) => {
@@ -232,7 +234,7 @@ function Home() {
                     </ul>
                   </div>
                   <div className="col-6">
-                    <h4 className="color-label">Black</h4>
+                    <h4 className="color-label btn-col-el">Black</h4>
                     <ul className="move-list">
                       {blackMoves && blackMoves.length ? (
                         blackMoves.map((move, index) => {

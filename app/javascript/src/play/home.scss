@@ -86,18 +86,6 @@ ul {
   border: 2px solid $dark-color;
 }
 
-.chess {
-  max-width: 800px;
-  max-height: 800px;
-  @media screen and (max-width: 991px) {
-    margin-top: 2rem;
-  }
-  @media screen and (max-height: 800px) {
-    max-width: 600px;
-    max-height: 600px;
-  }
-}
-
 .play-row {
   display: flex;
   justify-content: space-around;
@@ -106,6 +94,22 @@ ul {
     display: flex;
     margin: 0 auto;
     flex-direction: column-reverse;
+  }
+}
+
+.chess {
+  max-width: 800px;
+  max-height: 800px;
+  @media screen and (max-width: 991px) {
+    margin-top: 2rem;
+  }
+  @media screen and (max-height: 800px) and (min-width: 500px) {
+    max-width: 600px;
+    max-height: 600px;
+  }
+  @media screen and (max-height: 750px) and (max-width: 500px) {
+    max-width: 500px;
+    max-height: 500px;
   }
 }
 
@@ -122,10 +126,51 @@ ul {
   @media screen and (max-width: 1199px) {
     max-height: 745px;
   }
-  @media screen and (max-height: 800px) {
+  @media screen and (max-height: 800px) and (min-width: 500px) {
     max-width: 600px;
     height: 624px;
   }
+  @media screen and (max-height: 750px) and (max-width: 500px) {
+    max-width: 500px;
+    height: 260px;
+    .btn-col-el {
+      font-size: 10px;
+    }
+  }
+}
+
+.move-list {
+  overflow-y: auto;
+  height: 476px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  @media screen and (max-width: 1199px) {
+    height: 395px;
+    padding-top: 3px;
+  }
+  @media screen and (max-width: 991px) {
+    height: 95px;
+    padding-top: 0;
+  }
+  @media screen and (max-height: 800px) and (min-width: 500px) {
+    height: 275px;
+  }
+  @media screen and (max-height: 750px) and (max-width: 500px) {
+    height: 85px;
+  }
+}
+
+.move-list::-webkit-scrollbar {
+  width: 0px;
+  background-color: $light-color;
+}
+
+.move-list::-webkit-scrollbar-thumb {
+  background-color: $light-color;
 }
 
 .game-mode-header {
@@ -189,37 +234,6 @@ ul {
     padding: 7px;
     max-width: 100px;
   }
-}
-
-.move-list {
-  overflow-y: auto;
-  height: 476px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  @media screen and (max-width: 1199px) {
-    height: 395px;
-    padding-top: 3px;
-  }
-  @media screen and (max-width: 991px) {
-    height: 95px;
-    padding-top: 0;
-  }
-  @media screen and (max-height: 800px) {
-    height: 275px;
-  }
-}
-
-.move-list::-webkit-scrollbar {
-  width: 0px;
-  background-color: $light-color;
-}
-
-.move-list::-webkit-scrollbar-thumb {
-  background-color: $light-color;
 }
 
 .move {
