@@ -89,6 +89,10 @@ ul {
 .chess {
   max-width: 800px;
   max-height: 800px;
+  @media screen and (max-height: 800px) {
+    max-width: 600px;
+    max-height: 600px;
+  }
 }
 
 .play-row {
@@ -114,6 +118,10 @@ ul {
   max-width: 96%;
   @media screen and (max-width: 1199px) {
     max-height: 745px;
+  }
+  @media screen and (max-height: 800px) {
+    max-width: 600px;
+    height: 624px;
   }
 }
 
@@ -196,6 +204,9 @@ ul {
   @media screen and (max-width: 991px) {
     height: 95px;
     padding-top: 0;
+  }
+  @media screen and (max-height: 800px) {
+    height: 275px;
   }
 }
 

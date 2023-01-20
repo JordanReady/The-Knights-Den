@@ -115,10 +115,8 @@ function Home() {
       <div className="view-port">
         <div className="container">
           <div className="row play-row justify-content-around">
-            <div className="chess col-12 col-lg-9 mt-3">
-              {getSelectedBoard()}
-            </div>
-            <div className="btn-col col-12 col-lg-3 mt-3">
+            <div className="chess col-12 col-lg-9">{getSelectedBoard()}</div>
+            <div className="btn-col col-12 col-lg-3">
               <div className="col-12">
                 <ThemePicker
                   colorTheme={colorTheme}
