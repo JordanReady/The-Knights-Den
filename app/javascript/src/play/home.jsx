@@ -34,7 +34,7 @@ function Home() {
   useEffect(() => {
     function handleResize() {
       const display = document.getElementsByClassName("chess")[0];
-      setChessboardSize(display.offsetWidth - 28);
+      setChessboardSize(display.clientWidth - 28);
     }
 
     window.addEventListener("resize", handleResize);
@@ -217,19 +217,19 @@ function Home() {
                         whiteMoves.map((move, index) => {
                           if (move)
                             return (
-                              <li className="move" key={index + 1}>
+                              <li className="move btn-col-el" key={index + 1}>
                                 {(index + 1) * 2 - 1}.{move.san}
                               </li>
                             );
                           else
                             return (
-                              <li className="move" key={index + 1}>
+                              <li className="move btn-col-el" key={index + 1}>
                                 null
                               </li>
                             );
                         })
                       ) : (
-                        <li className="move"></li>
+                        <li className="move btn-col-el"></li>
                       )}
                     </ul>
                   </div>
@@ -240,19 +240,19 @@ function Home() {
                         blackMoves.map((move, index) => {
                           if (move)
                             return (
-                              <li className="move" key={index}>
+                              <li className="move btn-col-el" key={index}>
                                 {(index + 1) * 2}.{move.san}
                               </li>
                             );
                           else
                             return (
-                              <li className="move" key={index}>
+                              <li className="move btn-col-el" key={index}>
                                 null
                               </li>
                             );
                         })
                       ) : (
-                        <li className="move"></li>
+                        <li className="move btn-col-el"></li>
                       )}
                     </ul>
                   </div>

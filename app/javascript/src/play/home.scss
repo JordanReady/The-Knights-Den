@@ -75,6 +75,7 @@ ul {
   @media screen and (max-width: 991px) {
     min-width: 75px;
     font-size: 14px;
+    min-height: -webkit-fill-available;
     padding: 5px;
     margin: 0;
   }
@@ -131,7 +132,7 @@ ul {
     height: 624px;
   }
   @media screen and (max-height: 750px) and (max-width: 500px) {
-    max-width: 500px;
+    max-width: 312px;
     height: 260px;
     .btn-col-el {
       font-size: 10px;
@@ -160,7 +161,7 @@ ul {
     height: 275px;
   }
   @media screen and (max-height: 750px) and (max-width: 500px) {
-    height: 85px;
+    height: 78px;
   }
 }
 
