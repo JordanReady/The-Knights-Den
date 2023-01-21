@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/learn' => 'static_pages#learn'
   get '/stats' => 'static_pages#stats'
   get '/logout' => 'static_pages#logout'
+  get '/login' => 'static_pages#login'
 end

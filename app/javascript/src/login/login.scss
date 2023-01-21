@@ -1,0 +1,99 @@
+$dark-color: #b58863;
+$light-color: #f0d9b5;
+//green theme
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+//blue theme
+$dark-blue-color: #4682b4;
+$light-blue-color: #add8e6;
+//red theme
+$dark-red-color: #ec2323;
+$light-red-color: #fdadad;
+//purple theme
+$dark-purple-color: #462578;
+$light-purple-color: #e1a1fa;
+
+.hero-text {
+  font-weight: bold;
+  margin-top: 0.25rem;
+  color: $dark-color !important;
+  text-shadow: 1px 1px 1px $light-color;
+  @media screen and (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+.fix-nav {
+  position: fixed;
+  justify-content: unsafe center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  background-color: $light-color !important;
+  color: $dark-color !important;
+  border: 2px solid $dark-color !important;
+  border-radius: 5px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #00000052;
+  max-width: 400px;
+  margin: 0 auto;
+  h4 {
+    margin-bottom: 0;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  p {
+    margin-bottom: 0;
+  }
+  a {
+    color: $dark-color !important;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    label {
+      margin-top: 0.25rem;
+      @media screen and (max-width: 768px) {
+        margin-top: 0;
+      }
+    }
+    input {
+      background-color: $dark-color !important;
+      color: $light-color !important;
+      border: 2px solid $dark-color !important;
+      border-radius: 5px;
+      &::placeholder {
+        color: $light-color !important;
+      }
+    }
+    input:focus {
+      background-color: $dark-color !important;
+      color: $light-color !important;
+      border: 2px solid $dark-color !important;
+      border-radius: 5px;
+    }
+    .btn {
+      background-color: $dark-color !important;
+      color: $light-color !important;
+      border: 2px solid $light-color !important;
+      font-size: larger;
+      margin-top: 0.25rem;
+      max-height: 40px;
+      padding-top: 3px;
+    }
+    .btn:hover {
+      background-color: $light-color !important;
+      color: $dark-color !important;
+      border: 2px solid $dark-color !important;
+    }
+  }
+}
