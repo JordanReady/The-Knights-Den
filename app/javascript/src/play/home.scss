@@ -33,13 +33,6 @@ ul {
   width: 98%;
 }
 
-.view-port {
-  display: flex;
-  height: calc(100vh - 58px);
-  justify-content: center;
-  align-items: center;
-}
-
 .fix-nav {
   position: fixed;
   justify-content: unsafe center;
@@ -47,6 +40,10 @@ ul {
   left: 0;
   width: 100%;
   z-index: 99;
+}
+
+.view-port {
+  margin-top: 2rem;
 }
 
 .spacer {
