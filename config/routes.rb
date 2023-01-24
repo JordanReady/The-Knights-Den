@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   get '/stats' => 'static_pages#stats'
   get '/logout' => 'static_pages#logout'
   get '/login' => 'static_pages#login'
+
+  namespace :api do
+    resources :users, only: [:create]
+    resources :sessions, only: [:create, :destroy, :authenticated]
+  end
 end
