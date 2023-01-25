@@ -38,7 +38,7 @@ export default function OtherRules(props) {
             the pawn being captured has advanced two squares from its starting
             position. The capturing pawn must be on an adjacent file to the pawn
             being captured. The capturing pawn must advance to the square behind
-            the pawn being captured. This move isn't as common and castling but
+            the pawn being captured. This move isn't as common as castling but
             it is important to be aware of this rule in case a benificial
             oportunity to use it occurs.
           </p>

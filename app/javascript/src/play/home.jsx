@@ -9,10 +9,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./home.scss";
 import ThemePicker from "../themePicker/themePicker";
+import ReplayBoard from "../gameBoards/replayBoard";
 
 function Home() {
   const [chessboardSize, setChessboardSize] = useState(undefined);
-  const [selectedBoard, setSelectedBoard] = useState("DefaultBoard");
+  const [selectedBoard, setSelectedBoard] = useState("ReplayBoard");
   const [whiteMoves, setWhiteMoves] = useState([]);
   const [blackMoves, setBlackMoves] = useState([]);
   const [colorTheme, setColorTheme] = useState("default");
@@ -91,6 +92,22 @@ function Home() {
         return (
           <>
             <PlayerVsPlayer
+              boardWidth={chessboardSize}
+              whiteMoves={whiteMoves}
+              blackMoves={blackMoves}
+              setWhiteMoves={setWhiteMoves}
+              setBlackMoves={setBlackMoves}
+              handleMove={handleMove}
+              colorTheme={colorTheme}
+              setColorTheme={setColorTheme}
+            />
+            <br />
+          </>
+        );
+      case "ReplayBoard":
+        return (
+          <>
+            <ReplayBoard
               boardWidth={chessboardSize}
               whiteMoves={whiteMoves}
               blackMoves={blackMoves}

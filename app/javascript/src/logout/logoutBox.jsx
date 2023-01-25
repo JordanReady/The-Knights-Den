@@ -1,11 +1,31 @@
 import React from "react";
+import { safeCredentials, handleErrors } from "../utils/fetchHelper";
 
 import "./logout.scss";
 
 class LogoutBox extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      error: "",
+    };
   }
+
+  handleLogout = () => {
+    const id = document.querySelector("meta[name='user-id']").content;
+    fetch(`/api/sessions`, safeCredentials({ method: "DELETE" }))
+      .then(handleErrors)
+      .then((data) => {
+        if (data.success) {
+          window.location.href = "/login";
+        }
+      })
+      .catch((error) => {
+        this.setState({
+          error: error.message,
+        });
+      });
+  };
 
   render() {
     return (
@@ -18,7 +38,7 @@ class LogoutBox extends React.Component {
                 <button
                   className="btn shadow"
                   onClick={() => {
-                    this.props.logout();
+                    this.handleLogout();
                   }}
                 >
                   Logout

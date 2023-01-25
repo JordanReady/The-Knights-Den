@@ -34,82 +34,37 @@ const ReplayBoard = (props) => {
     "e4",
     "e5",
     "Nf3",
-    "Nc6",
+    "d6",
+    "d4",
+    "Bg4",
+    "dxe5",
+    "Bxf3",
+    "Qxf3",
+    "dxe5",
     "Bc4",
     "Nf6",
-    "Ng5",
-    "d5",
-    "exd5",
-    "Na5",
-    "Bb5+",
-    "c6",
-    "dxc6",
-    "bxc6",
-    "Ba4",
-    "Nc4",
-    "Bxc6+",
-    "Ke7",
-    "Nxf7",
-    "Qe8",
-    "Nxh8",
-    "Bg4",
-    "Qf3",
-    "Nd6",
-    "h3",
-    "Bh5",
-    "g4",
-    "Bg6",
-    "Ne5",
-    "Qxe5",
-    "d3",
+    "Qb3",
     "Qe7",
-    "Qe2",
-    "Nf5",
-    "gxf5",
-    "Bxf5",
-    "Ke2",
-    "Bg6",
-    "Rf1",
+    "Nc3",
+    "c6",
+    "Bg5",
+    "b5",
+    "Nxb5",
+    "cxb5",
+    "Bxb5+",
+    "Nbd7",
+    "O-O-O",
+    "Rd8",
+    "Rxd7",
+    "Rxd7",
+    "Rd1",
     "Qe6",
-    "f4",
-    "Qe5+",
-    "Kf3",
-    "Qe4+",
-    "Kg3",
-    "h5",
-    "Rf2",
-    "Qg4+",
-    "Kh3",
-    "Qh4+",
-    "Kg2",
-    "Qg4+",
-    "Kh1",
-    "Qh4+",
-    "Kg1",
-    "Qg4+",
-    "Kf1",
-    "Qf5+",
-    "Ke1",
-    "Qe4+",
-    "Kd1",
-    "Qd3+",
-    "Kc1",
-    "Qc2#",
+    "Bxd7+",
+    "Nxd7",
+    "Qb8+",
+    "Nxb8",
+    "Rd8#",
   ];
-
-  const handleAutoPlay = () => {
-    setAutoPlay(!autoPlay);
-  };
-
-  useEffect(() => {
-    let intervalId;
-    if (autoPlay) {
-      intervalId = setInterval(() => handleNextMove(), 1000);
-    } else {
-      clearInterval(intervalId);
-    }
-    return () => clearInterval(intervalId);
-  }, [autoPlay, handleNextMove]);
 
   useEffect(() => {
     // set colors
@@ -135,6 +90,7 @@ const ReplayBoard = (props) => {
     // check for game over
     const gameCopy = { ...game };
     const turn = gameCopy.turn();
+    console.log(gameCopy + "is game over? " + gameOver);
     if (gameCopy.game_over()) {
       setGameOver(true);
       if (game.in_checkmate()) {
@@ -158,25 +114,65 @@ const ReplayBoard = (props) => {
   }, [game]);
 
   useEffect(() => {
-    // iterate through the moves and make them on the chess board
-    for (let i = 0; i < moveIndex; i++) {
-      game.move(moves[i]);
+    let intervalId;
+    if (autoPlay) {
+      intervalId = setInterval(() => {
+        if (moveIndex >= moves.length) {
+          clearInterval(intervalId);
+          setAutoPlay(false);
+          return;
+        }
+        game.move(moves[moveIndex]);
+        if (moveIndex % 2 === 0) {
+          setWhiteMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
+        } else {
+          setBlackMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
+        }
+        setMoveIndex(moveIndex + 1);
+      }, 1000);
+    } else {
+      clearInterval(intervalId);
     }
-  }, [moveIndex]);
+    return () => clearInterval(intervalId);
+  }, [autoPlay, moveIndex]);
 
-  function handlePreviousMove() {
+  const handleAutoPlay = () => {
+    setAutoPlay(!autoPlay);
+  };
+
+  const handlePreviousMove = () => {
+    setAutoPlay(false);
     if (moveIndex > 0) {
       game.undo();
+      if (moveIndex % 2 === 0) {
+        setBlackMoves((prevMoves) => {
+          const newMoves = [...prevMoves];
+          newMoves.pop();
+          return newMoves;
+        });
+      } else {
+        setWhiteMoves((prevMoves) => {
+          const newMoves = [...prevMoves];
+          newMoves.pop();
+          return newMoves;
+        });
+      }
       setMoveIndex(moveIndex - 1);
     }
-  }
+  };
 
-  function handleNextMove() {
-    if (moveIndex < moves.length) {
+  const handleNextMove = () => {
+    setAutoPlay(false);
+    if (moveIndex < moves.length - 1) {
       game.move(moves[moveIndex]);
+      if (moveIndex % 2 === 0) {
+        setWhiteMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
+      } else {
+        setBlackMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
+      }
       setMoveIndex(moveIndex + 1);
     }
-  }
+  };
 
   return (
     <div className={colorTheme}>
