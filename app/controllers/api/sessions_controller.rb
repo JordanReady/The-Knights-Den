@@ -19,6 +19,7 @@ module Api
                 session = Session.find_by(token: token)
                 if session
                     @user = session.user
+                    @user_id = @user.id
                     render 'api/sessions/authenticated', status: :ok
                 else
                     render json: { success: false }, status: :unauthorized

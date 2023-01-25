@@ -12,10 +12,11 @@ class LogoutBox extends React.Component {
     };
   }
 
-  componentdidmount() {
-    fetch("/api/authenticated")
+  componentDidMount() {
+    fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
+        console.log("auth data", data);
         this.setState({
           authenticated: data.authenticated,
           user_id: data.user_id,
@@ -24,6 +25,7 @@ class LogoutBox extends React.Component {
   }
 
   handleLogout = () => {
+    console.log("user_id", this.state.user_id);
     fetch(
       `/api/sessions/${this.state.user_id}`,
       safeCredentials({ method: "DELETE" })
