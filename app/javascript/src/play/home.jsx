@@ -13,7 +13,7 @@ import ReplayBoard from "../gameBoards/replayBoard";
 
 function Home() {
   const [chessboardSize, setChessboardSize] = useState(undefined);
-  const [selectedBoard, setSelectedBoard] = useState("ReplayBoard");
+  const [selectedBoard, setSelectedBoard] = useState("DefaultBoard");
   const [whiteMoves, setWhiteMoves] = useState([]);
   const [blackMoves, setBlackMoves] = useState([]);
   const [colorTheme, setColorTheme] = useState("default");
