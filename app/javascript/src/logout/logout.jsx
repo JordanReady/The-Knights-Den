@@ -10,15 +10,13 @@ import LogoutBox from "./logoutBox";
 function Logout() {
   const colorTheme = "default";
 
-  function logout() {
-    console.log("logout");
-  }
-
   return (
     <div className={colorTheme}>
       <div className="logout">
         <Navbar />
-        <LogoutBox logout={logout} />
+        <div className="container">
+          <LogoutBox />
+        </div>
       </div>
     </div>
   );

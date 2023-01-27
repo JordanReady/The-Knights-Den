@@ -14,7 +14,9 @@ function Stats() {
     <div className={colorTheme}>
       <div className="stats">
         <Navbar />
-        <StatsBox />
+        <div className="container">
+          <StatsBox />
+        </div>
       </div>
     </div>
   );

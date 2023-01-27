@@ -3,6 +3,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./stats.scss";
+import { safeCredentials, handleErrors } from "../utils/fetchHelper";
 
 class StatsBox extends React.Component {
   constructor(props) {
@@ -14,6 +15,17 @@ class StatsBox extends React.Component {
       losses: 5,
       draws: 3,
     };
+  }
+
+  componentDidMount() {
+    fetch("/api/sessions/authenticated")
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          username: data.username,
+        });
+      });
   }
 
   render() {
