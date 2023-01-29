@@ -19,22 +19,61 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./learn.scss";
 import ThemePicker from "../themePicker/themePicker";
+import { handleErrors } from "../utils/fetchHelper";
 
-function Learn(props) {
+function Learn() {
   const [colorTheme, setColorTheme] = useState("default");
   const [lesson, setLesson] = useState(1);
   const [currentLesson, setCurrentLesson] = useState(1);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [user_id, setUserId] = useState(undefined);
 
-  const handleColorChange = (e) => {
-    const newColor = e.target.value;
-    console.log(newColor);
-    setColorTheme(newColor);
-  };
+  useEffect(() => {
+    fetch("/api/sessions/authenticated")
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        setAuthenticated(data.authenticated);
+        setUserId(data.user_id);
+        return fetch(`/api/users/${data.user_id}/color_theme`);
+      })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        setColorTheme(data.color_theme);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     getLesson();
     window.scrollTo(0, 0);
   }, [lesson]);
+
+  const handleColorChange = (e) => {
+    const newColor = e.target.value;
+    console.log(newColor);
+    setColorTheme(newColor);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(`/api/users/${user_id}/color_theme`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
+      },
+      body: JSON.stringify({
+        user: {
+          color_theme: newColor,
+        },
+      }),
+    })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   function getLesson() {
     switch (lesson) {
@@ -96,7 +135,7 @@ function Learn(props) {
   return (
     <div className={colorTheme}>
       <div className="learn">
-        <Navbar />
+        <Navbar colorTheme={colorTheme} authenticated={authenticated} />
         <LearnNavbar
           lesson={lesson}
           setLesson={setLesson}

@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./home.scss";
 import ThemePicker from "../themePicker/themePicker";
 import ReplayBoard from "../gameBoards/replayBoard";
+import { handleErrors, safeCredentials } from "../utils/fetchHelper";
 
 function Home() {
   const [chessboardSize, setChessboardSize] = useState(undefined);
@@ -17,20 +18,27 @@ function Home() {
   const [whiteMoves, setWhiteMoves] = useState([]);
   const [blackMoves, setBlackMoves] = useState([]);
   const [colorTheme, setColorTheme] = useState("default");
+  const [authenticated, setAuthenticated] = useState(false);
+  const [user_id, setUserId] = useState(undefined);
 
-  const handleColorChange = (e) => {
-    const newColor = e.target.value;
-    console.log(newColor);
-    setColorTheme(newColor);
-  };
-
-  const handleMove = (move, color) => {
-    if (color === "b") {
-      setWhiteMoves([...whiteMoves, move]);
-    } else {
-      setBlackMoves([...blackMoves, move]);
-    }
-  };
+  useEffect(() => {
+    fetch("/api/sessions/authenticated")
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        setAuthenticated(data.authenticated);
+        setUserId(data.user_id);
+        return fetch(`/api/users/${data.user_id}/color_theme`);
+      })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        setColorTheme(data.color_theme);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     function handleResize() {
@@ -53,6 +61,37 @@ function Home() {
       element2.scrollTop = element2.scrollHeight;
     }
   }, [whiteMoves, blackMoves]);
+
+  const handleColorChange = (e) => {
+    const newColor = e.target.value;
+    console.log(newColor);
+    setColorTheme(newColor);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(`/api/users/${user_id}/color_theme`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
+      },
+      body: JSON.stringify({
+        user: {
+          color_theme: newColor,
+        },
+      }),
+    })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  const handleMove = (move, color) => {
+    if (color === "b") {
+      setWhiteMoves([...whiteMoves, move]);
+    } else {
+      setBlackMoves([...blackMoves, move]);
+    }
+  };
 
   function getSelectedBoard() {
     switch (selectedBoard) {
@@ -126,7 +165,7 @@ function Home() {
   return (
     <div className={colorTheme}>
       <div className="fix-nav">
-        <Navbar colorTheme={colorTheme} />
+        <Navbar colorTheme={colorTheme} authenticated={authenticated} />
       </div>
       <div className="spacer"></div>
       <div className="view-port">
