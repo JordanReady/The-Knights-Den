@@ -25,4 +25,4 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: myChessApp
+  database: fs_chess_app
