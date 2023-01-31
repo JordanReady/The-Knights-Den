@@ -17,9 +17,6 @@ class StatsBox extends React.Component {
       draws: null,
     };
     this.getStats = this.getStats.bind(this);
-    this.updateWins = this.updateWins.bind(this);
-    this.updateLoss = this.updateLoss.bind(this);
-    this.updateDraw = this.updateDraw.bind(this);
   }
 
   componentDidMount() {
@@ -54,47 +51,17 @@ class StatsBox extends React.Component {
       });
   };
 
-  updateWins = () => {
-    console.log("updateWins");
-    fetch(`/api/users/${this.state.user_id}/stats/win`)
+  reset = () => {
+    console.log("resetStats");
+    fetch(`/api/users/${this.state.user_id}/stats/reset`)
       .then(handleErrors)
       .then((data) => {
         console.log(data);
         this.setState({
+          games: data.stats.total_games,
           wins: data.stats.wins,
-          games: data.stats.total_games,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  updateLoss = () => {
-    console.log("updateLoss");
-    fetch(`/api/users/${this.state.user_id}/stats/loss`)
-      .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-        this.setState({
           losses: data.stats.losses,
-          games: data.stats.total_games,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  updateDraw = () => {
-    console.log("updateDraw");
-    fetch(`/api/users/${this.state.user_id}/stats/draw`)
-      .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-        this.setState({
           draws: data.stats.draws,
-          games: data.stats.total_games,
         });
       })
       .catch((error) => {
@@ -128,18 +95,6 @@ class StatsBox extends React.Component {
             </div>
           </div>
         </div>
-        <button className="btn btn-primary" onClick={this.getStats}>
-          Get stats
-        </button>
-        <button className="btn btn-success" onClick={this.updateWins}>
-          Update Win
-        </button>
-        <button className="btn btn-danger" onClick={this.updateLoss}>
-          Update Loss
-        </button>
-        <button className="btn btn-warning" onClick={this.updateDraw}>
-          Update Draw
-        </button>
       </div>
     );
   }

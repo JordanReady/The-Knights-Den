@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
+import { handleErrors } from "../utils/fetchHelper";
 
 import "./board.scss";
 
@@ -31,6 +32,20 @@ export default function PlayerVsBot(props) {
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
+  const [user_id, setUserId] = useState(undefined);
+
+  useEffect(() => {
+    fetch("/api/sessions/authenticated")
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        setUserId(data.user_id);
+        return console.log(data.user_id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     // set colors
@@ -53,6 +68,12 @@ export default function PlayerVsBot(props) {
   }, [colorTheme]);
 
   useEffect(() => {
+    setTimeout(() => {
+      makeRandomMove();
+    }, 800);
+  }, [playerColor]);
+
+  useEffect(() => {
     const gameCopy = { ...game };
     const turn = gameCopy.turn();
     if (gameCopy.game_over()) {
@@ -65,24 +86,67 @@ export default function PlayerVsBot(props) {
         if (turn === "b") {
           setGameWinner("White Wins!");
         }
+        if (turn === "w" && playerColor === "w") {
+          updateLoss();
+        }
+        if (turn === "w" && playerColor === "b") {
+          updateWin();
+        }
+        if (turn === "b" && playerColor === "w") {
+          updateWin();
+        }
+        if (turn === "b" && playerColor === "b") {
+          updateLoss();
+        }
       } else if (game.in_stalemate()) {
         setGameOverMessage("Stalemate! Game over.");
+        updateDraw();
       } else if (game.insufficient_material()) {
         setGameOverMessage("Insufficient material! Game over.");
+        updateDraw();
       } else if (game.in_threefold_repetition()) {
         setGameOverMessage("Threefold repetition! Game over.");
+        updateDraw();
       } else if (game.in_draw()) {
         setGameOverMessage("Draw! Game over.");
+        updateDraw();
       }
     }
     setMoveNumber(moveNumber + 1);
   }, [game]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      makeRandomMove();
-    }, 800);
-  }, [playerColor]);
+  function updateDraw() {
+    fetch(`/api/users/${user_id}/stats/draw`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function updateWin() {
+    fetch(`/api/users/${user_id}/stats/win`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function updateLoss() {
+    fetch(`/api/users/${user_id}/stats/loss`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   function safeGameMutate(modify) {
     setGame((g) => {

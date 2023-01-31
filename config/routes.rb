@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'users/:id/stats/win' => 'stats#update_win'
     get 'users/:id/stats/loss' => 'stats#update_loss'
     get 'users/:id/stats/draw' => 'stats#update_draw'
+    get 'users/:id/stats/reset' => 'stats#reset_stats'
     resources :sessions, only: [:create, :destroy, :authenticated]
     resources :games do
       resources :moves, only: [:index, :create, :destroy]

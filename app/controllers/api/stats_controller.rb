@@ -31,7 +31,20 @@ module Api
                 render json: { success: false }, status: :unprocessable_entity
             end
         end
+
+        def reset_stats
+            @user.wins = 0
+            @user.losses = 0
+            @user.draws = 0
+            @user.total_games = 0
+            if @user.save
+                render 'api/stats/update', status: :ok
+            else
+                render json: { success: false }, status: :unprocessable_entity
+            end
+        end
         
+
 
         def show
             render 'api/stats/show', status: :ok
