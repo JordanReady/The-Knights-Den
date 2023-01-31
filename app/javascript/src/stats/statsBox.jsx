@@ -10,11 +10,16 @@ class StatsBox extends React.Component {
     super(props);
     this.state = {
       username: "PlayerName",
-      games: 27,
-      wins: 19,
-      losses: 5,
-      draws: 3,
+      user_id: "",
+      games: null,
+      wins: null,
+      losses: null,
+      draws: null,
     };
+    this.getStats = this.getStats.bind(this);
+    this.updateWins = this.updateWins.bind(this);
+    this.updateLoss = this.updateLoss.bind(this);
+    this.updateDraw = this.updateDraw.bind(this);
   }
 
   componentDidMount() {
@@ -24,9 +29,78 @@ class StatsBox extends React.Component {
         console.log(data);
         this.setState({
           username: data.username,
+          user_id: data.user_id,
         });
+        return this.getStats();
       });
   }
+
+  getStats = () => {
+    console.log("updateStats");
+    fetch(`/api/users/${this.state.user_id}/stats`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        console.log(data.stats.total_games);
+        this.setState({
+          games: data.stats.total_games,
+          wins: data.stats.wins,
+          losses: data.stats.losses,
+          draws: data.stats.draws,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  updateWins = () => {
+    console.log("updateWins");
+    fetch(`/api/users/${this.state.user_id}/stats/win`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          wins: data.stats.wins,
+          games: data.stats.total_games,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  updateLoss = () => {
+    console.log("updateLoss");
+    fetch(`/api/users/${this.state.user_id}/stats/loss`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          losses: data.stats.losses,
+          games: data.stats.total_games,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  updateDraw = () => {
+    console.log("updateDraw");
+    fetch(`/api/users/${this.state.user_id}/stats/draw`)
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          draws: data.stats.draws,
+          games: data.stats.total_games,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -54,6 +128,18 @@ class StatsBox extends React.Component {
             </div>
           </div>
         </div>
+        <button className="btn btn-primary" onClick={this.getStats}>
+          Get stats
+        </button>
+        <button className="btn btn-success" onClick={this.updateWins}>
+          Update Win
+        </button>
+        <button className="btn btn-danger" onClick={this.updateLoss}>
+          Update Loss
+        </button>
+        <button className="btn btn-warning" onClick={this.updateDraw}>
+          Update Draw
+        </button>
       </div>
     );
   }

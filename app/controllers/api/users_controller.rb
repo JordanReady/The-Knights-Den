@@ -23,6 +23,15 @@ module Api
         @user = User.find(params[:id])
         render json: { color_theme: @user.color_theme }, status: :ok
     end
+
+    def update_stats
+        @user = User.find(params[:id])
+        if @user.update(stats_params)
+            render json: { success: true }, status: :ok
+        else
+            render json: { success: false }, status: :unprocessable_entity
+        end
+    end
   
       private
 
@@ -32,6 +41,10 @@ module Api
   
       def user_params
         params.require(:user).permit(:email, :password, :username)
+      end
+
+      def stats_params
+        params.require(:user).permit(:wins, :losses, :draws, :total_games)
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_28_213123) do
+ActiveRecord::Schema.define(version: 2023_01_31_034456) do
 
   create_table "games", force: :cascade do |t|
     t.integer "player_1_id"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2023_01_28_213123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stats", force: :cascade do |t|
+    t.integer "wins"
+    t.integer "losses"
+    t.integer "draws"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -41,6 +49,10 @@ ActiveRecord::Schema.define(version: 2023_01_28_213123) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.string "color_theme", default: "default"
+    t.integer "wins", default: 0
+    t.integer "losses", default: 0
+    t.integer "draws", default: 0
+    t.integer "total_games", default: 0
   end
 
 end
