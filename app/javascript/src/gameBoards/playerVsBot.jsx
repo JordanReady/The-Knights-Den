@@ -40,7 +40,7 @@ export default function PlayerVsBot(props) {
       .then((data) => {
         console.log(data);
         setUserId(data.user_id);
-        return console.log(data.user_id);
+        //return createGameWhite(data.user_id);
       })
       .catch((error) => {
         console.log(error);
@@ -68,9 +68,9 @@ export default function PlayerVsBot(props) {
   }, [colorTheme]);
 
   useEffect(() => {
-    setTimeout(() => {
-      makeRandomMove();
-    }, 800);
+    if (playerColor === "b") {
+      setTimeout(makeRandomMove, 500);
+    }
   }, [playerColor]);
 
   useEffect(() => {
@@ -114,6 +114,32 @@ export default function PlayerVsBot(props) {
     }
     setMoveNumber(moveNumber + 1);
   }, [game]);
+
+  function createGameWhite(id) {
+    console.log(id);
+    fetch("/api/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+      body: JSON.stringify({
+        game: {
+          player_1_id: id,
+          player_2_id: 12,
+        },
+      }),
+    })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   function updateDraw() {
     fetch(`/api/users/${user_id}/stats/draw`)
@@ -270,6 +296,66 @@ export default function PlayerVsBot(props) {
     });
   }
 
+  const reset = () => {
+    setGame(new Chess());
+    setBoardOrientation("white");
+    setCurrentTimeout(null);
+    setMoveFrom("");
+    setRightClickedSquares({});
+    setMoveSquares({});
+    setOptionSquares({});
+    setGameOver(false);
+    setGameOverMessage("");
+    setGameWinner("");
+    setMoveNumber(0);
+    setSelectedPiece(null);
+    setBlackMoves([]);
+    setWhiteMoves([]);
+  };
+
+  const undo = () => {
+    safeGameMutate((game) => {
+      game.undo();
+      setGameOver(false);
+      setMoveNumber(moveNumber - 2);
+      if (game.turn() === "w") {
+        setWhiteMoves(whiteMoves.slice(0, -1));
+      }
+      if (game.turn() === "b") {
+        setBlackMoves(blackMoves.slice(0, -1));
+      }
+    });
+    // stop any current timeouts
+    clearTimeout(currentTimeout);
+  };
+
+  const playWhite = () => {
+    setPlayerColor("w");
+    safeGameMutate((game) => {
+      setGameOver(false);
+      setMoveNumber(0);
+      setWhiteMoves([]);
+      setBlackMoves([]);
+      setBoardOrientation("white");
+    });
+  };
+
+  const playBlack = () => {
+    safeGameMutate((game) => {
+      setPlayerColor("b");
+      setGameOver(false);
+      setMoveNumber(0);
+      setWhiteMoves([]);
+      setBlackMoves([]);
+      setBoardOrientation("black");
+      makeRandomMove();
+    });
+    // if player is black, make a random move
+    if (playerColor === "b") {
+      setTimeout(makeRandomMove, 500);
+    }
+  };
+
   return (
     <>
       <div className="chessboard">
@@ -307,19 +393,7 @@ export default function PlayerVsBot(props) {
           <button
             className="board-btn"
             onClick={() => {
-              safeGameMutate((game) => {
-                game.reset();
-                setGameOver(false);
-                setMoveNumber(0);
-                setWhiteMoves([]);
-                setBlackMoves([]);
-              });
-              // stop any current timeouts
-              clearTimeout(currentTimeout);
-              //if player is black, make a random move
-              if (playerColor === "b") {
-                setTimeout(makeRandomMove, 500);
-              }
+              reset();
             }}
           >
             Reset
@@ -327,19 +401,7 @@ export default function PlayerVsBot(props) {
           <button
             className="board-btn"
             onClick={() => {
-              safeGameMutate((game) => {
-                game.undo();
-                setGameOver(false);
-                setMoveNumber(moveNumber - 2);
-                if (game.turn() === "w") {
-                  setWhiteMoves(whiteMoves.slice(0, -1));
-                }
-                if (game.turn() === "b") {
-                  setBlackMoves(blackMoves.slice(0, -1));
-                }
-              });
-              // stop any current timeouts
-              clearTimeout(currentTimeout);
+              undo();
             }}
           >
             Undo
@@ -347,15 +409,7 @@ export default function PlayerVsBot(props) {
           <button
             className="board-btn"
             onClick={() => {
-              setPlayerColor("w");
-              safeGameMutate((game) => {
-                game.reset();
-                setGameOver(false);
-                setMoveNumber(0);
-                setWhiteMoves([]);
-                setBlackMoves([]);
-                setBoardOrientation("white");
-              });
+              playWhite();
             }}
           >
             Play White
@@ -363,28 +417,7 @@ export default function PlayerVsBot(props) {
           <button
             className="board-btn"
             onClick={() => {
-              safeGameMutate((game) => {
-                game.reset();
-                setPlayerColor("b");
-                setGameOver(false);
-                setMoveNumber(0);
-                setWhiteMoves([]);
-                setBlackMoves([]);
-                setBoardOrientation("black");
-                makeRandomMove();
-              });
-              // if player is black, make a random move
-              if (playerColor === "b") {
-                safeGameMutate((game) => {
-                  game.reset();
-                  setGameOver(false);
-                  setMoveNumber(0);
-                  setWhiteMoves([]);
-                  setBlackMoves([]);
-                  setBoardOrientation("black");
-                });
-                setTimeout(makeRandomMove, 500);
-              }
+              playBlack();
             }}
           >
             Play Black

@@ -1,4 +1,5 @@
-class GamesController < ApplicationController
+module Api
+    class GamesController < ApplicationController
     before_action :set_game, only: [:show, :update, :destroy]
   
     def index
@@ -43,7 +44,9 @@ class GamesController < ApplicationController
       end
   
       def game_params
-          params.require(:game).permit(:player_1_id, :player_2_id)
+        params.require(:game).permit(:player_1_id, :player_2_id, :player_2_id)
       end
+      
   end
+end
   
