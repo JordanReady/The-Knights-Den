@@ -38,7 +38,6 @@ export default function PlayerVsBot(props) {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setUserId(data.user_id);
         //return createGameWhite(data.user_id);
       })
@@ -116,7 +115,8 @@ export default function PlayerVsBot(props) {
   }, [game]);
 
   function createGameWhite(id) {
-    console.log(id);
+    bot = 12;
+
     fetch("/api/games", {
       method: "POST",
       headers: {
@@ -128,14 +128,37 @@ export default function PlayerVsBot(props) {
       body: JSON.stringify({
         game: {
           player_1_id: id,
-          player_2_id: 12,
+          player_2_id: bot,
         },
       }),
     })
       .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function createGameBlack(id) {
+    bot = 12;
+
+    fetch("/api/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+      body: JSON.stringify({
+        game: {
+          player_1_id: bot,
+          player_2_id: id,
+        },
+      }),
+    })
+      .then(handleErrors)
+      .then((data) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -144,9 +167,7 @@ export default function PlayerVsBot(props) {
   function updateDraw() {
     fetch(`/api/users/${user_id}/stats/draw`)
       .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -155,9 +176,7 @@ export default function PlayerVsBot(props) {
   function updateWin() {
     fetch(`/api/users/${user_id}/stats/win`)
       .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -166,9 +185,7 @@ export default function PlayerVsBot(props) {
   function updateLoss() {
     fetch(`/api/users/${user_id}/stats/loss`)
       .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -343,20 +360,10 @@ export default function PlayerVsBot(props) {
   };
 
   const playBlack = () => {
-    game.reset();
-    safeGameMutate((game) => {
-      setPlayerColor("b");
-      setGameOver(false);
-      setMoveNumber(0);
-      setWhiteMoves([]);
-      setBlackMoves([]);
-      setBoardOrientation("black");
-      makeRandomMove();
-    });
-    // if player is black, make a random move
-    if (playerColor === "b") {
-      setTimeout(makeRandomMove, 500);
-    }
+    reset();
+    setPlayerColor("b");
+    setBoardOrientation("black");
+    setTimeout(makeRandomMove, 500);
   };
 
   return (

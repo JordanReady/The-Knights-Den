@@ -18,14 +18,12 @@ function Logout() {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setAuthenticated(data.authenticated);
         setUserId(data.user_id);
         return fetch(`/api/users/${data.user_id}/color_theme`);
       })
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setColorTheme(data.color_theme);
       })
       .catch((error) => {
@@ -36,7 +34,7 @@ function Logout() {
   return (
     <div className={colorTheme}>
       <div className="logout">
-        <Navbar />
+        <Navbar authenticated={authenticated} />
         <div className="container">
           <LogoutBox />
         </div>

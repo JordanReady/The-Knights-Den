@@ -16,7 +16,6 @@ class LogoutBox extends React.Component {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log("auth data", data);
         this.setState({
           authenticated: data.authenticated,
           user_id: data.user_id,

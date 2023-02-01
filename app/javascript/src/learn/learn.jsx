@@ -32,14 +32,12 @@ function Learn() {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setAuthenticated(data.authenticated);
         setUserId(data.user_id);
         return fetch(`/api/users/${data.user_id}/color_theme`);
       })
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setColorTheme(data.color_theme);
       })
       .catch((error) => {
@@ -54,7 +52,6 @@ function Learn() {
 
   const handleColorChange = (e) => {
     const newColor = e.target.value;
-    console.log(newColor);
     setColorTheme(newColor);
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     fetch(`/api/users/${user_id}/color_theme`, {
@@ -70,9 +67,7 @@ function Learn() {
       }),
     })
       .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-      });
+      .then((data) => {});
   };
 
   function getLesson() {
@@ -119,7 +114,7 @@ function Learn() {
   function handleNext(e) {
     e.preventDefault();
     let les = lesson + 1;
-    console.log(les);
+
     setLesson(les);
     setCurrentLesson(les);
   }
@@ -127,7 +122,7 @@ function Learn() {
   function handlePrev(e) {
     e.preventDefault();
     let les = lesson - 1;
-    console.log(les);
+
     setLesson(les);
     setCurrentLesson(les);
   }

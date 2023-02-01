@@ -15,7 +15,6 @@ class LoginWidget extends React.Component {
     this.setState({
       [e.target.type]: e.target.value,
     });
-    console.log(this.state);
   };
 
   login = (e) => {

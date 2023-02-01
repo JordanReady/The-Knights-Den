@@ -25,14 +25,12 @@ function Home() {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setAuthenticated(data.authenticated);
         setUserId(data.user_id);
         return fetch(`/api/users/${data.user_id}/color_theme`);
       })
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         setColorTheme(data.color_theme);
       })
       .catch((error) => {

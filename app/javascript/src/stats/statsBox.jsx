@@ -23,7 +23,6 @@ class StatsBox extends React.Component {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         this.setState({
           username: data.username,
           user_id: data.user_id,
@@ -33,12 +32,9 @@ class StatsBox extends React.Component {
   }
 
   getStats = () => {
-    console.log("updateStats");
     fetch(`/api/users/${this.state.user_id}/stats`)
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
-        console.log(data.stats.total_games);
         this.setState({
           games: data.stats.total_games,
           wins: data.stats.wins,
@@ -52,11 +48,9 @@ class StatsBox extends React.Component {
   };
 
   reset = () => {
-    console.log("resetStats");
     fetch(`/api/users/${this.state.user_id}/stats/reset`)
       .then(handleErrors)
       .then((data) => {
-        console.log(data);
         this.setState({
           games: data.stats.total_games,
           wins: data.stats.wins,
