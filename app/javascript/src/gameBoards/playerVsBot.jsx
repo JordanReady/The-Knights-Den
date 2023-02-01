@@ -311,6 +311,7 @@ export default function PlayerVsBot(props) {
     setSelectedPiece(null);
     setBlackMoves([]);
     setWhiteMoves([]);
+    setPlayerColor("w");
   };
 
   const undo = () => {
@@ -331,6 +332,7 @@ export default function PlayerVsBot(props) {
 
   const playWhite = () => {
     setPlayerColor("w");
+    game.reset();
     safeGameMutate((game) => {
       setGameOver(false);
       setMoveNumber(0);
@@ -341,6 +343,7 @@ export default function PlayerVsBot(props) {
   };
 
   const playBlack = () => {
+    game.reset();
     safeGameMutate((game) => {
       setPlayerColor("b");
       setGameOver(false);
