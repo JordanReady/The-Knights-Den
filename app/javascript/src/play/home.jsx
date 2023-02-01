@@ -83,12 +83,33 @@ function Home() {
       });
   };
 
-  const handleMove = (move, color) => {
+  const handleMove = (move, color, game_id) => {
     if (color === "b") {
       setWhiteMoves([...whiteMoves, move]);
     } else {
       setBlackMoves([...blackMoves, move]);
     }
+    fetch(`/api/games/${game_id}/moves`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+      body: JSON.stringify({
+        move: {
+          move: move.san,
+        },
+      }),
+    })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   function getSelectedBoard() {

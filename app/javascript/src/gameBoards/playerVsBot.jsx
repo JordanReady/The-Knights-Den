@@ -33,13 +33,14 @@ export default function PlayerVsBot(props) {
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
   const [user_id, setUserId] = useState(undefined);
+  const [game_id, setGameId] = useState(undefined);
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
         setUserId(data.user_id);
-        //return createGameWhite(data.user_id);
+        return createGameWhite(data.user_id);
       })
       .catch((error) => {
         console.log(error);
@@ -115,7 +116,7 @@ export default function PlayerVsBot(props) {
   }, [game]);
 
   function createGameWhite(id) {
-    bot = 12;
+    const bot = 12;
 
     fetch("/api/games", {
       method: "POST",
@@ -133,14 +134,17 @@ export default function PlayerVsBot(props) {
       }),
     })
       .then(handleErrors)
-      .then((data) => {})
+      .then((data) => {
+        console.log(data.game.id);
+        setGameId(data.game.id);
+      })
       .catch((error) => {
         console.log(error);
       });
   }
 
   function createGameBlack(id) {
-    bot = 12;
+    const bot = 12;
 
     fetch("/api/games", {
       method: "POST",
@@ -165,30 +169,36 @@ export default function PlayerVsBot(props) {
   }
 
   function updateDraw() {
-    fetch(`/api/users/${user_id}/stats/draw`)
-      .then(handleErrors)
-      .then((data) => {})
-      .catch((error) => {
-        console.log(error);
-      });
+    setTimeout(() => {
+      fetch(`/api/users/${user_id}/stats/draw`)
+        .then(handleErrors)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
   }
 
   function updateWin() {
-    fetch(`/api/users/${user_id}/stats/win`)
-      .then(handleErrors)
-      .then((data) => {})
-      .catch((error) => {
-        console.log(error);
-      });
+    setTimeout(() => {
+      fetch(`/api/users/${user_id}/stats/win`)
+        .then(handleErrors)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
   }
 
   function updateLoss() {
-    fetch(`/api/users/${user_id}/stats/loss`)
-      .then(handleErrors)
-      .then((data) => {})
-      .catch((error) => {
-        console.log(error);
-      });
+    setTimeout(() => {
+      fetch(`/api/users/${user_id}/stats/loss`)
+        .then(handleErrors)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
   }
 
   function safeGameMutate(modify) {
@@ -211,7 +221,7 @@ export default function PlayerVsBot(props) {
     if (move === null) return false;
     // set moves
 
-    handleMove(move, gameCopy.turn());
+    handleMove(move, gameCopy.turn(), game_id);
     // store timeout so it can be cleared on undo/reset so computer doesn't execute move
     const newTimeout = setTimeout(makeRandomMove, 200);
     setCurrentTimeout(newTimeout);
@@ -263,7 +273,7 @@ export default function PlayerVsBot(props) {
       const moveObj = game.move(move);
 
       game.move(move);
-      handleMove(moveObj, gameCopy.turn());
+      handleMove(moveObj, gameCopy.turn(), game_id);
     });
   }
 
@@ -295,7 +305,7 @@ export default function PlayerVsBot(props) {
       resetFirstMove(square);
       return;
     }
-    handleMove(move, gameCopy.turn());
+    handleMove(move, gameCopy.turn(), game_id);
     setTimeout(makeRandomMove, 500);
     setMoveFrom("");
     setOptionSquares({});
