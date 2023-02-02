@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :games, only: [:create] do
       resources :moves, only: [:create, :index] do
         delete :delete_last_move, on: :collection
+        delete :reset_moves, on: :collection
       end
     end
     get '/sessions/authenticated' => 'sessions#authenticated'

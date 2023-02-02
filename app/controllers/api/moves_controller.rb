@@ -25,8 +25,10 @@ module Api
             render json: last_move
         end
     
-        def destroy
-            @move.destroy
+        def reset_moves
+            game = Game.find(params[:game_id])
+            game.moves.destroy_all
+            render json: game.moves
         end
     
         private

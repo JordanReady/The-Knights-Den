@@ -340,6 +340,18 @@ export default function PlayerVsBot(props) {
     setBlackMoves([]);
     setWhiteMoves([]);
     setPlayerColor("w");
+    fetch(`/api/games/${game_id}/moves/reset_moves`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+          .content,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const undo = () => {
