@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
+import { handleErrors } from "../utils/fetchHelper";
 
 import "./board.scss";
 
@@ -13,6 +14,7 @@ const ReplayBoard = (props) => {
     setBlackMoves,
     handleMove,
     colorTheme,
+    game_id = "",
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -30,41 +32,19 @@ const ReplayBoard = (props) => {
   const [moveIndex, setMoveIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(false);
 
-  const moves = [
-    "e4",
-    "e5",
-    "Nf3",
-    "d6",
-    "d4",
-    "Bg4",
-    "dxe5",
-    "Bxf3",
-    "Qxf3",
-    "dxe5",
-    "Bc4",
-    "Nf6",
-    "Qb3",
-    "Qe7",
-    "Nc3",
-    "c6",
-    "Bg5",
-    "b5",
-    "Nxb5",
-    "cxb5",
-    "Bxb5+",
-    "Nbd7",
-    "O-O-O",
-    "Rd8",
-    "Rxd7",
-    "Rxd7",
-    "Rd1",
-    "Qe6",
-    "Bxd7+",
-    "Nxd7",
-    "Qb8+",
-    "Nxb8",
-    "Rd8#",
-  ];
+  const [moves, setMoves] = useState([]);
+
+  useEffect(() => {
+    const id = game_id;
+    fetch(`/api/games/${id}/moves`)
+      .then(handleErrors)
+      .then((data) => {
+        setMoves(data.map((move) => move.move));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     // set colors
@@ -90,7 +70,6 @@ const ReplayBoard = (props) => {
     // check for game over
     const gameCopy = { ...game };
     const turn = gameCopy.turn();
-    console.log(gameCopy + "is game over? " + gameOver);
     if (gameCopy.game_over()) {
       setGameOver(true);
       if (game.in_checkmate()) {
@@ -123,11 +102,7 @@ const ReplayBoard = (props) => {
           return;
         }
         game.move(moves[moveIndex]);
-        if (moveIndex % 2 === 0) {
-          setWhiteMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
-        } else {
-          setBlackMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
-        }
+        console.log(moves[moveIndex]);
         setMoveIndex(moveIndex + 1);
       }, 1000);
     } else {
@@ -144,19 +119,6 @@ const ReplayBoard = (props) => {
     setAutoPlay(false);
     if (moveIndex > 0) {
       game.undo();
-      if (moveIndex % 2 === 0) {
-        setBlackMoves((prevMoves) => {
-          const newMoves = [...prevMoves];
-          newMoves.pop();
-          return newMoves;
-        });
-      } else {
-        setWhiteMoves((prevMoves) => {
-          const newMoves = [...prevMoves];
-          newMoves.pop();
-          return newMoves;
-        });
-      }
       setMoveIndex(moveIndex - 1);
     }
   };
@@ -164,14 +126,14 @@ const ReplayBoard = (props) => {
   const handleNextMove = () => {
     setAutoPlay(false);
     if (moveIndex < moves.length - 1) {
+      console.log(moves[moveIndex]);
       game.move(moves[moveIndex]);
-      if (moveIndex % 2 === 0) {
-        setWhiteMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
-      } else {
-        setBlackMoves((prevMoves) => [...prevMoves, moves[moveIndex]]);
-      }
       setMoveIndex(moveIndex + 1);
     }
+  };
+
+  const checkMoves = () => {
+    console.log(moves);
   };
 
   return (
@@ -212,6 +174,9 @@ const ReplayBoard = (props) => {
           </button>
           <button className="board-btn" onClick={handleAutoPlay}>
             {autoPlay ? "Stop Auto Play" : "Start Auto Play"}
+          </button>
+          <button className="board-btn" onClick={checkMoves}>
+            check moves list
           </button>
         </div>
       </div>

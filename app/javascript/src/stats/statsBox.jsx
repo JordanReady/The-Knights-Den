@@ -15,8 +15,11 @@ class StatsBox extends React.Component {
       wins: null,
       losses: null,
       draws: null,
+      moves: [],
     };
     this.getStats = this.getStats.bind(this);
+    this.getGameMoves = this.getGameMoves.bind(this);
+    this.showMoves = this.showMoves.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +48,27 @@ class StatsBox extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  getGameMoves = () => {
+    let id = 21;
+    fetch(`/api/games/${id}/moves`)
+      .then(handleErrors)
+      .then((data) => {
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i].move);
+          this.setState({
+            moves: [...this.state.moves, data[i].move],
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  showMoves = () => {
+    console.log(this.state.moves);
   };
 
   reset = () => {
@@ -89,6 +113,8 @@ class StatsBox extends React.Component {
             </div>
           </div>
         </div>
+        <button onClick={this.getGameMoves}>Get Game Moves</button>
+        <button onClick={this.showMoves}>Show Moves</button>
       </div>
     );
   }

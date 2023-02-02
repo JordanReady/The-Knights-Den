@@ -15,6 +15,7 @@ export default function PlayerVsBot(props) {
     setBlackMoves,
     handleMove,
     colorTheme,
+    analyze,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -395,6 +396,10 @@ export default function PlayerVsBot(props) {
           <div className="game-over-message">
             {gameOverMessage} <br />
             {gameWinner}
+            <br />
+            <button className="board-btn" onClick={() => analyze(game_id)}>
+              Analyze Game
+            </button>
           </div>
         )}
         <Chessboard

@@ -20,6 +20,7 @@ function Home() {
   const [colorTheme, setColorTheme] = useState("default");
   const [authenticated, setAuthenticated] = useState(false);
   const [user_id, setUserId] = useState(undefined);
+  const [game_id, setGameId] = useState(undefined);
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
@@ -59,6 +60,11 @@ function Home() {
       element2.scrollTop = element2.scrollHeight;
     }
   }, [whiteMoves, blackMoves]);
+
+  const analyze = (game_id) => {
+    setGameId(game_id);
+    setSelectedBoard("ReplayBoard");
+  };
 
   const handleColorChange = (e) => {
     const newColor = e.target.value;
@@ -104,9 +110,6 @@ function Home() {
       }),
     })
       .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-      })
       .catch((error) => {
         console.log(error);
       });
@@ -142,6 +145,7 @@ function Home() {
               handleMove={handleMove}
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
+              analyze={analyze}
             />
             <br />
           </>
@@ -174,6 +178,7 @@ function Home() {
               handleMove={handleMove}
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
+              game_id={game_id}
             />
             <br />
           </>
