@@ -16,7 +16,14 @@ module Api
             else
               render json: { errors: move.errors }, status: :unprocessable_entity
             end
-          end
+        end
+
+        def delete_last_move
+            game = Game.find(params[:game_id])
+            last_move = game.moves.last
+            last_move.destroy
+            render json: last_move
+        end
     
         def destroy
             @move.destroy

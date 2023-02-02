@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     get 'users/:id/stats/reset' => 'stats#reset_stats'
     resources :sessions, only: [:create, :destroy, :authenticated]
     resources :games, only: [:create] do
-      resources :moves, only: [:create]
+      resources :moves, only: [:create, :index] do
+        delete :delete_last_move, on: :collection
+      end
     end
     get '/sessions/authenticated' => 'sessions#authenticated'
   end

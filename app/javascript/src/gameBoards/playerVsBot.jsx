@@ -355,6 +355,18 @@ export default function PlayerVsBot(props) {
     });
     // stop any current timeouts
     clearTimeout(currentTimeout);
+    fetch(`/api/games/${game_id}/moves/delete_last_move`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+          .content,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const playWhite = () => {
