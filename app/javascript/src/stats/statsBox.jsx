@@ -113,8 +113,6 @@ class StatsBox extends React.Component {
             </div>
           </div>
         </div>
-        <button onClick={this.getGameMoves}>Get Game Moves</button>
-        <button onClick={this.showMoves}>Show Moves</button>
       </div>
     );
   }

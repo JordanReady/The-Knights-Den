@@ -23,7 +23,7 @@ const ReplayBoard = (props) => {
   const [rightClickedSquares, setRightClickedSquares] = useState({});
   const [moveSquares, setMoveSquares] = useState({});
   const [optionSquares, setOptionSquares] = useState({});
-  const [gameOver, setGameOver] = useState(false);
+  const [analysisOver, setAnalysisOver] = useState(false);
   const [gameOverMessage, setGameOverMessage] = useState("");
   const [gameWinner, setGameWinner] = useState("");
   const [selectedPiece, setSelectedPiece] = useState(null);
@@ -67,40 +67,16 @@ const ReplayBoard = (props) => {
   }, [colorTheme]);
 
   useEffect(() => {
-    // check for game over
-    const gameCopy = { ...game };
-    const turn = gameCopy.turn();
-    if (gameCopy.game_over()) {
-      setGameOver(true);
-      if (game.in_checkmate()) {
-        setGameOverMessage("Checkmate! Game over.");
-        if (turn === "w") {
-          setGameWinner("Black Wins!");
-        }
-        if (turn === "b") {
-          setGameWinner("White Wins!");
-        }
-      } else if (game.in_stalemate()) {
-        setGameOverMessage("Stalemate! Game over.");
-      } else if (game.insufficient_material()) {
-        setGameOverMessage("Insufficient material! Game over.");
-      } else if (game.in_threefold_repetition()) {
-        setGameOverMessage("Threefold repetition! Game over.");
-      } else if (game.in_draw()) {
-        setGameOverMessage("Draw! Game over.");
-      }
-    }
-  }, [game]);
-
-  useEffect(() => {
     let intervalId;
     if (autoPlay) {
       intervalId = setInterval(() => {
         if (moveIndex >= moves.length) {
           clearInterval(intervalId);
           setAutoPlay(false);
+          setAnalysisOver(true);
           return;
         }
+        setAnalysisOver(false);
         game.move(moves[moveIndex]);
         console.log(moves[moveIndex]);
         setMoveIndex(moveIndex + 1);
@@ -117,6 +93,7 @@ const ReplayBoard = (props) => {
 
   const handlePreviousMove = () => {
     setAutoPlay(false);
+    setAnalysisOver(false);
     if (moveIndex > 0) {
       game.undo();
       setMoveIndex(moveIndex - 1);
@@ -125,10 +102,12 @@ const ReplayBoard = (props) => {
 
   const handleNextMove = () => {
     setAutoPlay(false);
-    if (moveIndex < moves.length - 1) {
+    if (moveIndex < moves.length) {
       console.log(moves[moveIndex]);
       game.move(moves[moveIndex]);
       setMoveIndex(moveIndex + 1);
+    } else {
+      setAnalysisOver(true);
     }
   };
 
@@ -139,12 +118,7 @@ const ReplayBoard = (props) => {
   return (
     <div className={colorTheme}>
       <div className="chessboard">
-        {gameOver && (
-          <div className="game-over-message">
-            {gameOverMessage} <br />
-            {gameWinner}
-          </div>
-        )}
+        {analysisOver && <div className="game-over-message">Analysis Over</div>}
         <Chessboard
           animationDuration={200}
           boardOrientation={boardOrientation}
@@ -175,8 +149,15 @@ const ReplayBoard = (props) => {
           <button className="board-btn" onClick={handleAutoPlay}>
             {autoPlay ? "Stop Auto Play" : "Start Auto Play"}
           </button>
-          <button className="board-btn" onClick={checkMoves}>
-            check moves list
+          <button
+            className="board-btn"
+            onClick={() => {
+              setBoardOrientation(
+                boardOrientation === "white" ? "black" : "white"
+              );
+            }}
+          >
+            Flip Board
           </button>
         </div>
       </div>

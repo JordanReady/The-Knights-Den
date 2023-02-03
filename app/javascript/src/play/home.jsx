@@ -95,24 +95,27 @@ function Home() {
     } else {
       setBlackMoves([...blackMoves, move]);
     }
-    fetch(`/api/games/${game_id}/moves`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
-      },
-      body: JSON.stringify({
-        move: {
-          move: move.san,
+    //if game_id is not undefined run the fetch
+    if (game_id) {
+      fetch(`/api/games/${game_id}/moves`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
         },
-      }),
-    })
-      .then(handleErrors)
-      .catch((error) => {
-        console.log(error);
-      });
+        body: JSON.stringify({
+          move: {
+            move: move.san,
+          },
+        }),
+      })
+        .then(handleErrors)
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   function getSelectedBoard() {

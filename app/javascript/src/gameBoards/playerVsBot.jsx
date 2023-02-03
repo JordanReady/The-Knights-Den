@@ -35,6 +35,7 @@ export default function PlayerVsBot(props) {
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
   const [user_id, setUserId] = useState(undefined);
   const [game_id, setGameId] = useState(undefined);
+  const [createBlackGame, setCreateBlackGame] = useState(false);
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
@@ -47,6 +48,12 @@ export default function PlayerVsBot(props) {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (createBlackGame) {
+      return createGameBlack(user_id);
+    }
+  }, [createBlackGame]);
 
   useEffect(() => {
     // set colors
@@ -347,11 +354,7 @@ export default function PlayerVsBot(props) {
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
           .content,
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+    }).then((res) => res.json());
   };
 
   const undo = () => {
@@ -384,6 +387,7 @@ export default function PlayerVsBot(props) {
 
   const playWhite = () => {
     setPlayerColor("w");
+    setCreateBlackGame(false);
     game.reset();
     safeGameMutate((game) => {
       setGameOver(false);
@@ -399,6 +403,7 @@ export default function PlayerVsBot(props) {
     setPlayerColor("b");
     setBoardOrientation("black");
     setTimeout(makeRandomMove, 500);
+    setCreateBlackGame(true);
   };
 
   return (
