@@ -275,12 +275,23 @@ export default function PlayerVsBot(props) {
     if (game.game_over() || game.in_draw() || possibleMoves.length === 0)
       return;
 
-    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    // Filter moves that capture pieces
+    var captures = possibleMoves.filter(function (move) {
+      return move.includes("x");
+    });
+
+    let move;
+    if (captures.length > 0) {
+      // if there are captures, make a random move from the list of captures
+      move = captures[Math.floor(Math.random() * captures.length)];
+    } else {
+      // if there are no captures, make a random move from the list of all possible moves
+      move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    }
+
     safeGameMutate((game) => {
-      const move = possibleMoves[randomIndex];
       const moveObj = game.move(move);
 
-      game.move(move);
       handleMove(moveObj, gameCopy.turn(), game_id);
     });
   }
