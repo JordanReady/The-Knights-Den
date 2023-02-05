@@ -276,17 +276,25 @@ export default function PlayerVsBot(props) {
       return;
 
     // Filter moves that capture pieces
-    var captures = possibleMoves.filter(function (move) {
-      return move.includes("x");
+    var betterMoves = possibleMoves.filter(function (move) {
+      return move.includes("x") || !game.in_check();
     });
 
     let move;
-    if (captures.length > 0) {
-      // if there are captures, make a random move from the list of captures
-      move = captures[Math.floor(Math.random() * captures.length)];
+    if (betterMoves.length > 0) {
+      // if there are betterMoves, make a random move from the list of betterMoves
+      move = betterMoves[Math.floor(Math.random() * betterMoves.length)];
     } else {
-      // if there are no captures, make a random move from the list of all possible moves
-      move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      // Check if there is a checkmate move
+      const checkmates = possibleMoves.filter(function (move) {
+        return move.includes("#");
+      });
+      if (checkmates.length > 0) {
+        move = checkmates[Math.floor(Math.random() * checkmates.length)];
+      } else {
+        // if there are no betterMoves or checkmates, make a random move from the list of all possible moves
+        move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      }
     }
 
     safeGameMutate((game) => {
