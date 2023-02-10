@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
-import { ActionCableConsumer } from "react-actioncable-provider";
 
 import "./board.scss";
 
@@ -15,6 +14,7 @@ export default function PlayerVsPlayer(props) {
     setBlackMoves,
     handleMove,
     colorTheme,
+    analyze,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -26,9 +26,11 @@ export default function PlayerVsPlayer(props) {
   const [gameOver, setGameOver] = useState(false);
   const [gameOverMessage, setGameOverMessage] = useState("");
   const [gameWinner, setGameWinner] = useState("");
-  const [selectedPiece, setSelectedPiece] = useState(null);
+  const [moveNumber, setMoveNumber] = useState(0);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
+  const [user_id, setUserId] = useState(undefined);
+  const [game_id, setGameId] = useState(undefined);
 
   useEffect(() => {
     // set colors
@@ -57,29 +59,55 @@ export default function PlayerVsPlayer(props) {
       setGameOver(true);
       if (game.in_checkmate()) {
         setGameOverMessage("Checkmate! Game over.");
-        if (turn === "w") {
-          setGameWinner("Black Wins!");
-        }
-        if (turn === "b") {
-          setGameWinner("White Wins!");
-        }
       } else if (game.in_stalemate()) {
         setGameOverMessage("Stalemate! Game over.");
+        updateDraw();
       } else if (game.insufficient_material()) {
         setGameOverMessage("Insufficient material! Game over.");
+        updateDraw();
       } else if (game.in_threefold_repetition()) {
         setGameOverMessage("Threefold repetition! Game over.");
+        updateDraw();
       } else if (game.in_draw()) {
         setGameOverMessage("Draw! Game over.");
+        updateDraw();
       }
     }
-
-    if (turn === "b") {
-      setBoardOrientation("black");
-    } else {
-      setBoardOrientation("white");
-    }
+    setMoveNumber(moveNumber + 1);
   }, [game]);
+
+  function updateDraw() {
+    setTimeout(() => {
+      fetch(`/api/users/${user_id}/stats/draw`)
+        .then(handleErrors)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
+  }
+
+  function updateWin() {
+    setTimeout(() => {
+      fetch(`/api/users/${user_id}/stats/win`)
+        .then(handleErrors)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
+  }
+
+  function updateLoss() {
+    setTimeout(() => {
+      fetch(`/api/users/${user_id}/stats/loss`)
+        .then(handleErrors)
+        .then((data) => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
+  }
 
   function safeGameMutate(modify) {
     setGame((g) => {
@@ -102,35 +130,6 @@ export default function PlayerVsPlayer(props) {
     // set moves
     handleMove(move, gameCopy.turn());
     return true;
-  }
-
-  function getMoveOptions(square) {
-    if (square === selectedPiece) {
-      setOptionSquares({});
-      setSelectedPiece(null);
-      return;
-    }
-    setSelectedPiece(square);
-    const moves = game.moves({
-      square,
-      verbose: true,
-    });
-    if (moves.length === 0) {
-      return;
-    }
-
-    const newSquares = {};
-    moves.map((move) => {
-      newSquares[move.to] = {
-        background:
-          game.get(move.to) &&
-          game.get(move.to).color !== game.get(square).color
-            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%"
-            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
-        borderRadius: "50%",
-      };
-    });
-    setOptionSquares(newSquares);
   }
 
   function onSquareClick(square) {
@@ -161,7 +160,8 @@ export default function PlayerVsPlayer(props) {
       resetFirstMove(square);
       return;
     }
-    handleMove(move, gameCopy.turn());
+    handleMove(move, gameCopy.turn(), game_id);
+    setTimeout(makeRandomMove, 500);
     setMoveFrom("");
     setOptionSquares({});
   }
@@ -176,6 +176,18 @@ export default function PlayerVsPlayer(props) {
           ? undefined
           : { backgroundColor: color },
     });
+  }
+
+  function getMoveOptions(square) {
+    const gameCopy = { ...game };
+    const moves = gameCopy.moves({ square, verbose: true });
+    const squaresToHighlight = {};
+    for (let i = 0; i < moves.length; i++) {
+      squaresToHighlight[moves[i].to] = {
+        backgroundColor: "rgba(255, 255, 0, 0.4)",
+      };
+    }
+    setOptionSquares(squaresToHighlight);
   }
 
   return (
