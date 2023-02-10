@@ -1,0 +1,282 @@
+$dark-color: #b58863;
+$light-color: #f0d9b5;
+
+//green theme
+$dark-green-color: #4f583c;
+$light-green-color: #acb192;
+
+//blue theme
+$dark-blue-color: #4682b4;
+$light-blue-color: #add8e6;
+
+//red theme
+$dark-red-color: #ec2323;
+$light-red-color: #fdadad;
+
+//purple theme
+$dark-purple-color: #462578;
+$light-purple-color: #e1a1fa;
+
+.containter {
+  max-width: 1240px !important;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  background-color: $light-color;
+  border: 2px solid $dark-color;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0 black;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+.game-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto;
+  padding: 2rem;
+  justify-content: center;
+  background-color: $dark-color;
+  border: 2px solid $light-color;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0 black;
+  max-width: fit-content;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $dark-color;
+  margin-top: 1.5rem;
+}
+
+label {
+  display: flex;
+  justify-content: center;
+  color: $light-color;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.create-btn {
+  background-color: $dark-color;
+  border: none;
+  color: $light-color;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin-top: 2rem;
+  cursor: pointer;
+  border: 2px solid $light-color;
+}
+
+.create-btn:hover {
+  background-color: $light-color;
+  color: $dark-color;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background-color: $light-color;
+  border: 2px solid $dark-color;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0 black;
+  color: $dark-color;
+  max-width: fit-content;
+  text-align: center;
+  span {
+    font-weight: bold;
+  }
+  a {
+    color: $dark-color;
+    text-shadow: 1px 1px 0 $light-color, -1px -1px 0 $light-color,
+      1px -1px 0 $light-color, -1px 1px 0 $light-color;
+    font-size: 1.25rem;
+    text-decoration: none;
+  }
+}
+
+//green theme
+.green {
+  .game-container {
+    background-color: $light-green-color;
+    border: 2px solid $dark-green-color;
+  }
+
+  .game-form {
+    background-color: $dark-green-color;
+    border: 2px solid $light-green-color;
+  }
+
+  .header {
+    color: $dark-green-color;
+  }
+
+  label {
+    color: $light-green-color;
+  }
+
+  .create-btn {
+    background-color: $dark-green-color;
+    color: $light-green-color;
+    border: 2px solid $light-green-color;
+  }
+
+  .create-btn:hover {
+    background-color: $light-green-color;
+    color: $dark-green-color;
+  }
+
+  .game-info {
+    background-color: $light-green-color;
+    border: 2px solid $dark-green-color;
+    color: $dark-green-color;
+    a {
+      color: $light-green-color;
+      text-shadow: 1px 1px 0 $dark-green-color, -1px -1px 0 $dark-green-color,
+        1px -1px 0 $dark-green-color, -1px 1px 0 $dark-green-color;
+    }
+  }
+}
+
+//blue theme
+.blue {
+  .game-container {
+    background-color: $light-blue-color;
+    border: 2px solid $dark-blue-color;
+  }
+
+  .game-form {
+    background-color: $dark-blue-color;
+    border: 2px solid $light-blue-color;
+  }
+
+  .header {
+    color: $dark-blue-color;
+  }
+
+  label {
+    color: $light-blue-color;
+  }
+
+  .create-btn {
+    background-color: $dark-blue-color;
+    color: $light-blue-color;
+    border: 2px solid $light-blue-color;
+  }
+
+  .create-btn:hover {
+    background-color: $light-blue-color;
+    color: $dark-blue-color;
+  }
+
+  .game-info {
+    background-color: $light-blue-color;
+    border: 2px solid $dark-blue-color;
+    color: $dark-blue-color;
+
+    a {
+      color: $light-blue-color;
+      text-shadow: 1px 1px 0 $dark-blue-color, -1px -1px 0 $dark-blue-color,
+        1px -1px 0 $dark-blue-color, -1px 1px 0 $dark-blue-color;
+    }
+  }
+}
+
+//red theme
+.red {
+  .game-container {
+    background-color: $light-red-color;
+    border: 2px solid $dark-red-color;
+  }
+
+  .game-form {
+    background-color: $dark-red-color;
+    border: 2px solid $light-red-color;
+  }
+
+  .header {
+    color: $dark-red-color;
+  }
+
+  label {
+    color: $light-red-color;
+  }
+
+  .create-btn {
+    background-color: $dark-red-color;
+    color: $light-red-color;
+    border: 2px solid $light-red-color;
+  }
+
+  .create-btn:hover {
+    background-color: $light-red-color;
+    color: $dark-red-color;
+  }
+
+  .game-info {
+    background-color: $light-red-color;
+    border: 2px solid $dark-red-color;
+    color: $dark-red-color;
+    a {
+      color: $light-red-color;
+      text-shadow: 1px 1px 0 $dark-red-color, -1px -1px 0 $dark-red-color,
+        1px -1px 0 $dark-red-color, -1px 1px 0 $dark-red-color;
+    }
+  }
+}
+//purple theme
+.purple {
+  .game-container {
+    background-color: $light-purple-color;
+    border: 2px solid $dark-purple-color;
+  }
+
+  .game-form {
+    background-color: $dark-purple-color;
+    border: 2px solid $light-purple-color;
+  }
+
+  .header {
+    color: $dark-purple-color;
+  }
+
+  label {
+    color: $light-purple-color;
+  }
+
+  .create-btn {
+    background-color: $dark-purple-color;
+    color: $light-purple-color;
+    border: 2px solid $light-purple-color;
+  }
+
+  .create-btn:hover {
+    background-color: $light-purple-color;
+    color: $dark-purple-color;
+  }
+
+  .game-info {
+    background-color: $light-purple-color;
+    border: 2px solid $dark-purple-color;
+    color: $dark-purple-color;
+    a {
+      color: $light-purple-color;
+      text-shadow: 1px 1px 0 $dark-purple-color, -1px -1px 0 $dark-purple-color,
+        1px -1px 0 $dark-purple-color, -1px 1px 0 $dark-purple-color;
+    }
+  }
+}

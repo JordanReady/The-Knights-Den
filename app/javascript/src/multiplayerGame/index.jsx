@@ -1,21 +1,17 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Navbar from "../navbar/navbar";
-import DefaultBoard from "../gameBoards/defaultBoard";
-import PlayerVsBot from "../gameBoards/playerVsBot";
+import { handleErrors } from "../utils/fetchHelper";
+import MultiplayerControls from "./multiplayerControls";
 import PlayerVsPlayer from "../gameBoards/playerVsPlayer";
-import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-import "./home.scss";
-import ThemePicker from "../themePicker/themePicker";
 import ReplayBoard from "../gameBoards/replayBoard";
-import { handleErrors, safeCredentials } from "../utils/fetchHelper";
-import PlayControls from "./playControls";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./multiplayerGame.scss";
 
-function Home() {
+function Index() {
   const [chessboardSize, setChessboardSize] = useState(undefined);
-  const [selectedBoard, setSelectedBoard] = useState("DefaultBoard");
+  const [selectedBoard, setSelectedBoard] = useState("PlayerVsPlayer");
   const [whiteMoves, setWhiteMoves] = useState([]);
   const [blackMoves, setBlackMoves] = useState([]);
   const [colorTheme, setColorTheme] = useState("default");
@@ -61,6 +57,44 @@ function Home() {
       element2.scrollTop = element2.scrollHeight;
     }
   }, [whiteMoves, blackMoves]);
+
+  function getSelectedBoard() {
+    switch (selectedBoard) {
+      case "PlayerVsPlayer":
+        return (
+          <>
+            <PlayerVsPlayer
+              boardWidth={chessboardSize}
+              whiteMoves={whiteMoves}
+              blackMoves={blackMoves}
+              setWhiteMoves={setWhiteMoves}
+              setBlackMoves={setBlackMoves}
+              handleMove={handleMove}
+              colorTheme={colorTheme}
+              setColorTheme={setColorTheme}
+            />
+            <br />
+          </>
+        );
+      case "ReplayBoard":
+        return (
+          <>
+            <ReplayBoard
+              boardWidth={chessboardSize}
+              whiteMoves={whiteMoves}
+              blackMoves={blackMoves}
+              setWhiteMoves={setWhiteMoves}
+              setBlackMoves={setBlackMoves}
+              handleMove={handleMove}
+              colorTheme={colorTheme}
+              setColorTheme={setColorTheme}
+              game_id={game_id}
+            />
+            <br />
+          </>
+        );
+    }
+  }
 
   const analyze = (game_id) => {
     setGameId(game_id);
@@ -119,77 +153,6 @@ function Home() {
     }
   };
 
-  function getSelectedBoard() {
-    switch (selectedBoard) {
-      case "DefaultBoard":
-        return (
-          <>
-            <DefaultBoard
-              boardWidth={chessboardSize}
-              whiteMoves={whiteMoves}
-              blackMoves={blackMoves}
-              setWhiteMoves={setWhiteMoves}
-              setBlackMoves={setBlackMoves}
-              handleMove={handleMove}
-              colorTheme={colorTheme}
-              setColorTheme={setColorTheme}
-            />
-            <br />
-          </>
-        );
-      case "PlayerVsBot":
-        return (
-          <>
-            <PlayerVsBot
-              boardWidth={chessboardSize}
-              whiteMoves={whiteMoves}
-              blackMoves={blackMoves}
-              setWhiteMoves={setWhiteMoves}
-              setBlackMoves={setBlackMoves}
-              handleMove={handleMove}
-              colorTheme={colorTheme}
-              setColorTheme={setColorTheme}
-              analyze={analyze}
-            />
-            <br />
-          </>
-        );
-      case "PlayerVsPlayer":
-        return (
-          <>
-            <PlayerVsPlayer
-              boardWidth={chessboardSize}
-              whiteMoves={whiteMoves}
-              blackMoves={blackMoves}
-              setWhiteMoves={setWhiteMoves}
-              setBlackMoves={setBlackMoves}
-              handleMove={handleMove}
-              colorTheme={colorTheme}
-              setColorTheme={setColorTheme}
-            />
-            <br />
-          </>
-        );
-      case "ReplayBoard":
-        return (
-          <>
-            <ReplayBoard
-              boardWidth={chessboardSize}
-              whiteMoves={whiteMoves}
-              blackMoves={blackMoves}
-              setWhiteMoves={setWhiteMoves}
-              setBlackMoves={setBlackMoves}
-              handleMove={handleMove}
-              colorTheme={colorTheme}
-              setColorTheme={setColorTheme}
-              game_id={game_id}
-            />
-            <br />
-          </>
-        );
-    }
-  }
-
   return (
     <div className={colorTheme}>
       <div className="fix-nav">
@@ -200,7 +163,7 @@ function Home() {
         <div className="container">
           <div className="row play-row justify-content-around">
             <div className="chess col-12 col-lg-9">{getSelectedBoard()}</div>
-            <PlayControls
+            <MultiplayerControls
               colorTheme={colorTheme}
               handleColorChange={handleColorChange}
               selectedBoard={selectedBoard}
@@ -219,7 +182,7 @@ function Home() {
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-    <Home />,
+    <Index />,
     document.body.appendChild(document.createElement("div"))
   );
 });

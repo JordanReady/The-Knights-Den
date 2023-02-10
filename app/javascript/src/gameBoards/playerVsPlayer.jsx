@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
+import { ActionCableConsumer } from "react-actioncable-provider";
 
 import "./board.scss";
 

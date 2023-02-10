@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   get '/stats' => 'static_pages#stats'
   get '/logout' => 'static_pages#logout'
   get '/login' => 'static_pages#login'
+  get '/multiplayer' => 'static_pages#multiplayer'
+  get '/multiplayer/:id' => 'static_pages#multiplayer_game'
+
+  #resources :game_rooms, only: [:index, :show, :create, :destroy]
+  #mount ActionCable.server => '/cable'
 
   namespace :api do
     resources :users, only: [:create]

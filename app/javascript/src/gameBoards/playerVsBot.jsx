@@ -265,6 +265,19 @@ export default function PlayerVsBot(props) {
     setOptionSquares(newSquares);
   }
 
+  function getPieceType(board, targetSquare) {
+    for (let i = 0; i < board.length; i++) {
+      let row = board[i];
+      for (let j = 0; j < row.length; j++) {
+        let piece = row[j];
+        if (piece && piece.square === targetSquare) {
+          return piece.type;
+        }
+      }
+    }
+    return null;
+  }
+
   function makeRandomMove() {
     const possibleMoves = game.moves();
     const gameCopy = { ...game };
@@ -275,25 +288,70 @@ export default function PlayerVsBot(props) {
     if (game.game_over() || game.in_draw() || possibleMoves.length === 0)
       return;
 
-    // Filter moves that capture pieces
-    var betterMoves = possibleMoves.filter(function (move) {
-      return move.includes("x") || !game.in_check();
+    // Check if there is a checkmate move
+    const checkmates = possibleMoves.filter(function (move) {
+      return move.includes("#");
     });
 
     let move;
-    if (betterMoves.length > 0) {
-      // if there are betterMoves, make a random move from the list of betterMoves
-      move = betterMoves[Math.floor(Math.random() * betterMoves.length)];
+    // if there is a checkmate move, make that move
+    if (checkmates.length > 0) {
+      move = checkmates[Math.floor(Math.random() * checkmates.length)];
     } else {
-      // Check if there is a checkmate move
-      const checkmates = possibleMoves.filter(function (move) {
-        return move.includes("#");
+      // Filter moves that capture pieces with pawns
+      var pawnCaptures = possibleMoves.filter(function (move) {
+        if (!move.includes("x")) {
+          return false;
+        }
+        let targetSquare = move.substr(move.indexOf("x") + 1);
+        let pieceType = getPieceType(game.board(), targetSquare);
+        if (pieceType === "q") {
+          return true;
+          
+        } else if (pieceType === "r") {
+          return true;
+        } else if (pieceType === "n" || pieceType === "b") {
+          return true;
+        } else if (pieceType === "p") {
+          return true;
+        } else {
+          return false;
+        }
       });
-      if (checkmates.length > 0) {
-        move = checkmates[Math.floor(Math.random() * checkmates.length)];
+
+      // if there are pawn capture moves, make one of those
+      if (pawnCaptures.length > 0) {
+        move = pawnCaptures[Math.floor(Math.random() * pawnCaptures.length)];
       } else {
-        // if there are no betterMoves or checkmates, make a random move from the list of all possible moves
-        move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        // Filter moves that capture pieces
+        var captures = possibleMoves.filter(function (move) {
+          return move.includes("x");
+        });
+
+        // Create an array of moves with more of the captures
+        var betterMoves = [];
+        for (var i = 0; i < captures.length; i++) {
+          betterMoves.push(captures[i]);
+          betterMoves.push(captures[i]);
+          betterMoves.push(captures[i]);
+          betterMoves.push(captures[i]);
+          betterMoves.push(captures[i]);
+        }
+
+        // Add the other possible moves to the betterMoves array
+        for (var i = 0; i < possibleMoves.length; i++) {
+          if (!possibleMoves[i].includes("x")) {
+            betterMoves.push(possibleMoves[i]);
+          }
+        }
+
+        //if there are better moves, make one of those
+        if (betterMoves.length > 0) {
+          move = betterMoves[Math.floor(Math.random() * betterMoves.length)];
+        } else {
+          move =
+            possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        }
       }
     }
 
