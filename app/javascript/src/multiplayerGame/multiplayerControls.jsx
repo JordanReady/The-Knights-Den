@@ -4,11 +4,7 @@ import ThemePicker from "../themePicker/themePicker";
 import "../play/home.scss";
 
 const MultiplayerControls = (props) => {
-  const handleMultiplayer = () => {
-    // send to multiplayer page
-    let url = window.location.href + "multiplayer";
-    window.location.href = url;
-  };
+  const { colorTheme, handleColorChange, whiteMoves, blackMoves } = props;
 
   return (
     <div className="btn-col col-12 col-lg-3">
@@ -31,7 +27,7 @@ const MultiplayerControls = (props) => {
                   if (move)
                     return (
                       <li className="move btn-col-el" key={index + 1}>
-                        {(index + 1) * 2 - 1}.{move.san}
+                        {(index + 1) * 2 - 1}.{move}
                       </li>
                     );
                   else
@@ -54,7 +50,7 @@ const MultiplayerControls = (props) => {
                   if (move)
                     return (
                       <li className="move btn-col-el" key={index}>
-                        {(index + 1) * 2}.{move.san}
+                        {(index + 1) * 2}.{move}
                       </li>
                     );
                   else

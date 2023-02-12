@@ -2,19 +2,19 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
+import { handleErrors } from "../utils/fetchHelper";
 
 import "./board.scss";
 
 export default function PlayerVsPlayer(props) {
   const {
     boardWidth,
-    whiteMoves = [],
-    setWhiteMoves,
-    blackMoves = [],
-    setBlackMoves,
     handleMove,
     colorTheme,
     analyze,
+    handleMovesHistory,
+    moves,
+    movesFetched,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -26,11 +26,14 @@ export default function PlayerVsPlayer(props) {
   const [gameOver, setGameOver] = useState(false);
   const [gameOverMessage, setGameOverMessage] = useState("");
   const [gameWinner, setGameWinner] = useState("");
+  const [selectedPiece, setSelectedPiece] = useState(null);
   const [moveNumber, setMoveNumber] = useState(0);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
   const [user_id, setUserId] = useState(undefined);
   const [game_id, setGameId] = useState(undefined);
+  const [white_player_id, setWhitePlayerId] = useState(undefined);
+  const [black_player_id, setBlackPlayerId] = useState(undefined);
 
   useEffect(() => {
     // set colors
@@ -75,6 +78,89 @@ export default function PlayerVsPlayer(props) {
     }
     setMoveNumber(moveNumber + 1);
   }, [game]);
+
+  useEffect(() => {
+    getGameInfo();
+  }, []);
+
+  useEffect(() => {
+    console.log(" make moves");
+    console.log(props.moves);
+    props.moves.forEach((move) => {
+      safeGameMutate(() => game.move(move));
+    });
+    setGame(game);
+  }, [props.moves]);
+
+  useEffect(() => {
+    getOrientation();
+  }, [user_id]);
+
+  const getGameInfo = () => {
+    let path = window.location.pathname;
+    let pathArray = path.split("/");
+    let gameId = pathArray[2];
+    console.log("gameId");
+    console.log(gameId);
+    setGameId(gameId);
+
+    // Fetch game info (players, etc.)
+    fetch(`/api/games/${gameId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error retrieving game info");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setWhitePlayerId(data.game.player_1_id);
+        setBlackPlayerId(data.game.player_2_id);
+        console.log("white_player_id and black_player_id");
+        console.log(data.game.player_1_id);
+        console.log(data.game.player_2_id);
+
+        // Fetch authenticated user ID
+        return fetch("/api/sessions/authenticated");
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error retrieving user ID");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserId(data.user_id);
+        console.log("user_id");
+        console.log(data.user_id);
+
+        // Fetch moves for the game
+        return fetch(`/api/games/${gameId}/moves`);
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error retrieving moves for game");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        props.handleMovesHistory(data.map((move) => move.move));
+        console.log("moves");
+        console.log(data.map((move) => move.move));
+      })
+      .catch((error) => {
+        handleErrors(error.message);
+      });
+  };
+
+  const getOrientation = () => {
+    if (user_id === white_player_id) {
+      console.log("set board white");
+      setBoardOrientation("white");
+    } else {
+      console.log("set board black");
+      setBoardOrientation("black");
+    }
+  };
 
   function updateDraw() {
     setTimeout(() => {
@@ -128,8 +214,37 @@ export default function PlayerVsPlayer(props) {
     // illegal move
     if (move === null) return false;
     // set moves
-    handleMove(move, gameCopy.turn());
+    props.handleMove(move, gameCopy.turn(), game_id);
     return true;
+  }
+
+  function getMoveOptions(square) {
+    if (square === selectedPiece) {
+      setOptionSquares({});
+      setSelectedPiece(null);
+      return;
+    }
+    setSelectedPiece(square);
+    const moves = game.moves({
+      square,
+      verbose: true,
+    });
+    if (moves.length === 0) {
+      return;
+    }
+
+    const newSquares = {};
+    moves.map((move) => {
+      newSquares[move.to] = {
+        background:
+          game.get(move.to) &&
+          game.get(move.to).color !== game.get(square).color
+            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%"
+            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
+        borderRadius: "50%",
+      };
+    });
+    setOptionSquares(newSquares);
   }
 
   function onSquareClick(square) {
@@ -161,7 +276,6 @@ export default function PlayerVsPlayer(props) {
       return;
     }
     handleMove(move, gameCopy.turn(), game_id);
-    setTimeout(makeRandomMove, 500);
     setMoveFrom("");
     setOptionSquares({});
   }
@@ -176,18 +290,6 @@ export default function PlayerVsPlayer(props) {
           ? undefined
           : { backgroundColor: color },
     });
-  }
-
-  function getMoveOptions(square) {
-    const gameCopy = { ...game };
-    const moves = gameCopy.moves({ square, verbose: true });
-    const squaresToHighlight = {};
-    for (let i = 0; i < moves.length; i++) {
-      squaresToHighlight[moves[i].to] = {
-        backgroundColor: "rgba(255, 255, 0, 0.4)",
-      };
-    }
-    setOptionSquares(squaresToHighlight);
   }
 
   return (

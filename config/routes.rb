@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'users/:id/stats/draw' => 'stats#update_draw'
     get 'users/:id/stats/reset' => 'stats#reset_stats'
     resources :sessions, only: [:create, :destroy, :authenticated]
-    resources :games, only: [:create] do
+    resources :games, only: [:create, :show] do
       resources :moves, only: [:create, :index] do
         delete :delete_last_move, on: :collection
         delete :reset_moves, on: :collection

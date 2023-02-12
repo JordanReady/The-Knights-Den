@@ -15,26 +15,29 @@ function Index() {
   const [whiteMoves, setWhiteMoves] = useState([]);
   const [blackMoves, setBlackMoves] = useState([]);
   const [colorTheme, setColorTheme] = useState("default");
-  const [authenticated, setAuthenticated] = useState(false);
-  const [user_id, setUserId] = useState(undefined);
   const [game_id, setGameId] = useState(undefined);
+  const [moves, setMoves] = useState([]);
+  const [movesFetched, setMovesFetched] = useState(false);
+
+  const handleMovesHistory = (moves) => {
+    setMoves((prevMoves) => [...prevMoves, ...moves]);
+    setMovesFetched(true);
+  };
 
   useEffect(() => {
-    fetch("/api/sessions/authenticated")
-      .then(handleErrors)
-      .then((data) => {
-        setAuthenticated(data.authenticated);
-        setUserId(data.user_id);
-        return fetch(`/api/users/${data.user_id}/color_theme`);
-      })
-      .then(handleErrors)
-      .then((data) => {
-        setColorTheme(data.color_theme);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    // set white and black moves from moves
+    const whiteMoves = [];
+    const blackMoves = [];
+    moves.forEach((move, index) => {
+      if (index % 2 === 0) {
+        whiteMoves.push(move);
+      } else {
+        blackMoves.push(move);
+      }
+    });
+    setWhiteMoves(whiteMoves);
+    setBlackMoves(blackMoves);
+  }, [moves]);
 
   useEffect(() => {
     function handleResize() {
@@ -65,13 +68,12 @@ function Index() {
           <>
             <PlayerVsPlayer
               boardWidth={chessboardSize}
-              whiteMoves={whiteMoves}
-              blackMoves={blackMoves}
-              setWhiteMoves={setWhiteMoves}
-              setBlackMoves={setBlackMoves}
               handleMove={handleMove}
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
+              handleMovesHistory={handleMovesHistory}
+              moves={moves}
+              movesFetched={movesFetched}
             />
             <br />
           </>
@@ -156,7 +158,7 @@ function Index() {
   return (
     <div className={colorTheme}>
       <div className="fix-nav">
-        <Navbar colorTheme={colorTheme} authenticated={authenticated} />
+        <Navbar colorTheme={colorTheme} />
       </div>
       <div className="spacer"></div>
       <div className="view-port">
@@ -166,10 +168,6 @@ function Index() {
             <MultiplayerControls
               colorTheme={colorTheme}
               handleColorChange={handleColorChange}
-              selectedBoard={selectedBoard}
-              setSelectedBoard={setSelectedBoard}
-              setBlackMoves={setBlackMoves}
-              setWhiteMoves={setWhiteMoves}
               whiteMoves={whiteMoves}
               blackMoves={blackMoves}
             />

@@ -21,7 +21,21 @@ const GameForm = (props) => {
 
   const createGameLink = (e) => {
     e.preventDefault();
-    if (white_player_id == props.user_id || black_player_id == props.user_id) {
+    //if white_player_id or black_player_id is empty, alert user to enter id
+    if (white_player_id == "" || black_player_id == "") {
+      alert("Please enter a valid id for white and black player!");
+    }
+    //if white_player_id and black_player_id are the same, alert user to enter different id
+    else if (white_player_id == black_player_id) {
+      alert("Please enter different ids for white and black player!");
+    }
+    //if white_player_id or black_player_id is not the same as user_id, alert user to enter correct id
+    else if (
+      white_player_id != props.user_id &&
+      black_player_id != props.user_id
+    ) {
+      alert("Please enter your id as either white or black player!");
+    } else {
       fetch("/api/games", {
         method: "POST",
         headers: {
@@ -43,8 +57,6 @@ const GameForm = (props) => {
           setGameId(data.game.id);
           setGameLink(`http://localhost:3000/multiplayer/${data.game.id}`);
         });
-    } else {
-      alert("Please enter your id as either white or black player!");
     }
   };
 
