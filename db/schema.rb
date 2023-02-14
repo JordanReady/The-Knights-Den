@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_05_033317) do
+ActiveRecord::Schema.define(version: 2023_02_14_204243) do
 
   create_table "game_rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2023_02_05_033317) do
     t.integer "player_2_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "player_1_draw_offer"
+    t.boolean "player_2_draw_offer"
   end
 
   create_table "moves", force: :cascade do |t|

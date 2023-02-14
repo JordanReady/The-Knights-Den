@@ -48,6 +48,8 @@ const GameForm = (props) => {
           game: {
             player_1_id: white_player_id,
             player_2_id: black_player_id,
+            player_1_draw_offer: false,
+            player_2_draw_offer: false,
           },
         }),
       })

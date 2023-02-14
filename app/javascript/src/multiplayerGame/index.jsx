@@ -16,13 +16,32 @@ function Index() {
   const [blackMoves, setBlackMoves] = useState([]);
   const [colorTheme, setColorTheme] = useState("default");
   const [game_id, setGameId] = useState(undefined);
+  const [user_id, setUserId] = useState(undefined);
   const [moves, setMoves] = useState([]);
   const [movesFetched, setMovesFetched] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const handleMovesHistory = (moves) => {
     setMoves((prevMoves) => [...prevMoves, ...moves]);
     setMovesFetched(true);
   };
+
+  useEffect(() => {
+    fetch("/api/sessions/authenticated")
+      .then(handleErrors)
+      .then((data) => {
+        setAuthenticated(data.authenticated);
+        setUserId(data.user_id);
+        return fetch(`/api/users/${data.user_id}/color_theme`);
+      })
+      .then(handleErrors)
+      .then((data) => {
+        setColorTheme(data.color_theme);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     // set white and black moves from moves
@@ -72,6 +91,7 @@ function Index() {
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
               handleMovesHistory={handleMovesHistory}
+              analyze={analyze}
               moves={moves}
               movesFetched={movesFetched}
             />
@@ -127,11 +147,8 @@ function Index() {
   };
 
   const handleMove = (move, color, game_id) => {
-    if (color === "b") {
-      setWhiteMoves([...whiteMoves, move]);
-    } else {
-      setBlackMoves([...blackMoves, move]);
-    }
+    //add move to moves
+    setMoves((prevMoves) => [...prevMoves, move.san]);
     //if game_id is not undefined run the fetch
     if (game_id) {
       fetch(`/api/games/${game_id}/moves`, {
@@ -158,7 +175,7 @@ function Index() {
   return (
     <div className={colorTheme}>
       <div className="fix-nav">
-        <Navbar colorTheme={colorTheme} />
+        <Navbar colorTheme={colorTheme} authenticated={authenticated} />
       </div>
       <div className="spacer"></div>
       <div className="view-port">
