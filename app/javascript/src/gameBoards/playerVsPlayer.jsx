@@ -30,28 +30,28 @@ export default function PlayerVsPlayer(props) {
   const [moveNumber, setMoveNumber] = useState(0);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
-  const [user_id, setUserId] = useState(undefined);
-  const [game_id, setGameId] = useState(undefined);
-  const [white_player_id, setWhitePlayerId] = useState(undefined);
-  const [black_player_id, setBlackPlayerId] = useState(undefined);
+  const [userId, setUserId] = useState(undefined);
+  const [gameId, setGameId] = useState(undefined);
+  const [whitePlayerId, setWhitePlayerId] = useState(undefined);
+  const [blackPlayerId, setBlackPlayerId] = useState(undefined);
   const [drawOffered, setDrawOffered] = useState(false);
-  const [white_player_draw, setWhitePlayerDraw] = useState(false);
-  const [black_player_draw, setBlackPlayerDraw] = useState(false);
+  const [whitePlayerDraw, setWhitePlayerDraw] = useState(false);
+  const [blackPlayerDraw, setBlackPlayerDraw] = useState(false);
   const [draw, setDraw] = useState(false);
   const [resignOffered, setResignOffered] = useState(false);
   const [resign, setResign] = useState(false);
 
   useEffect(() => {
-    if (white_player_draw && black_player_draw) {
+    if (whitePlayerDraw && blackPlayerDraw) {
       setGameOver(true);
       setGameOverMessage("Draw!");
       setGameWinner("Game over.");
-      updateDraw(white_player_id);
+      updateDraw(whitePlayerId);
       setTimeout(() => {
-        updateDraw(black_player_id);
+        updateDraw(blackPlayerId);
       }, 500);
     }
-  }, [white_player_draw, black_player_draw]);
+  }, [whitePlayerDraw, blackPlayerDraw]);
 
   useEffect(() => {
     // set colors
@@ -82,40 +82,40 @@ export default function PlayerVsPlayer(props) {
         setGameOverMessage("Checkmate! Game over.");
         if (turn === "w") {
           setGameWinner("Black wins!");
-          updateWin(black_player_id);
+          updateWin(blackPlayerId);
           setTimeout(() => {
-            updateLoss(white_player_id);
+            updateLoss(whitePlayerId);
           }, 500);
         } else {
           setGameWinner("White wins!");
-          updateWin(white_player_id);
+          updateWin(whitePlayerId);
           setTimeout(() => {
-            updateLoss(black_player_id);
+            updateLoss(blackPlayerId);
           }, 500);
         }
       } else if (game.in_stalemate()) {
         setGameOverMessage("Stalemate! Game over.");
-        updateDraw(white_player_draw);
+        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(black_player_draw);
+          updateDraw(blackPlayerDraw);
         }, 500);
       } else if (game.insufficient_material()) {
         setGameOverMessage("Insufficient material! Game over.");
-        updateDraw(white_player_draw);
+        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(black_player_draw);
+          updateDraw(blackPlayerDraw);
         }, 500);
       } else if (game.in_threefold_repetition()) {
         setGameOverMessage("Threefold repetition! Game over.");
-        updateDraw(white_player_draw);
+        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(black_player_draw);
+          updateDraw(blackPlayerDraw);
         }, 500);
       } else if (game.in_draw()) {
         setGameOverMessage("Draw! Game over.");
-        updateDraw(white_player_draw);
+        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(black_player_draw);
+          updateDraw(blackPlayerDraw);
         }, 500);
       }
     }
@@ -137,7 +137,7 @@ export default function PlayerVsPlayer(props) {
 
   useEffect(() => {
     getOrientation();
-  }, [user_id]);
+  }, [userId]);
 
   const getGameInfo = () => {
     let path = window.location.pathname;
@@ -158,7 +158,7 @@ export default function PlayerVsPlayer(props) {
       .then((data) => {
         setWhitePlayerId(data.game.player_1_id);
         setBlackPlayerId(data.game.player_2_id);
-        console.log("white_player_id and black_player_id");
+        console.log("whitePlayerId and blackPlayerId");
         console.log(data.game.player_1_id);
         console.log(data.game.player_2_id);
 
@@ -202,8 +202,8 @@ export default function PlayerVsPlayer(props) {
         console.log(data);
         setWhitePlayerDraw(data.game.player_1_draw_offer);
         setBlackPlayerDraw(data.game.player_2_draw_offer);
-        console.log("white_player_draw and black_player_draw");
-        console.log(white_player_draw + " " + black_player_draw);
+        console.log("whitePlayerDraw and blackPlayerDraw");
+        console.log(whitePlayerDraw + " " + blackPlayerDraw);
       })
       .catch((error) => {
         handleErrors(error.message);
@@ -211,7 +211,7 @@ export default function PlayerVsPlayer(props) {
   };
 
   const getOrientation = () => {
-    if (user_id === white_player_id) {
+    if (userId === whitePlayerId) {
       console.log("set board white");
       setBoardOrientation("white");
     } else {
@@ -262,18 +262,25 @@ export default function PlayerVsPlayer(props) {
   }
 
   function onDrop(sourceSquare, targetSquare) {
-    const gameCopy = { ...game };
-    const move = gameCopy.move({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: "q", // always promote to a queen for example simplicity
-    });
-    setGame(gameCopy);
-    // illegal move
-    if (move === null) return false;
-    // set moves
-    props.handleMove(move, gameCopy.turn(), game_id);
-    return true;
+    // check whos turn it is and only allow them to move if its their turn
+    if (game.turn() === "w" && userId !== whitePlayerId) {
+      return false;
+    } else if (game.turn() === "b" && userId !== blackPlayerId) {
+      return false;
+    } else {
+      const gameCopy = { ...game };
+      const move = gameCopy.move({
+        from: sourceSquare,
+        to: targetSquare,
+        promotion: "q", // always promote to a queen for example simplicity
+      });
+      setGame(gameCopy);
+      // illegal move
+      if (move === null) return false;
+      // set moves
+      props.handleMove(move, gameCopy.turn(), gameId);
+      return true;
+    }
   }
 
   function getMoveOptions(square) {
@@ -306,36 +313,42 @@ export default function PlayerVsPlayer(props) {
   }
 
   function onSquareClick(square) {
-    setRightClickedSquares({});
+    if (game.turn() === "w" && userId !== whitePlayerId) {
+      return false;
+    } else if (game.turn() === "b" && userId !== blackPlayerId) {
+      return false;
+    } else {
+      setRightClickedSquares({});
 
-    function resetFirstMove(square) {
-      setMoveFrom(square);
-      getMoveOptions(square);
+      function resetFirstMove(square) {
+        setMoveFrom(square);
+        getMoveOptions(square);
+      }
+
+      // from square
+      if (!moveFrom) {
+        resetFirstMove(square);
+        return;
+      }
+
+      // attempt to make move
+      const gameCopy = { ...game };
+      const move = gameCopy.move({
+        from: moveFrom,
+        to: square,
+        promotion: "q", // always promote to a queen for example simplicity
+      });
+      setGame(gameCopy);
+
+      // if invalid, setMoveFrom and getMoveOptions
+      if (move === null) {
+        resetFirstMove(square);
+        return;
+      }
+      handleMove(move, gameCopy.turn(), gameId);
+      setMoveFrom("");
+      setOptionSquares({});
     }
-
-    // from square
-    if (!moveFrom) {
-      resetFirstMove(square);
-      return;
-    }
-
-    // attempt to make move
-    const gameCopy = { ...game };
-    const move = gameCopy.move({
-      from: moveFrom,
-      to: square,
-      promotion: "q", // always promote to a queen for example simplicity
-    });
-    setGame(gameCopy);
-
-    // if invalid, setMoveFrom and getMoveOptions
-    if (move === null) {
-      resetFirstMove(square);
-      return;
-    }
-    handleMove(move, gameCopy.turn(), game_id);
-    setMoveFrom("");
-    setOptionSquares({});
   }
 
   function onSquareRightClick(square) {
@@ -352,9 +365,9 @@ export default function PlayerVsPlayer(props) {
 
   function updatePlayerDraw() {
     //check if user is white or black
-    if (user_id === white_player_id) {
+    if (userId === whitePlayerId) {
       setWhitePlayerDraw(true);
-      fetch(`/api/games/${game_id}/offer_draw`, {
+      fetch(`/api/games/${gameId}/offer_draw`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -363,8 +376,8 @@ export default function PlayerVsPlayer(props) {
             .getAttribute("content"),
         },
         body: JSON.stringify({
-          user_id: user_id,
-          white_player_draw: true,
+          user_id: userId,
+          whitePlayerDraw: true,
         }),
       })
         .then(handleErrors)
@@ -377,7 +390,7 @@ export default function PlayerVsPlayer(props) {
         });
     } else {
       setBlackPlayerDraw(true);
-      fetch(`/api/games/${game_id}/offer_draw`, {
+      fetch(`/api/games/${gameId}/offer_draw`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -386,8 +399,8 @@ export default function PlayerVsPlayer(props) {
             .getAttribute("content"),
         },
         body: JSON.stringify({
-          user_id: user_id,
-          black_player_draw: true,
+          user_id: userId,
+          blackPlayerDraw: true,
         }),
       })
         .then(handleErrors)
@@ -400,7 +413,7 @@ export default function PlayerVsPlayer(props) {
         });
     }
     //check if both players have offered a draw
-    if (white_player_draw && black_player_draw) {
+    if (whitePlayerDraw && blackPlayerDraw) {
       setGameOver(true);
       setGameOverMessage("Draw");
       updateDraw();
@@ -408,14 +421,14 @@ export default function PlayerVsPlayer(props) {
   }
 
   function switchId() {
-    if (user_id === white_player_id) {
-      setUserId(black_player_id);
+    if (userId === whitePlayerId) {
+      setUserId(blackPlayerId);
     } else {
-      setUserId(white_player_id);
+      setUserId(whitePlayerId);
     }
     console.log("switched id");
-    console.log(user_id);
-    console.log(white_player_draw + " " + black_player_draw);
+    console.log(userId);
+    console.log(whitePlayerDraw + " " + blackPlayerDraw);
   }
 
   function createNewGame() {
@@ -431,10 +444,7 @@ export default function PlayerVsPlayer(props) {
             {gameOverMessage} <br />
             {gameWinner}
             <br />
-            <button
-              className="board-btn"
-              onClick={() => props.analyze(game_id)}
-            >
+            <button className="board-btn" onClick={() => props.analyze(gameId)}>
               Analyze Game
             </button>
             <button className="board-btn" onClick={() => createNewGame()}>
@@ -475,7 +485,7 @@ export default function PlayerVsPlayer(props) {
               className="board-btn"
               onClick={() => {
                 let user = "";
-                if (user_id === white_player_id) {
+                if (userId === whitePlayerId) {
                   user = "White";
                 } else {
                   user = "Black";
@@ -483,14 +493,14 @@ export default function PlayerVsPlayer(props) {
                 setResignOffered(false);
                 setGameOver(true);
                 setGameOverMessage(user + " Resigns");
-                updateLoss(user_id);
+                updateLoss(userId);
                 setTimeout(() => {
-                  if (user_id === white_player_id) {
-                    updateWin(black_player_id);
+                  if (userId === whitePlayerId) {
+                    updateWin(blackPlayerId);
                     setGameWinner("Black Wins");
                   }
-                  if (user_id === black_player_id) {
-                    updateWin(white_player_id);
+                  if (userId === blackPlayerId) {
+                    updateWin(whitePlayerId);
                     setGameWinner("White Wins");
                   }
                 }, 1000);
