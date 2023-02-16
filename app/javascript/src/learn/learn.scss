@@ -20,7 +20,7 @@ $light-purple-color: #e1a1fa;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Grandstander", cursive !important;
   font-size: 18px;
   background-color: $light-color;
 }
@@ -33,6 +33,58 @@ body {
 .nav {
   position: sticky;
   top: 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .lesson-title {
+    font-weight: 200;
+    font-size: 100px;
+    color: $dark-color;
+    text-shadow: $dark-color 3px 3px 10px;
+    line-height: 1.5;
+  }
+  span {
+    display: block;
+    font-weight: normal;
+    padding-left: 2rem;
+  }
+  @media screen and (max-width: 992px) {
+    .lesson-title {
+      font-size: 75px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .lesson-title {
+      font-size: 60px;
+      span {
+        display: inline;
+        padding-left: 0;
+      }
+    }
+  }
+  @media screen and (max-width: 576px) {
+    justify-content: center;
+    .lesson-title {
+      font-size: 35px;
+    }
+    .lesson-accent {
+      display: inline;
+      padding-left: 0;
+    }
+  }
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chessboard {
+  box-shadow: 0 0 10px 0 $dark-color;
 }
 
 .game-btn {
@@ -108,20 +160,14 @@ ul.nav {
 }
 
 .lesson-title {
-  font-size: 50px;
-  font-weight: bold;
   color: $dark-color;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  @media screen and (max-width: 768px) {
-    font-size: 40px;
-  }
 }
 
 .content {
   font-size: 24px;
   font-weight: bold;
   color: $dark-color;
+  padding-top: 1rem;
   padding-bottom: 30px;
   margin-top: 0;
   @media screen and (max-width: 768px) {
@@ -159,7 +205,6 @@ ul.nav {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  //make background transparent
   background-color: transparent;
 }
 
@@ -208,6 +253,11 @@ ul.nav {
   }
   .lesson-title {
     color: $dark-green-color;
+    text-shadow: $dark-green-color 3px 3px 10px;
+  }
+
+  .chessboard {
+    box-shadow: 0 0 10px 0 $dark-green-color;
   }
 
   .content {
@@ -266,6 +316,11 @@ ul.nav {
   }
   .lesson-title {
     color: $dark-red-color;
+    text-shadow: $dark-red-color 3px 3px 10px;
+  }
+
+  .chessboard {
+    box-shadow: 0 0 10px 0 $dark-red-color;
   }
 
   .content {
@@ -324,6 +379,11 @@ ul.nav {
   }
   .lesson-title {
     color: $dark-blue-color;
+    text-shadow: $dark-blue-color 3px 3px 10px;
+  }
+
+  .chessboard {
+    box-shadow: 0 0 10px 0 $dark-blue-color;
   }
 
   .content {
@@ -382,6 +442,11 @@ ul.nav {
   }
   .lesson-title {
     color: $dark-purple-color;
+    text-shadow: $dark-purple-color 3px 3px 10px;
+  }
+
+  .chessboard {
+    box-shadow: 0 0 10px 0 $dark-purple-color;
   }
 
   .content {

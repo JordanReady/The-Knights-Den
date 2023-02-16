@@ -27,6 +27,7 @@ function Learn() {
   const [currentLesson, setCurrentLesson] = useState(1);
   const [authenticated, setAuthenticated] = useState(false);
   const [user_id, setUserId] = useState(undefined);
+  const [chessboardSize, setChessboardSize] = useState(undefined);
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
@@ -43,6 +44,23 @@ function Learn() {
       .catch((error) => {
         console.log(error);
       });
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      const display = document.getElementsByClassName("lesson")[0];
+      if (display.clientWidth > 275) {
+        setChessboardSize(275);
+      } else if (display.clientWidth > 247) {
+        setChessboardSize(display.clientWidth - 28);
+      } else {
+        setChessboardSize(display.clientWidth);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -75,9 +93,18 @@ function Learn() {
       case 0:
         return <ChessTerms changeLesson={changeLesson} />;
       case 1:
-        return <TheBoard changeLesson={changeLesson} />;
+        return (
+          <TheBoard
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            setBoardWidth={setChessboardSize}
+          />
+        );
       case 2:
-        return <PlacingPieces changeLesson={changeLesson} />;
+        return (
+          <PlacingPieces changeLesson={changeLesson} colorTheme={colorTheme} />
+        );
       case 3:
         return <BasicRules changeLesson={changeLesson} />;
       case 4:
@@ -137,9 +164,7 @@ function Learn() {
           currentLesson={currentLesson}
           setCurrentLesson={setCurrentLesson}
         />
-        <div className="container">
-          <div className="lesson">{getLesson()}</div>
-        </div>
+        <div className="lesson">{getLesson()}</div>
         {lesson > 0 ? (
           <div className="lesson-btn-row">
             <button className="theme-btn">

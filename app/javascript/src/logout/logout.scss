@@ -13,6 +13,10 @@ $light-red-color: #fdadad;
 $dark-purple-color: #462578;
 $light-purple-color: #e1a1fa;
 
+body {
+  font-family: "Grandstander", cursive;
+}
+
 .btn {
   background-color: $light-color !important;
   color: $dark-color !important;
