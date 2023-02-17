@@ -6,6 +6,29 @@ import { handleErrors } from "../utils/fetchHelper";
 
 import "./board.scss";
 
+// subscribe to actioncable game room
+import { createConsumer } from "@rails/actioncable";
+const cable = createConsumer();
+
+function subscribeToGameRoom(game_id) {
+  cable.subscriptions.create({channel: "GameChannel", game_id: game_id}, {
+    connected() {
+      // Called when the subscription is ready for use on the server
+      console.log(`Connected to the game channel with game_id=${game_id}!`);
+    },
+
+    disconnected() {
+      // Called when the subscription has been terminated by the server
+      console.log(`Disconnected from the game channel with game_id=${game_id}!`);
+    },
+
+    received(data) {
+      // Called when there's incoming data on the websocket for this channel
+      console.log(`Received data from the game channel with game_id=${game_id}!`, data);
+    }
+  });
+}
+
 export default function PlayerVsPlayer(props) {
   const {
     boardWidth,
@@ -204,6 +227,8 @@ export default function PlayerVsPlayer(props) {
         setBlackPlayerDraw(data.game.player_2_draw_offer);
         console.log("whitePlayerDraw and blackPlayerDraw");
         console.log(whitePlayerDraw + " " + blackPlayerDraw);
+
+        subscribeToGameRoom(data.game.id);
       })
       .catch((error) => {
         handleErrors(error.message);
