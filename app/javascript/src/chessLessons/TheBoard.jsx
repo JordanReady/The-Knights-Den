@@ -1,15 +1,11 @@
 import React from "react";
 import LearnBoard from "../gameBoards/learnBoard";
-import { useEffect } from "react";
 
 import "../learn/learn.scss";
 
 export default function TheBoard(props) {
-  const { colorTheme, boardWidth, setBoardWidth } = props;
+  const { colorTheme, boardWidth } = props;
 
-  useEffect(() => {
-    console.log(boardWidth);
-  }, [boardWidth]);
   return (
     <div className="container">
       <div className="row lesson-row mt-2">
@@ -19,11 +15,13 @@ export default function TheBoard(props) {
           </h1>
         </div>
         <div className="board col-12  col-md-6">
-          <div className="">
+          <div>
             <LearnBoard
-              startingFen={"8/8/8/8/8/8/8/8 w - - 0 1"}
+              fen={"8/8/8/8/8/8/8/8 w - - 0 1"}
               colorTheme={colorTheme}
               boardWidth={boardWidth}
+              moves={[]}
+              muted={true}
             />
           </div>
         </div>

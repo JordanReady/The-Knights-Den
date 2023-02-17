@@ -1,13 +1,46 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
 export default function TheKnight(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
+  const moves = [
+    "",
+    "Nc3",
+    "Nh6",
+    "Ne4",
+    "c5",
+    "Nxc5",
+    "Nc6",
+    "Nd3",
+    "Nf5",
+    "Nf3",
+    "Ncd4",
+    "Nxd4",
+    "Nxd4",
+    "",
+  ];
+
   return (
     <div className="container">
-      <div className="row lesson-row">
-        <div className="col-12">
-          <h1 className="lesson-title">The Knight</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            The <span>Knight</span>
+          </h1>
+        </div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              fen={fen}
+              setFen={setFen}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              showMessage={false}
+              moves={moves}
+            />
+          </div>
         </div>
         <div className="col-12">
           <p className="content">

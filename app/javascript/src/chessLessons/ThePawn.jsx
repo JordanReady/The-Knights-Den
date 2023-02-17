@@ -1,13 +1,53 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
 export default function ThePawn(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
+  const moves = [
+    "",
+    "d4",
+    "d5",
+    "b3",
+    "b6",
+    "b4",
+    "b5",
+    "f3",
+    "a6",
+    "e4",
+    "dxe4",
+    "fxe4",
+    "e6",
+    "e5",
+    "f5",
+    "exf6",
+    "h5",
+    "fxg7",
+    "h4",
+    "gxh8=Q",
+    "",
+  ];
+
   return (
     <div className="container">
-      <div className="row lesson-row">
-        <div className="col-12">
-          <h1 className="lesson-title">The Pawn</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            The <span>Pawn</span>
+          </h1>
+        </div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              fen={fen}
+              setFen={setFen}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              moves={moves}
+              showMessage={false}
+            />
+          </div>
         </div>
         <div className="col-12">
           <p className="content">

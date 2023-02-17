@@ -1,15 +1,32 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
 export default function PlacingPieces(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
+
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <h1 className="lesson-title">Placing Pieces</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            <span>Placing</span> Pieces
+          </h1>
         </div>
-        <div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              fen={fen}
+              setFen={setFen}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              moves={[]}
+              muted={true}
+            />
+          </div>
+        </div>
+        <div className="col-12">
           <p className="content">
             Now that we understand the board the chess game is played on, it is
             time to introduce the pieces that are placed on the chess board.

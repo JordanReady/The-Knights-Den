@@ -1,13 +1,68 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
 export default function BasicRules(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
+  const moves = [
+    "",
+    "e4",
+    "e5",
+    "Nf3",
+    "d6",
+    "d4",
+    "Bg4",
+    "dxe5",
+    "Bxf3",
+    "Qxf3",
+    "dxe5",
+    "Bc4",
+    "Nf6",
+    "Qb3",
+    "Qe7",
+    "Nc3",
+    "c6",
+    "Bg5",
+    "b5",
+    "Nxb5",
+    "cxb5",
+    "Bxb5+",
+    "Nbd7",
+    "O-O-O",
+    "Rd8",
+    "Rxd7",
+    "Rxd7",
+    "Rd1",
+    "Qe6",
+    "Bxd7+",
+    "Nxd7",
+    "Qb8+",
+    "Nxb8",
+    "Rd8#",
+    "",
+  ];
+
   return (
     <div className="container">
-      <div className="row lesson-row">
-        <div className="col-12">
-          <h1 className="lesson-title">Basic Chess Rules</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            Chess <span>Rules</span>
+          </h1>
+        </div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              startingFen={"8/8/8/8/8/8/8/8 w - - 0 1"}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              fen={fen}
+              setFen={setFen}
+              moves={moves}
+              showMessage={true}
+            />
+          </div>
         </div>
         <div className="col-12">
           <p className="content">

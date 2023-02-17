@@ -5,8 +5,19 @@ import { Chess } from "chess.js";
 
 import "./board.scss";
 
-export default function DefaultBoard(props) {
-  const { boardWidth, handleMove, colorTheme, startingFen } = props;
+export default function LearnBoard(props) {
+  const {
+    boardWidth,
+    colorTheme,
+    fen,
+    setFen,
+    muted,
+    moves,
+    showMessage,
+    setShowMessage,
+    fens,
+    startFen,
+  } = props;
 
   const [game, setGame] = useState(new Chess());
   const [boardOrientation, setBoardOrientation] = useState("white");
@@ -20,7 +31,54 @@ export default function DefaultBoard(props) {
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
-  const [autoFlip, setAutoFlip] = useState(false);
+  const [moveIndex, setMoveIndex] = useState(0);
+
+  const boardSetUp = () => {
+    if (startFen) {
+      setFen(startFen);
+      setGame(new Chess(startFen));
+    }
+  };
+
+  useEffect(() => {
+    if (startFen) {
+      boardSetUp();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (moveIndex === -1 && startFen) {
+      boardSetUp();
+      return;
+    }
+    let intervalId;
+    intervalId = setInterval(() => {
+      // if it is the last move, set the game over message
+      if (moveIndex === moves.length - 1) {
+        if (showMessage === true && !startFen) {
+          setGameOver(true);
+          setGameOverMessage("Checkmate! Game over.");
+          setGame(new Chess());
+          setFen(game.fen());
+        } else if (showMessage == false && startFen) {
+          setGame(new Chess());
+          setFen(game.fen(startFen));
+        } else setGame(new Chess());
+        setFen(game.fen());
+      }
+      if (moveIndex >= moves.length && moves.length > 0) {
+        clearInterval(intervalId);
+        setGameOver(false);
+        setGameOverMessage("");
+        setMoveIndex(-1);
+        return;
+      }
+      game.move(moves[moveIndex]);
+      setFen(game.fen());
+      setMoveIndex(moveIndex + 1);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, [moveIndex]);
 
   useEffect(() => {
     // set colors
@@ -42,153 +100,116 @@ export default function DefaultBoard(props) {
     }
   }, [colorTheme]);
 
-  useEffect(() => {
-    // check for game over
-    const gameCopy = { ...game };
-    const turn = gameCopy.turn();
-    if (gameCopy.game_over()) {
-      setGameOver(true);
-      if (game.in_checkmate()) {
-        setGameOverMessage("Checkmate! Game over.");
-        if (turn === "w") {
-          setGameWinner("Black Wins!");
-        }
-        if (turn === "b") {
-          setGameWinner("White Wins!");
-        }
-      } else if (game.in_stalemate()) {
-        setGameOverMessage("Stalemate! Game over.");
-      } else if (game.insufficient_material()) {
-        setGameOverMessage("Insufficient material! Game over.");
-      } else if (game.in_threefold_repetition()) {
-        setGameOverMessage("Threefold repetition! Game over.");
-      } else if (game.in_draw()) {
-        setGameOverMessage("Draw! Game over.");
-      }
-    }
-    //if auto flip is on, flip board when it's the other player's turn
-    if (autoFlip) {
-      if (turn === "w") {
-        setBoardOrientation("white");
-      } else {
-        setBoardOrientation("black");
-      }
-    }
-  }, [game]);
-
-  function safeGameMutate(modify) {
-    setGame((g) => {
-      const update = { ...g };
-      modify(update);
-      return update;
-    });
-  }
-
   function onDrop(sourceSquare, targetSquare) {
-    const gameCopy = { ...game };
-    const move = gameCopy.move({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: "q", // always promote to a queen for example simplicity
-    });
-    setGame(gameCopy);
-    // illegal move
-    if (move === null) return false;
-    // set moves
-    handleMove(move, gameCopy.turn());
+    if (muted !== true) {
+      const gameCopy = { ...game };
+      const move = gameCopy.move({
+        from: sourceSquare,
+        to: targetSquare,
+        promotion: "q", // always promote to a queen for example simplicity
+      });
+      setFen(gameCopy.fen());
+      setGame(gameCopy);
+      // illegal move
+      if (move === null) return false;
 
-    return true;
+      return true;
+    }
   }
 
   function getMoveOptions(square) {
-    if (square === selectedPiece) {
-      setOptionSquares({});
-      setSelectedPiece(null);
-      return;
+    if (muted !== true) {
+      if (square === selectedPiece) {
+        setOptionSquares({});
+        setSelectedPiece(null);
+        return;
+      }
+      setSelectedPiece(square);
+      const moves = game.moves({
+        square,
+        verbose: true,
+      });
+      if (moves.length === 0) {
+        return;
+      }
+      const newSquares = {};
+      moves.map((move) => {
+        newSquares[move.to] = {
+          background:
+            game.get(move.to) &&
+            game.get(move.to).color !== game.get(square).color
+              ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%"
+              : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
+          borderRadius: "50%",
+        };
+      });
+      setOptionSquares(newSquares);
     }
-    setSelectedPiece(square);
-    const moves = game.moves({
-      square,
-      verbose: true,
-    });
-    if (moves.length === 0) {
-      return;
-    }
-
-    const newSquares = {};
-    moves.map((move) => {
-      newSquares[move.to] = {
-        background:
-          game.get(move.to) &&
-          game.get(move.to).color !== game.get(square).color
-            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%"
-            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
-        borderRadius: "50%",
-      };
-    });
-    setOptionSquares(newSquares);
   }
 
   function onSquareClick(square) {
-    setRightClickedSquares({});
+    if (muted !== true) {
+      setRightClickedSquares({});
 
-    function resetFirstMove(square) {
-      setMoveFrom(square);
-      getMoveOptions(square);
+      function resetFirstMove(square) {
+        setMoveFrom(square);
+        getMoveOptions(square);
+      }
+
+      // from square
+      if (!moveFrom) {
+        resetFirstMove(square);
+        return;
+      }
+
+      // attempt to make move
+      const gameCopy = { ...game };
+      const move = gameCopy.move({
+        from: moveFrom,
+        to: square,
+        promotion: "q", // always promote to a queen for example simplicity
+      });
+      setFen(gameCopy.fen());
+
+      // if invalid, setMoveFrom and getMoveOptions
+      if (move === null) {
+        resetFirstMove(square);
+        return;
+      }
+      setMoveFrom("");
+      setOptionSquares({});
     }
-
-    // from square
-    if (!moveFrom) {
-      resetFirstMove(square);
-      return;
-    }
-
-    // attempt to make move
-    const gameCopy = { ...game };
-    const move = gameCopy.move({
-      from: moveFrom,
-      to: square,
-      promotion: "q", // always promote to a queen for example simplicity
-    });
-    setGame(gameCopy);
-
-    // if invalid, setMoveFrom and getMoveOptions
-    if (move === null) {
-      resetFirstMove(square);
-      return;
-    }
-    handleMove(move, gameCopy.turn());
-    setMoveFrom("");
-    setOptionSquares({});
   }
 
   function onSquareRightClick(square) {
-    const color = "rgba(255, 0, 0, 0.4)";
-    setRightClickedSquares({
-      ...rightClickedSquares,
-      [square]:
-        rightClickedSquares[square] &&
-        rightClickedSquares[square].backgroundColor === color
-          ? undefined
-          : { backgroundColor: color },
-    });
+    if (muted !== true) {
+      const color = "rgba(255, 0, 0, 0.4)";
+      setRightClickedSquares({
+        ...rightClickedSquares,
+        [square]:
+          rightClickedSquares[square] &&
+          rightClickedSquares[square].backgroundColor === color
+            ? undefined
+            : { backgroundColor: color },
+      });
+    }
   }
 
   return (
     <div className={colorTheme}>
       <div className="chessboard">
         {gameOver && (
-          <div className="game-over-message">
+          <div className="learn-game-over-message">
             {gameOverMessage} <br />
             {gameWinner}
           </div>
         )}
         <Chessboard
-          id="defaultBoard"
+          id="learnBoard"
           animationDuration={200}
           boardOrientation={boardOrientation}
           boardWidth={boardWidth}
-          position={startingFen}
+          position={fen}
           onSquareClick={onSquareClick}
           onSquareRightClick={onSquareRightClick}
           onPieceDrop={onDrop}

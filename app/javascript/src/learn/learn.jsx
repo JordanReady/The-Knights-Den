@@ -28,6 +28,7 @@ function Learn() {
   const [authenticated, setAuthenticated] = useState(false);
   const [user_id, setUserId] = useState(undefined);
   const [chessboardSize, setChessboardSize] = useState(undefined);
+  const [fen, setFen] = useState("start");
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
@@ -98,29 +99,100 @@ function Learn() {
             changeLesson={changeLesson}
             colorTheme={colorTheme}
             boardWidth={chessboardSize}
-            setBoardWidth={setChessboardSize}
+            fen={fen}
+            setFen={setFen}
           />
         );
       case 2:
         return (
-          <PlacingPieces changeLesson={changeLesson} colorTheme={colorTheme} />
+          <PlacingPieces
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
         );
       case 3:
-        return <BasicRules changeLesson={changeLesson} />;
+        return (
+          <BasicRules
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 4:
-        return <ThePawn changeLesson={changeLesson} />;
+        return (
+          <ThePawn
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 5:
-        return <TheKnight changeLesson={changeLesson} />;
+        return (
+          <TheKnight
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 6:
-        return <TheBishop changeLesson={changeLesson} />;
+        return (
+          <TheBishop
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 7:
-        return <TheRook changeLesson={changeLesson} />;
+        return (
+          <TheRook
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 8:
-        return <TheQueen changeLesson={changeLesson} />;
+        return (
+          <TheQueen
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 9:
-        return <TheKing changeLesson={changeLesson} />;
+        return (
+          <TheKing
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 10:
-        return <OtherRules changeLesson={changeLesson} />;
+        return (
+          <OtherRules
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
     }
   }
 
