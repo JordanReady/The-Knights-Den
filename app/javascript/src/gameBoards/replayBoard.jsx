@@ -115,6 +115,12 @@ const ReplayBoard = (props) => {
     console.log(moves);
   };
 
+  const resetAnalysis = () => {
+    setGame(new Chess());
+    setMoveIndex(0);
+    setAnalysisOver(false);
+  };
+
   return (
     <div className={colorTheme}>
       <div className="chessboard">
@@ -129,7 +135,7 @@ const ReplayBoard = (props) => {
             <button
               className="board-btn"
               onClick={() => {
-                window.location.reload();
+                resetAnalysis();
               }}
             >
               Restart Analysis
