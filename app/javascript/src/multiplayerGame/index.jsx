@@ -20,6 +20,8 @@ function Index() {
   const [moves, setMoves] = useState([]);
   const [movesFetched, setMovesFetched] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [winner, setWinner] = useState(undefined);
+  const [message, setMessage] = useState(undefined);
 
   const handleMovesHistory = (moves) => {
     setMoves((prevMoves) => [...prevMoves, ...moves]);
@@ -111,6 +113,8 @@ function Index() {
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
               game_id={game_id}
+              gameOverMessage={message}
+              gameWinner={winner}
             />
             <br />
           </>
@@ -118,8 +122,13 @@ function Index() {
     }
   }
 
-  const analyze = (game_id) => {
+  const analyze = (game_id, gameOverMessage, gameWinner) => {
     setGameId(game_id);
+    setMessage(gameOverMessage);
+    setWinner(gameWinner);
+    console.log(game_id);
+    console.log(gameOverMessage);
+    console.log(gameWinner);
     setSelectedBoard("ReplayBoard");
   };
 

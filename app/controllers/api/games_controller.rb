@@ -49,6 +49,7 @@ module Api
         end
 
         if @game.save
+            ActionCable.server.broadcast("game_#{@game.id}_channel", {type: "UPDATE_DRAW", game: @game})
             render json: @game
         else
             render json: @game.errors, status: :unprocessable_entity

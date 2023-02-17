@@ -12,7 +12,7 @@ module Api
             move = game.moves.new(move_params)
         
             if move.save
-                ActionCable.server.broadcast("game_#{game.id}_channel", {type: "UPDATE_GAME", moves: game.reload.moves})
+                ActionCable.server.broadcast("game_#{game.id}_channel", {type: "UPDATE_MOVE", moves: game.reload.moves})
               render json: move
             else
               render json: { errors: move.errors }, status: :unprocessable_entity

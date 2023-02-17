@@ -15,6 +15,8 @@ const ReplayBoard = (props) => {
     handleMove,
     colorTheme,
     game_id = "",
+    gameOverMessage,
+    gameWinner,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -24,8 +26,6 @@ const ReplayBoard = (props) => {
   const [moveSquares, setMoveSquares] = useState({});
   const [optionSquares, setOptionSquares] = useState({});
   const [analysisOver, setAnalysisOver] = useState(false);
-  const [gameOverMessage, setGameOverMessage] = useState("");
-  const [gameWinner, setGameWinner] = useState("");
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [darkSquareColor, setDarkSquareColor] = useState("#b58863");
   const [lightSquareColor, setLightSquareColor] = useState("#f0d9b5");
@@ -118,7 +118,40 @@ const ReplayBoard = (props) => {
   return (
     <div className={colorTheme}>
       <div className="chessboard">
-        {analysisOver && <div className="game-over-message">Analysis Over</div>}
+        {analysisOver && (
+          <div className="game-over-message">
+            Analysis Over
+            <br />
+            {gameOverMessage}
+            <br />
+            {gameWinner}
+            <br />
+            <button
+              className="board-btn"
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              Restart Analysis
+            </button>
+            <button
+              className="board-btn"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            >
+              Return Home
+            </button>
+            <button
+              className="board-btn"
+              onClick={() => {
+                window.location.href = "/multiplayer";
+              }}
+            >
+              Create New Game
+            </button>
+          </div>
+        )}
         <Chessboard
           animationDuration={200}
           boardOrientation={boardOrientation}

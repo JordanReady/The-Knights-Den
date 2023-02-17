@@ -11,22 +11,45 @@ import { createConsumer } from "@rails/actioncable";
 const cable = createConsumer();
 
 function subscribeToGameRoom(game_id) {
-  cable.subscriptions.create({channel: "GameChannel", game_id: game_id}, {
-    connected() {
-      // Called when the subscription is ready for use on the server
-      console.log(`Connected to the game channel with game_id=${game_id}!`);
-    },
+  cable.subscriptions.create(
+    { channel: "GameChannel", game_id: game_id },
+    {
+      connected() {
+        // Called when the subscription is ready for use on the server
+        console.log(`Connected to the game channel with game_id=${game_id}!`);
+      },
 
-    disconnected() {
-      // Called when the subscription has been terminated by the server
-      console.log(`Disconnected from the game channel with game_id=${game_id}!`);
-    },
+      disconnected() {
+        // Called when the subscription has been terminated by the server
+        console.log(
+          `Disconnected from the game channel with game_id=${game_id}!`
+        );
+      },
 
-    received(data) {
-      // Called when there's incoming data on the websocket for this channel
-      console.log(`Received data from the game channel with game_id=${game_id}!`, data);
+      received(data) {
+        // Called when there's incoming data on the websocket for this channel
+        console.log(
+          `Received data from the game channel with game_id=${game_id}!`,
+          data
+        );
+        // update the move if the data type is move
+        if (data.type === "UPDATE_MOVE") {
+          console.log("Updating move...");
+          // update the move
+          // get the last move in the array
+          const lastMove = data.moves.move[data.moves.length - 1];
+          conosle.log(lastMove);
+        } else if (data.type === "UPDATE_DRAW") {
+          console.log("Updating draw...");
+          // update the draw
+          let player_1_draw_offer = data.game.player_1_draw_offer;
+          let player_2_draw_offer = data.game.player_2_draw_offer;
+          console.log("white draw:", player_1_draw_offer);
+          console.log("black draw:", player_2_draw_offer);
+        }
+      },
     }
-  });
+  );
 }
 
 export default function PlayerVsPlayer(props) {
@@ -469,7 +492,10 @@ export default function PlayerVsPlayer(props) {
             {gameOverMessage} <br />
             {gameWinner}
             <br />
-            <button className="board-btn" onClick={() => props.analyze(gameId)}>
+            <button
+              className="board-btn"
+              onClick={() => props.analyze(gameId, gameOverMessage, gameWinner)}
+            >
               Analyze Game
             </button>
             <button className="board-btn" onClick={() => createNewGame()}>
@@ -518,6 +544,7 @@ export default function PlayerVsPlayer(props) {
                 setResignOffered(false);
                 setGameOver(true);
                 setGameOverMessage(user + " Resigns");
+                setGameWinner(user === "White" ? "Black Wins" : "White Wins");
                 updateLoss(userId);
                 setTimeout(() => {
                   if (userId === whitePlayerId) {
