@@ -1,13 +1,47 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
 export default function TheBishop(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
+  const moves = [
+    "",
+    "g3",
+    "e5",
+    "Bg2",
+    "b6",
+    "Bxa8",
+    "Bc5",
+    "b3",
+    "d5",
+    "Bb2",
+    "Bf5",
+    "Bxe5",
+    "Bg6",
+    "Bxd5",
+    "",
+  ];
+
   return (
     <div className="container">
-      <div className="row lesson-row">
-        <div className="col-12">
-          <h1 className="lesson-title">The Bishop</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            The <span>Bishop</span>
+          </h1>
+        </div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              fen={fen}
+              setFen={setFen}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              showMessage={false}
+              moves={moves}
+            />
+          </div>
         </div>
         <div className="col-12">
           <p className="content">

@@ -1,13 +1,28 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
-export default function ChessTerms() {
+export default function ChessTerms(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
   return (
     <div className="container">
-      <div className="row lesson-row">
-        <div className="col-12">
-          <h1 className="lesson-title">Chess Terms</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            Chess <span>Terms</span>
+          </h1>
+        </div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              fen={fen}
+              setFen={setFen}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              showMessage={true}
+            />
+          </div>
         </div>
         <div className="col-12">
           <p className="content">

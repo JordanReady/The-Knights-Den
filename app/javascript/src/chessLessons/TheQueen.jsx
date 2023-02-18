@@ -1,13 +1,46 @@
 import React from "react";
+import LearnBoard from "../gameBoards/learnBoard";
 
 import "../learn/learn.scss";
 
 export default function TheQueen(props) {
+  const { colorTheme, boardWidth, fen, setFen } = props;
+  const moves = [
+    "",
+    "e3",
+    "c5",
+    "Qh5",
+    "Qa5",
+    "Qh3",
+    "Qa4",
+    "Qf5",
+    "Qh4",
+    "Qxc5",
+    "Qh6",
+    "Qxc8#",
+    "",
+  ];
+
   return (
     <div className="container">
-      <div className="row lesson-row">
-        <div className="col-12">
-          <h1 className="lesson-title">The Queen</h1>
+      <div className="row lesson-row mt-2">
+        <div className="title col-12  col-md-6">
+          <h1 className="lesson-title">
+            The <span>Queen</span>
+          </h1>
+        </div>
+        <div className="board col-12  col-md-6">
+          <div>
+            <LearnBoard
+              startingFen={"8/8/8/8/8/8/8/8 w - - 0 1"}
+              fen={fen}
+              colorTheme={colorTheme}
+              boardWidth={boardWidth}
+              setFen={setFen}
+              moves={moves}
+              showMessage={true}
+            />
+          </div>
         </div>
         <div className="col-12">
           <p className="content">

@@ -92,7 +92,15 @@ function Learn() {
   function getLesson() {
     switch (lesson) {
       case 0:
-        return <ChessTerms changeLesson={changeLesson} />;
+        return (
+          <ChessTerms
+            changeLesson={changeLesson}
+            colorTheme={colorTheme}
+            boardWidth={chessboardSize}
+            fen={fen}
+            setFen={setFen}
+          />
+        );
       case 1:
         return (
           <TheBoard
