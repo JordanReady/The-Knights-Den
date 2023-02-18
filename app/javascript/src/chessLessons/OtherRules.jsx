@@ -52,12 +52,12 @@ export default function OtherRules(props) {
             rook that are being used to castle must not have moved yet in the
             game. There must not be any pieces between the king and the rook.
             The king must not be under attack by an opposing players piece. The
-            king cannot move through any squares that are attacked by an anemy
-            piece. For the white player to castle kingside, the king is moved
+            king cannot move through any squares that are attacked by an enemy
+            piece. For the white player to castle king side, the king is moved
             from e1 to g1, and the rook is moved from h1 to f1. To castle
             queenside, the king is moved from e1 to c1 and the rook is moved
             from a1 to d1. Castling happens very often in chess games. Just try
-            and remember when castling, the king moves two squares towards the
+            to remember when castling, the king moves two squares towards the
             rook you are castling with, and that rook ends up on the other side
             of the king. The other special move involves the pawns and it is
             known as en passant which was previously mentioned in the pawn
@@ -70,8 +70,8 @@ export default function OtherRules(props) {
             position. The capturing pawn must be on an adjacent file to the pawn
             being captured. The capturing pawn must advance to the square behind
             the pawn being captured. This move isn't as common as castling but
-            it is important to be aware of this rule in case a benificial
-            oportunity to use it occurs.
+            it is important to be aware of this rule in case a beneficial
+            opportunity to use it occurs.
           </p>
         </div>
       </div>

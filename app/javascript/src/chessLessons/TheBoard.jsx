@@ -4,7 +4,7 @@ import LearnBoard from "../gameBoards/learnBoard";
 import "../learn/learn.scss";
 
 export default function TheBoard(props) {
-  const { colorTheme, boardWidth } = props;
+  const { colorTheme, boardWidth, fen, setFen } = props;
 
   return (
     <div className="container">
@@ -18,9 +18,9 @@ export default function TheBoard(props) {
           <div>
             <LearnBoard
               fen={"8/8/8/8/8/8/8/8 w - - 0 1"}
+              setFen={fen}
               colorTheme={colorTheme}
               boardWidth={boardWidth}
-              moves={[]}
               muted={true}
             />
           </div>
@@ -33,8 +33,8 @@ export default function TheBoard(props) {
             with, you can click the terms button on the lower right corner of
             your screen for reference. Okay then, let's get started! The chess
             board is an 8 by 8 grid of squares alternating colors from light to
-            dark on every other square. The board is split up horizantally by
-            what are known as ranks, and horizantally by what are known as
+            dark on every other square. The board is split up horizontally by
+            what are known as ranks, and horizontally by what are known as
             files. These ranks and files are labeled by letters and numbers.
             Each horizontal rank has a file number 1 - 8 across the board, and
             each file has a file letter a - h across the board. The entire game

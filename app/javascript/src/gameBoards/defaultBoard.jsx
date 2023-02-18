@@ -268,13 +268,6 @@ export default function DefaultBoard(props) {
               Auto Flip
             </button>
           )}
-          <button
-            onClick={() => {
-              console.log(game.fen());
-            }}
-          >
-            fen
-          </button>
         </div>
       </div>
     </div>

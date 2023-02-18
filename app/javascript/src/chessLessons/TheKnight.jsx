@@ -44,8 +44,8 @@ export default function TheKnight(props) {
         </div>
         <div className="col-12">
           <p className="content">
-            The knight is a very unique piece in chess because it is the only
-            piece that can move around or over another piece. Knights move in a
+            The knight is a unique piece in chess because it is the only piece
+            that can move around or over another piece. Knights move in a
             pattern that resembles the letter "L". It must move 3 squares in
             total vertically and horizontally. The order can be either two
             squares forward, backward, left or right, then one square
