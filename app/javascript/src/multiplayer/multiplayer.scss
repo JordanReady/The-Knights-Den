@@ -105,9 +105,9 @@ label {
     font-weight: bold;
   }
   a {
-    color: $dark-color;
-    text-shadow: 1px 1px 0 $light-color, -1px -1px 0 $light-color,
-      1px -1px 0 $light-color, -1px 1px 0 $light-color;
+    color: $light-color;
+    text-shadow: 1px 1px 0 $dark-color, -1px -1px 0 $dark-color,
+      1px -1px 0 $dark-color, -1px 1px 0 $dark-color;
     font-size: 1.25rem;
     text-decoration: none;
   }

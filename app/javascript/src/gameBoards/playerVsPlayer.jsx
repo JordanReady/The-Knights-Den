@@ -34,20 +34,14 @@ function subscribeToGameRoom(game_id, setData) {
         );
         // update the move if the data type is move
         if (data.type === "UPDATE_MOVE") {
-          console.log("Updating move...");
+          console.log("Move received");
           setData(data);
         } else if (data.type === "UPDATE_DRAW") {
-          console.log("Updating draw...");
+          console.log("Draw received");
           setData(data);
         } else if (data.type === "UPDATE_RESIGNATION") {
-          console.log("Updating resign...");
-          // update the resign
-          let player_1_resigned = data.game.player_1_resigned;
-          let player_2_resigned = data.game.player_2_resigned;
-
-          console.log("white resigned:", player_1_resigned);
-          console.log("black resigned:", player_2_resigned);
-          console.log("game over:", data.game.game_over);
+          console.log("Resignation received");
+          setData(data);
         }
       },
     }
@@ -91,6 +85,9 @@ export default function PlayerVsPlayer(props) {
   const [resignOffered, setResignOffered] = useState(false);
   const [resign, setResign] = useState(false);
   const [data, setData] = useState({});
+  const [gameCompleted, setGameCompleted] = useState(false);
+  const [whitePlayerResigned, setWhitePlayerResigned] = useState(false);
+  const [blackPlayerResigned, setBlackPlayerResigned] = useState(false);
 
   useEffect(() => {
     //handle data from actioncable
@@ -106,8 +103,20 @@ export default function PlayerVsPlayer(props) {
     }
   }, [data]);
 
-  //check for drawn game
+  //check for drawn game or resignation
   useEffect(() => {
+    if (whitePlayerResigned) {
+      setGameOver(true);
+      setGameOverMessage("Game over!");
+      setGameWinner("Black wins by resignation!");
+      console.log("white resigned");
+    }
+    if (blackPlayerResigned) {
+      setGameOver(true);
+      setGameOverMessage("Game over!");
+      setGameWinner("White wins by resignation!");
+      console.log("black resigned");
+    }
     if (whitePlayerDraw && blackPlayerDraw) {
       setWaitingForDraw(false);
       setDraw(true);
@@ -119,7 +128,13 @@ export default function PlayerVsPlayer(props) {
       updateDraw(whitePlayerId);
       updateDraw(blackPlayerId);
     }
-  }, [whitePlayerDraw, blackPlayerDraw]);
+  }, [
+    whitePlayerDraw,
+    blackPlayerDraw,
+    gameCompleted,
+    whitePlayerResigned,
+    blackPlayerResigned,
+  ]);
 
   useEffect(() => {
     // set colors
@@ -229,9 +244,21 @@ export default function PlayerVsPlayer(props) {
       .then((data) => {
         setWhitePlayerId(data.game.player_1_id);
         setBlackPlayerId(data.game.player_2_id);
+        setGameCompleted(data.game.game_over);
+        setGameOver(data.game.game_over);
+        setWhitePlayerResigned(data.game.player_1_resigned);
+        setBlackPlayerResigned(data.game.player_2_resigned);
+        console.log(data);
         console.log("whitePlayerId and blackPlayerId");
         console.log(data.game.player_1_id);
         console.log(data.game.player_2_id);
+        console.log("gameCompleted?");
+        console.log(data.game.game_over);
+        console.log(gameCompleted);
+        console.log("whitePlayerResigned?");
+        console.log(data.game.player_1_resigned);
+        console.log("blackPlayerResigned?");
+        console.log(data.game.player_2_resigned);
 
         // Fetch authenticated user ID
         return fetch("/api/sessions/authenticated");
@@ -322,6 +349,24 @@ export default function PlayerVsPlayer(props) {
     const gameCopy = { ...game };
     gameCopy.move(recievedMove);
     setGame(gameCopy);
+  }
+
+  function handleUpdateResignation(data) {
+    let whitePlayerResignation = data.game.player_1_resigned;
+    let blackPlayerResignation = data.game.player_2_resigned;
+    console.log("whitePlayerResignation and blackPlayerResignation");
+    console.log(whitePlayerResignation + " " + blackPlayerResignation);
+    //iif either player has resigned, game is over
+    if (whitePlayerResignation === true) {
+      setGameOver(true);
+      setGameOverMessage("White resigned!");
+      setGameWinner("Black wins!");
+    }
+    if (blackPlayerResignation === true) {
+      setGameOver(true);
+      setGameOverMessage("Black resigned!");
+      setGameWinner("White wins!");
+    }
   }
 
   const getOrientation = () => {
