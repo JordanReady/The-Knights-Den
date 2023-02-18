@@ -10,7 +10,14 @@ import "./board.scss";
 import { createConsumer } from "@rails/actioncable";
 const cable = createConsumer();
 
-function subscribeToGameRoom(game_id) {
+function subscribeToGameRoom(
+  game_id,
+  setDrawOffered,
+  setGameOver,
+  setResignOffered,
+  setGame,
+  game
+) {
   cable.subscriptions.create(
     { channel: "GameChannel", game_id: game_id },
     {
@@ -37,8 +44,11 @@ function subscribeToGameRoom(game_id) {
           console.log("Updating move...");
           // update the move
           // get the last move in the array
-          const lastMove = data.moves.move[data.moves.length - 1];
-          conosle.log(lastMove);
+          const move = data.moves.slice(-1)[0].move;
+          console.log(move);
+          const gameCopy = { ...game };
+          gameCopy.move(move);
+          setGame(gameCopy);
         } else if (data.type === "UPDATE_DRAW") {
           console.log("Updating draw...");
           // update the draw
@@ -46,6 +56,18 @@ function subscribeToGameRoom(game_id) {
           let player_2_draw_offer = data.game.player_2_draw_offer;
           console.log("white draw:", player_1_draw_offer);
           console.log("black draw:", player_2_draw_offer);
+          // set the draw offered state
+          setDrawOffered(true);
+          console.log("draw offered:");
+        } else if (data.type === "UPDATE_RESIGNATION") {
+          console.log("Updating resign...");
+          // update the resign
+          let player_1_resigned = data.game.player_1_resigned;
+          let player_2_resigned = data.game.player_2_resigned;
+
+          console.log("white resigned:", player_1_resigned);
+          console.log("black resigned:", player_2_resigned);
+          console.log("game over:", data.game.game_over);
         }
       },
     }
@@ -176,7 +198,7 @@ export default function PlayerVsPlayer(props) {
     console.log(" make moves");
     console.log(props.moves);
     props.moves.forEach((move) => {
-      safeGameMutate(() => game.move(move));
+      game.move(move);
     });
     setGame(game);
   }, [props.moves]);
@@ -251,7 +273,14 @@ export default function PlayerVsPlayer(props) {
         console.log("whitePlayerDraw and blackPlayerDraw");
         console.log(whitePlayerDraw + " " + blackPlayerDraw);
 
-        subscribeToGameRoom(data.game.id);
+        subscribeToGameRoom(
+          data.game.id,
+          setDrawOffered,
+          setGameOver,
+          setResignOffered,
+          setGame,
+          game
+        );
       })
       .catch((error) => {
         handleErrors(error.message);
@@ -299,14 +328,6 @@ export default function PlayerVsPlayer(props) {
           console.log(error);
         });
     }, 1000);
-  }
-
-  function safeGameMutate(modify) {
-    setGame((g) => {
-      const update = { ...g };
-      modify(update);
-      return update;
-    });
   }
 
   function onDrop(sourceSquare, targetSquare) {
@@ -484,6 +505,26 @@ export default function PlayerVsPlayer(props) {
     window.location.href = "/multiplayer";
   }
 
+  function setUserResign() {
+    fetch(`/api/games/${gameId}/resignation`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+      body: JSON.stringify({
+        user_id: userId,
+      }),
+    })
+      .then(handleErrors)
+      .then((data) => {
+        console.log("data");
+        console.log(data);
+      });
+  }
+
   return (
     <>
       <div className="chessboard">
@@ -542,6 +583,7 @@ export default function PlayerVsPlayer(props) {
                   user = "Black";
                 }
                 setResignOffered(false);
+                setUserResign();
                 setGameOver(true);
                 setGameOverMessage(user + " Resigns");
                 setGameWinner(user === "White" ? "Black Wins" : "White Wins");

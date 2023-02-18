@@ -41,13 +41,17 @@ module Api
     def offer_draw
         @game = Game.find(params[:id])
         user_id = params[:user_id]
-
+        #set the draw offer to true for the user who made the request
         if user_id == @game.player_1_id
             @game.player_1_draw_offer = true
         elsif user_id == @game.player_2_id
             @game.player_2_draw_offer = true
         end
-
+        #if both players have offered a draw, set the game to over
+        if @game.player_1_draw_offer && @game.player_2_draw_offer
+            @game.game_over = true
+        end
+        #broadcast the update to the game channel
         if @game.save
             ActionCable.server.broadcast("game_#{@game.id}_channel", {type: "UPDATE_DRAW", game: @game})
             render json: @game
@@ -55,6 +59,27 @@ module Api
             render json: @game.errors, status: :unprocessable_entity
         end
     end
+
+    def resignation 
+        @game = Game.find(params[:id])
+        user_id = params[:user_id]
+
+        if user_id == @game.player_1_id
+            @game.player_1_resigned = true
+        elsif user_id == @game.player_2_id
+            @game.player_2_resigned = true
+        end
+
+        @game.game_over = true
+
+        if @game.save
+            ActionCable.server.broadcast("game_#{@game.id}_channel", {type: "UPDATE_RESIGNATION", game: @game})
+            render json: @game
+        else
+            render json: @game.errors, status: :unprocessable_entity
+        end
+    end
+
   
     private
       def set_game
