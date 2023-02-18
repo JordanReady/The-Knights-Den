@@ -10,14 +10,7 @@ import "./board.scss";
 import { createConsumer } from "@rails/actioncable";
 const cable = createConsumer();
 
-function subscribeToGameRoom(
-  game_id,
-  setDrawOffered,
-  setGameOver,
-  setResignOffered,
-  setGame,
-  game
-) {
+function subscribeToGameRoom(game_id, setData) {
   cable.subscriptions.create(
     { channel: "GameChannel", game_id: game_id },
     {
@@ -42,23 +35,10 @@ function subscribeToGameRoom(
         // update the move if the data type is move
         if (data.type === "UPDATE_MOVE") {
           console.log("Updating move...");
-          // update the move
-          // get the last move in the array
-          const move = data.moves.slice(-1)[0].move;
-          console.log(move);
-          const gameCopy = { ...game };
-          gameCopy.move(move);
-          setGame(gameCopy);
+          setData(data);
         } else if (data.type === "UPDATE_DRAW") {
           console.log("Updating draw...");
-          // update the draw
-          let player_1_draw_offer = data.game.player_1_draw_offer;
-          let player_2_draw_offer = data.game.player_2_draw_offer;
-          console.log("white draw:", player_1_draw_offer);
-          console.log("black draw:", player_2_draw_offer);
-          // set the draw offered state
-          setDrawOffered(true);
-          console.log("draw offered:");
+          setData(data);
         } else if (data.type === "UPDATE_RESIGNATION") {
           console.log("Updating resign...");
           // update the resign
@@ -103,21 +83,41 @@ export default function PlayerVsPlayer(props) {
   const [whitePlayerId, setWhitePlayerId] = useState(undefined);
   const [blackPlayerId, setBlackPlayerId] = useState(undefined);
   const [drawOffered, setDrawOffered] = useState(false);
+  const [drawReceived, setDrawReceived] = useState(false);
   const [whitePlayerDraw, setWhitePlayerDraw] = useState(false);
   const [blackPlayerDraw, setBlackPlayerDraw] = useState(false);
   const [draw, setDraw] = useState(false);
+  const [waitingForDraw, setWaitingForDraw] = useState(false);
   const [resignOffered, setResignOffered] = useState(false);
   const [resign, setResign] = useState(false);
+  const [data, setData] = useState({});
 
   useEffect(() => {
+    //handle data from actioncable
+    if (data.type === "UPDATE_MOVE") {
+      console.log("Updating move...");
+      handleUpdateMove(data);
+    } else if (data.type === "UPDATE_DRAW") {
+      console.log("Updating draw...");
+      handleUpdateDraw(data);
+    } else if (data.type === "UPDATE_RESIGNATION") {
+      console.log("Updating resign...");
+      handleUpdateResignation(data);
+    }
+  }, [data]);
+
+  //check for drawn game
+  useEffect(() => {
     if (whitePlayerDraw && blackPlayerDraw) {
+      setWaitingForDraw(false);
+      setDraw(true);
+      setDrawOffered(false);
+      setDrawReceived(false);
       setGameOver(true);
       setGameOverMessage("Draw!");
-      setGameWinner("Game over.");
+      setGameWinner("Game over!");
       updateDraw(whitePlayerId);
-      setTimeout(() => {
-        updateDraw(blackPlayerId);
-      }, 500);
+      updateDraw(blackPlayerId);
     }
   }, [whitePlayerDraw, blackPlayerDraw]);
 
@@ -140,7 +140,7 @@ export default function PlayerVsPlayer(props) {
       setLightSquareColor("#f0d9b5");
     }
   }, [colorTheme]);
-
+  //check for game over
   useEffect(() => {
     const gameCopy = { ...game };
     const turn = gameCopy.turn();
@@ -190,10 +190,12 @@ export default function PlayerVsPlayer(props) {
     setMoveNumber(moveNumber + 1);
   }, [game]);
 
+  //get game info
   useEffect(() => {
     getGameInfo();
   }, []);
 
+  //make moves when props.moves changes
   useEffect(() => {
     console.log(" make moves");
     console.log(props.moves);
@@ -203,6 +205,7 @@ export default function PlayerVsPlayer(props) {
     setGame(game);
   }, [props.moves]);
 
+  //set orientation of board for current player
   useEffect(() => {
     getOrientation();
   }, [userId]);
@@ -272,20 +275,54 @@ export default function PlayerVsPlayer(props) {
         setBlackPlayerDraw(data.game.player_2_draw_offer);
         console.log("whitePlayerDraw and blackPlayerDraw");
         console.log(whitePlayerDraw + " " + blackPlayerDraw);
-
-        subscribeToGameRoom(
-          data.game.id,
-          setDrawOffered,
-          setGameOver,
-          setResignOffered,
-          setGame,
-          game
-        );
+        // Subscribe to game room
+        subscribeToGameRoom(data.game.id, setData);
       })
       .catch((error) => {
         handleErrors(error.message);
       });
   };
+
+  function handleUpdateDraw(data) {
+    let whitePlayerDraw = data.game.player_1_draw_offer;
+    let blackPlayerDraw = data.game.player_2_draw_offer;
+    let currentPlayerColor;
+    console.log("whitePlayerDraw and blackPlayerDraw");
+    console.log(whitePlayerDraw + " " + blackPlayerDraw);
+    if (userId === whitePlayerId) {
+      currentPlayerColor = "white";
+    } else {
+      currentPlayerColor = "black";
+    }
+    if (whitePlayerDraw && blackPlayerDraw) {
+      setGameOver(true);
+      setGameOverMessage("Draw!");
+      setGameWinner("Game over!");
+      updateDraw();
+    } else if (whitePlayerDraw && currentPlayerColor === "white") {
+      setDrawOffered(false);
+    } else if (blackPlayerDraw && currentPlayerColor === "black") {
+      setDrawOffered(false);
+    } else if (whitePlayerDraw && currentPlayerColor === "black") {
+      setDrawReceived(true);
+    } else if (blackPlayerDraw && currentPlayerColor === "white") {
+      setDrawReceived(true);
+    } else {
+      console.log("no draw");
+      setWaitingForDraw(false);
+      setDrawOffered(false);
+      setDrawReceived(false);
+    }
+  }
+
+  function handleUpdateMove(data) {
+    let recievedMove = data.moves.slice(-1)[0].move;
+    console.log("recieved move");
+    console.log(recievedMove);
+    const gameCopy = { ...game };
+    gameCopy.move(recievedMove);
+    setGame(gameCopy);
+  }
 
   const getOrientation = () => {
     if (userId === whitePlayerId) {
@@ -298,6 +335,9 @@ export default function PlayerVsPlayer(props) {
   };
 
   function updateDraw(id) {
+    setDrawOffered(false);
+    setDrawReceived(false);
+    setWaitingForDraw(false);
     setTimeout(() => {
       fetch(`/api/users/${id}/stats/draw`)
         .then(handleErrors)
@@ -485,7 +525,7 @@ export default function PlayerVsPlayer(props) {
     if (whitePlayerDraw && blackPlayerDraw) {
       setGameOver(true);
       setGameOverMessage("Draw");
-      updateDraw();
+      updateDraw(userId);
     }
   }
 
@@ -525,6 +565,23 @@ export default function PlayerVsPlayer(props) {
       });
   }
 
+  function resetDrawOffer() {
+    fetch(`/api/games/${gameId}/reset_draw`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+    })
+      .then(handleErrors)
+      .then((data) => {
+        console.log("data");
+        console.log(data);
+      });
+  }
+
   return (
     <>
       <div className="chessboard">
@@ -553,6 +610,7 @@ export default function PlayerVsPlayer(props) {
               onClick={() => {
                 console.log("accept draw");
                 setDrawOffered(false);
+                setWaitingForDraw(true);
                 updatePlayerDraw();
               }}
             >
@@ -563,6 +621,45 @@ export default function PlayerVsPlayer(props) {
               onClick={() => {
                 console.log("reject draw");
                 setDrawOffered(false);
+              }}
+            >
+              Reject
+            </button>
+          </div>
+        )}
+        {waitingForDraw && (
+          <div className="game-over-message">
+            Waiting for opponent!
+            <br />
+            Game will continue if opponent declines!
+          </div>
+        )}
+        {drawReceived && (
+          <div className="game-over-message">
+            Would you like to accept a draw?
+            <br />
+            <button
+              className="board-btn"
+              onClick={() => {
+                console.log("accept draw");
+                setDrawReceived(false);
+                setWaitingForDraw(false);
+                setDrawOffered(false);
+                setGameOver(true);
+                setGameOverMessage("Draw");
+                updatePlayerDraw();
+                updateDraw();
+              }}
+            >
+              Accept
+            </button>
+            <button
+              className="board-btn"
+              onClick={() => {
+                console.log("reject draw");
+                setDrawReceived(false);
+                resetDrawOffer();
+                setWaitingForDraw(false);
               }}
             >
               Reject

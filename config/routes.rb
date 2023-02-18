@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create, :destroy, :authenticated]
     resources :games, only: [:create, :show,] do
       patch :offer_draw, on: :member
+      patch :reset_draw, on: :member
       patch :resignation, on: :member
       resources :moves, only: [:create, :index] do
         delete :delete_last_move, on: :collection

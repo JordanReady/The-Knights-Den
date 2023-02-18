@@ -60,6 +60,22 @@ module Api
         end
     end
 
+    def reset_draw
+        @game = Game.find(params[:id])
+        
+        @game.player_1_draw_offer = false
+        @game.player_2_draw_offer = false
+
+        #broadcast the update to the game channel
+        if @game.save
+            ActionCable.server.broadcast("game_#{@game.id}_channel", {type: "UPDATE_DRAW", game: @game})
+            render json: @game
+        else
+            render json: @game.errors, status: :unprocessable_entity
+        end
+    end
+
+
     def resignation 
         @game = Game.find(params[:id])
         user_id = params[:user_id]
