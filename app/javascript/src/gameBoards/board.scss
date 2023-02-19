@@ -138,6 +138,9 @@ body {
   border: 2px solid $outline-color;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 768px) {
+    box-shadow: none;
+  }
 }
 
 .board-btn {

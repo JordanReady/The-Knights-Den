@@ -4,7 +4,7 @@ import LearnBoard from "../gameBoards/learnBoard";
 import "../learn/learn.scss";
 
 export default function TheBoard(props) {
-  const { colorTheme, boardWidth, fen, setFen } = props;
+  const { colorTheme, boardWidth, fen } = props;
 
   return (
     <div className="container">
