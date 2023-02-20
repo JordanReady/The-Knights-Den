@@ -16,6 +16,8 @@ export default function PlayerVsBot(props) {
     handleMove,
     colorTheme,
     analyze,
+    setReplayGameWinner,
+    setReplayGameOverMessage,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -64,11 +66,11 @@ export default function PlayerVsBot(props) {
       setDarkSquareColor("#4f583c");
       setLightSquareColor("#acb192");
     } else if (colorTheme === "red") {
-      setDarkSquareColor("#ec2323");
-      setLightSquareColor("#fdadad");
+      setDarkSquareColor("#de4d46");
+      setLightSquareColor("#efd4cd");
     } else if (colorTheme === "purple") {
-      setDarkSquareColor("#462578");
-      setLightSquareColor("#e1a1fa");
+      setDarkSquareColor("#61447e");
+      setLightSquareColor("#c0b1f4");
     } else {
       setDarkSquareColor("#b58863");
       setLightSquareColor("#f0d9b5");
@@ -88,11 +90,14 @@ export default function PlayerVsBot(props) {
       setGameOver(true);
       if (game.in_checkmate()) {
         setGameOverMessage("Checkmate! Game over.");
+        setReplayGameOverMessage("Checkmate! Game over.");
         if (turn === "w") {
           setGameWinner("Black Wins!");
+          setReplayGameWinner("Black Wins!");
         }
         if (turn === "b") {
           setGameWinner("White Wins!");
+          setReplayGameWinner("White Wins!");
         }
         if (turn === "w" && playerColor === "w") {
           updateLoss();
@@ -124,7 +129,7 @@ export default function PlayerVsBot(props) {
   }, [game]);
 
   function createGameWhite(id) {
-    const bot = 12;
+    const bot = 1;
 
     fetch("/api/games", {
       method: "POST",
@@ -152,7 +157,7 @@ export default function PlayerVsBot(props) {
   }
 
   function createGameBlack(id) {
-    const bot = 12;
+    const bot = 1;
 
     fetch("/api/games", {
       method: "POST",
@@ -307,7 +312,6 @@ export default function PlayerVsBot(props) {
         let pieceType = getPieceType(game.board(), targetSquare);
         if (pieceType === "q") {
           return true;
-          
         } else if (pieceType === "r") {
           return true;
         } else if (pieceType === "n" || pieceType === "b") {

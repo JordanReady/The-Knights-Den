@@ -22,6 +22,8 @@ function Home() {
   const [authenticated, setAuthenticated] = useState(false);
   const [user_id, setUserId] = useState(undefined);
   const [game_id, setGameId] = useState(undefined);
+  const [replayGameWinner, setReplayGameWinner] = useState(undefined);
+  const [replayGameOverMessage, setReplayGameOverMessage] = useState(undefined);
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
@@ -150,6 +152,8 @@ function Home() {
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
               analyze={analyze}
+              setReplayGameOverMessage={setReplayGameOverMessage}
+              setReplayGameWinner={setReplayGameWinner}
             />
             <br />
           </>
@@ -183,6 +187,8 @@ function Home() {
               colorTheme={colorTheme}
               setColorTheme={setColorTheme}
               game_id={game_id}
+              gameWinner={replayGameWinner}
+              gameOverMessage={replayGameOverMessage}
             />
             <br />
           </>

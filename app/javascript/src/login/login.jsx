@@ -35,7 +35,7 @@ class Login extends React.Component {
                     game of chess and improve your strategy in no time. Play
                     against a bot or challenge your friends to see who the true
                     chess master is. Sign up now and track your progress as you
-                    climb to the top of the leaderboard!
+                    climb to the top of the leaderboard! Have fun!
                   </h3>
                 </div>
                 <div className="chess-img"></div>
