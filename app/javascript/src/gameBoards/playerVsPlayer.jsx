@@ -808,14 +808,6 @@ export default function PlayerVsPlayer(props) {
           >
             Flip Board
           </button>
-          <button
-            className="board-btn"
-            onClick={() => {
-              switchId();
-            }}
-          >
-            Switch id
-          </button>
         </div>
       </div>
     </>
