@@ -57,7 +57,8 @@ const GameForm = (props) => {
         .then((data) => {
           console.log(data.game.id);
           setGameId(data.game.id);
-          setGameLink(`http://localhost:3000/multiplayer/${data.game.id}`);
+          //make the game link whatever the current url is + / data.game.id
+          setGameLink(window.location.href + "/" + data.game.id);
         });
     }
   };
