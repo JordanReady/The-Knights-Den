@@ -28,7 +28,9 @@ function Index() {
   return (
     <div className={colorTheme}>
       <Navbar />
-      <GameForm user_id={user_id} />
+      <div className="container">
+        <GameForm user_id={user_id} />
+      </div>
     </div>
   );
 }
