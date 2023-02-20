@@ -30,12 +30,18 @@ class Login extends React.Component {
               <div className="hero col-12 col-lg-8 mt-2">
                 <div>
                   <h3 className="hero-text">
-                    Welcome to My Chess App! With our easy-to-use interface and
-                    comprehensive tutorial, you'll be able to learn the complex
-                    game of chess and improve your strategy in no time. Play
-                    against a bot or challenge your friends to see who the true
-                    chess master is. Sign up now and track your progress as you
-                    climb to the top of the leaderboard! Have fun!
+                    Welcome to The Knights Den, where you can become the chess
+                    champion you've always dreamed of becoming! With the
+                    easy-to-use interface, you'll be able to jump right into a
+                    lesson or game and start learning or playing chess right
+                    away! And the comprehensive tutorial? It's like having your
+                    own personal chess coach without all the awkward small talk.
+                    But wait, there's more! Our bot is programmed to beat even
+                    the most experienced players, so good luck with that. Or, if
+                    you're feeling lucky, challenge your friends to see who is
+                    the true chess master. So what are you waiting for? Sign up
+                    or login now and join The Knights Den, where we promise to
+                    complicate your life in the best way possible... Chess!
                   </h3>
                 </div>
                 <div className="chess-img"></div>

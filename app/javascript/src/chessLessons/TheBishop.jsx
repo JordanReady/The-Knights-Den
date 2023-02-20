@@ -45,17 +45,32 @@ export default function TheBishop(props) {
         </div>
         <div className="col-12">
           <p className="content">
-            The bishop is a long range attacking piece that can move any number
-            of squares diagonally, forwards to the right or left, or backwards
-            to the right or left. You may only move the piece in one of those
-            four directions once per turn. You may notice from the start of the
-            game both players have one bishop placed on a light square and one
-            placed on a dark square. Because of the nature of the bishops
-            movement, the light square bishop will only be able to move on the
-            light squares and the dark square bishop will only be able to move
-            on the dark squares. The bishop can't move through its own pieces
-            and will capture an opposing players piece by moving itself to the
-            position of that piece.
+            Alright, now that we've talked about the humble pawn and the mighty
+            knight, it's time to turn our attention to the bishop. Bishops are
+            another type of piece in chess, and they're the only ones that can
+            move diagonally across the board. Each player starts with two
+            bishops: one on a light-colored square and one on a dark-colored
+            square. The bishop's power lies in its ability to control long,
+            diagonal lines on the board. This can make it a valuable piece to
+            control, especially if it's well-positioned to attack your
+            opponent's pieces. But the bishop does have some limitations. Unlike
+            the knight, it can't jump over other pieces on the board. And, like
+            all pieces in chess, it can't move through another piece. One
+            important thing to remember about bishops is that they can only move
+            on squares of the same color that they start on. This means that if
+            your light-squared bishop is on a white square, it can only move on
+            other white squares. If it's on a black square, it can only move on
+            other black squares. As you may have noticed on your Learn Board,
+            after the pawns have had their little one-step shuffle, the bishops
+            are finally unlocked and free to take to the stage. Knights, on the
+            other hand, can't be bothered with this silly dance routine, which
+            is why they leap right over the pawns when making their grand
+            entrance. Now that we've covered the powerful diagonal movements of
+            the bishops, the fancy footwork of the knights, and the uninpressive
+            shuffle of the pawns, it's time to turn our attention to the
+            straight-shooting rooks. They may not be as flashy as some of the
+            other pieces, but don't be fooled - they can still pack a punch on
+            the board.
           </p>
         </div>
       </div>

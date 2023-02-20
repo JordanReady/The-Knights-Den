@@ -44,14 +44,22 @@ export default function TheQueen(props) {
         </div>
         <div className="col-12">
           <p className="content">
-            The queen is the most powerful piece in the game because it has the
-            most amount of ways to move. It can move how the rook moves as well
-            as the bishop! It can move any number of squares horizontally,
-            vertically, or diagonally. It can move in any one of the 8
-            directions once per move. The queen can't move through its own
-            pieces and will capture an opposing players piece by moving itself
-            to the position of that piece. This makes the queen a very powerful
-            attacking piece.
+            The queen is the most powerful piece on the board, and for good
+            reason. It's able to move like every other piece in the game - the
+            bishop, the rook, and even the pawns - all rolled up into one. Well,
+            almost every piece. It can't move like the awesome knights, but
+            let's be honest, what can? The queen has the ability to move freely
+            in any one of the eight directions once per move. She can take on
+            any other piece on the board, but she can't move through her own
+            pieces. When she captures an opposing piece, she takes its position
+            on the board. The queen is a true force to be reckoned with and may
+            be the most powerful piece on the board. Although, some knights may
+            argue that it's only the second most powerful piece when you
+            consider all the unique abilities the knights have to offer. But
+            hey, that might be a bit biased around here in the Knights Den, and
+            we don't want to offend any queens out there! But enough about the
+            queen, it's time to shift our focus to her royal companion - the
+            king.
           </p>
         </div>
       </div>

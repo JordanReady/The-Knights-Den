@@ -38,13 +38,23 @@ export default function PlayerVsBot(props) {
   const [user_id, setUserId] = useState(undefined);
   const [game_id, setGameId] = useState(undefined);
   const [createBlackGame, setCreateBlackGame] = useState(false);
+  const [firstWin, setFirstWin] = useState(false);
 
   useEffect(() => {
     fetch("/api/sessions/authenticated")
       .then(handleErrors)
       .then((data) => {
         setUserId(data.user_id);
-        return createGameWhite(data.user_id);
+        createGameWhite(data.user_id);
+        return fetch(`/api/users/${data.user_id}/stats`);
+      })
+      .then(handleErrors)
+      .then((data) => {
+        console.log(data.stats.wins);
+        if (data.stats.wins === 0) {
+          setFirstWin(true);
+          console.log(firstWin);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -148,7 +158,6 @@ export default function PlayerVsBot(props) {
     })
       .then(handleErrors)
       .then((data) => {
-        console.log(data.game.id);
         setGameId(data.game.id);
       })
       .catch((error) => {
@@ -495,6 +504,18 @@ export default function PlayerVsBot(props) {
             {gameOverMessage} <br />
             {gameWinner}
             <br />
+            <button className="board-btn" onClick={() => analyze(game_id)}>
+              Analyze Game
+            </button>
+          </div>
+        )}
+        {gameOver && firstWin && (
+          <div className="game-over-message">
+            {gameOverMessage} <br />
+            {gameWinner}
+            <br />
+            Congrats on your first <br />
+            win in the Knights Den! <br />
             <button className="board-btn" onClick={() => analyze(game_id)}>
               Analyze Game
             </button>

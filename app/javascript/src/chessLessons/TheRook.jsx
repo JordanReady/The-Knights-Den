@@ -51,14 +51,23 @@ export default function TheRook(props) {
         </div>
         <div className="col-12">
           <p className="content">
-            The rook, much like the bishop, is a long range attacking piece. The
-            rook however, can move any number of squares along its current file
-            or rank either forwards, backwards, left or right. It can only move
-            in one of those 4 directions once per move and cannot move
-            diagonally ever. The rook can't move through its own pieces and will
-            capture an opposing players piece by moving itself to the position
-            of that piece. The rook also has a special move called castling
-            which we will cover in a later lesson.
+            Ah, the mighty rook - also known as the castle, tower, or fortress.
+            This piece is a real powerhouse on the board, moving in a straight
+            line horizontally or vertically and controlling entire ranks or
+            files. The rook can move any number of squares along its current
+            file or rank either forwards, backwards, left or right. It can only
+            move in one of those 4 directions once per move but cannot move
+            diagonally. Its ability to control open files and ranks can be
+            crucial in opening up lines of attack for other pieces. And let's
+            not forget, our rooks have a special trick up their sleeve - they
+            can team up with the king to pull off a fancy move called castling.
+            We'll cover that move in more detail later, after we've talked about
+            our esteemed royalties, the king and queen. But if you want to see
+            it in action, take a peek at the Learn Board where you can watch
+            both players perform this maneuver. Just don't strain yourself
+            trying to figure it out on your own just yet - I promise I'll walk
+            you through it soon! And without any further ado, it's time to move
+            on to the most powerful piece on the board - the queen.
           </p>
         </div>
       </div>

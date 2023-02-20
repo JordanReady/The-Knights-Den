@@ -51,36 +51,29 @@ export default function ThePawn(props) {
         </div>
         <div className="col-12">
           <p className="content">
-            It's finally time to understand how to move and attack with our
-            pieces and what better place to start than with the pawn! The pawn
-            is the only piece that cannot move backwards. It will march forward
-            the whole game one square at a time. Pawns will often be the first
-            piece that is moved in a game because they are in front of all the
-            other pieces. With that being said, on the very first move of each
-            pawn, you will have a choice to make. You may move the pawn 2
-            squares forward if the square is available for it to be placed there
-            but only on the first move for each pawn. For example, at the very
-            start of the game white may chose to move his e pawn to either e3,
-            which would be one square forward, or e4 which would be two squares
-            forward. Now lets say white decides to put his pawn one square
-            forward to e3. His opponent will then play a move like e pawn to e6.
-            Now white can only move the pawn on e3 to e4 one square forward.
-            They will no longer be able to move the e pawn 2 squares to e5
-            because they already moved that pawn. The same is true for blacks e
-            pawn on e6. Now lets talk about how the pawn attacks. The pawn can
-            not take a piece that is in front of them on the same file. They can
-            only take a piece diagonally forward to the right or left of them.
-            Remember, the pawn can only move forward on the same file unless it
-            captures a piece diagonally. After a pawn captures a piece
-            diagonally, it will now be able to move forward on that new file. If
-            a pawn manages to make its way all the way to the opponents back
-            rank, it can be promoted to another more powerful piece like a rook,
-            knight, bishop, and in most cases, a queen! The new piece will
-            replace the pawn on the square it made it too and will now be able
-            to follow the movement rules of that piece for the remainder of the
-            game. There is another special move the pawn can do known as En
-            passant but we will cover that in a later section of special moves
-            to reduce confusion.
+            Now we have some idea on how to play a game of chess, so let's get
+            started with the most important piece on the board - the pawn! Yes,
+            that's right, the lowly pawn, often dismissed as mere fodder for the
+            grander pieces. Okay, probably not the 'most' important, but the
+            pawns are actually the backbone of your defense. Pawns are the only
+            pieces that cannot move backward, so you must choose their placement
+            carefully. They are also the only pieces that capture differently
+            from how they move.As previously mentioned, pawns can only move
+            forward, one or two squares on their first move, and one square
+            thereafter. Pawns capture diagonally, one square forward and to the
+            left or right. However, they cannot capture the piece directly in
+            front of them, which can make them feel a little useless at times.
+            But don't be fooled by their humble appearance! Pawns are critical
+            to controlling the center of the board and limiting your opponent's
+            mobility. In fact, the famous chess player and teacher Aron
+            Nimzowitsch once said, "The passed pawn is a criminal, who should be
+            kept under lock and key. Mild measures, such as police surveillance,
+            are not sufficient." So, be sure to use your pawns strategically,
+            protecting them as they move up the board, and don't underestimate
+            their value. And in the next lesson, we'll focus on the knight - the
+            only piece that can jump over others and move in a unique L-shaped
+            pattern. So saddle up your horsey and get ready for this powerful
+            piece.
           </p>
         </div>
       </div>

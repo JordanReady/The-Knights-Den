@@ -66,38 +66,29 @@ export default function BasicRules(props) {
         </div>
         <div className="col-12">
           <p className="content">
-            We now have the board set up and ready to play a game of chess, so
-            how do we actually play? The goal of chess is to try and capture
-            your opponents king. Each player will take turns, starting with the
-            white player, to move a single piece on their turn. You are not
-            allowed to move a piece to a square that already has one of your own
-            pieces on it and, with the exception of the knight, you are not
-            allowed to move over a piece either. As previously mentioned, we
-            will go into more detail about how each piece can move, these are
-            just the general rules of play that apply to most situations. When a
-            player moves a piece into a square that is occupied by an opponents
-            piece, that piece is then captured and removed from the board. You
-            can only capture one piece per move and the piece that you use to
-            capture an opponents piece will be placed on that square ending your
-            turn. Often times, after you capture an opponents piece, that piece
-            will be vulnerable to being captured on your opponents next turn.
-            The game can end after someone can no longer defend their king which
-            is known as "Checkmate". This results in the player who put the
-            opposing player in checkmate, as the winner receiving 1 point and
-            the loser, who was put in checkmate, receiving 0 points. However,
-            often times a game will end in a "Draw" or "Stalemate". Both of
-            these outcomes will not have a winner and will result in 1/2 a point
-            for each player. A draw can be a mutual agreement between players at
-            any time during the game or in the event where there is not enough
-            pieces for either player to checkmate the king. A stalemate will
-            occur if the king is not directly under attack on their turn to
-            move, but all available squares the king has to move would put the
-            king in checkmate. If these outcomes seem confusing right now, move
-            on to the next sections to get a better understanding of how pieces
-            move and attack each other and revisit this section later. Chess is
-            a complicated game but with enough practice, all these rules will
-            make sense and you'll be checkmating your opponents before you know
-            it!
+            Congratulations on getting your pieces set up properly! Now that
+            we've got our battlefield established, it's time to learn the basic
+            rules of the game. The first thing to remember is that each player
+            takes turns moving one of their pieces starting with the white
+            player going first. The goal is to put your opponent's king in a
+            position where it cannot escape capture, also known as checkmate. In
+            the world of chess, each piece has its own unique abilities and
+            limitations. Pawns may seem weak and insignificant, but they are the
+            backbone of any army. They can only move forward, but they move with
+            determination and purpose, inching ever closer to their goal. The
+            knights are the daring adventurers of the chessboard, leaping over
+            obstacles and outwitting their opponents. They can move in ways that
+            no other piece can, making them a valuable asset in any battle.
+            Queens are the powerful rulers of the board, able to move in any
+            direction they please. They are the most versatile and dangerous
+            piece on the board, feared by all who face them. And then there's
+            the king - the most important piece on the board. He may be limited
+            in his movements, but he is the centerpiece of any strategy. Protect
+            him at all costs, and use his special ability to castle to your
+            advantage. But if that all seems a bit overwelming or confusing,
+            don't worry, I'll be your guide through this new world of chess.
+            We'll start with the humble pawn and work our way up to the more
+            powerful pieces.
           </p>
         </div>
       </div>
