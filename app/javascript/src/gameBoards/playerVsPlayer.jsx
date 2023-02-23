@@ -219,6 +219,7 @@ export default function PlayerVsPlayer(props) {
       game.move(move);
     });
     setGame(game);
+    getGameFen();
   }, [moves]);
 
   //set orientation of board for current player
@@ -348,8 +349,7 @@ export default function PlayerVsPlayer(props) {
     console.log("recieved move");
     console.log(recievedMove);
     const gameCopy = { ...game };
-    gameCopy.move(recievedMove);
-    setGame(gameCopy);
+    handleMove(recievedMove, gameCopy.turn());
     setMoves(data.moves.map((move) => move.move));
   }
 
@@ -431,6 +431,7 @@ export default function PlayerVsPlayer(props) {
         promotion: "q", // always promote to a queen for example simplicity
       });
       setGame(gameCopy);
+      getGameFen();
       // illegal move
       if (move === null) return false;
       // set moves
@@ -495,6 +496,7 @@ export default function PlayerVsPlayer(props) {
         promotion: "q", // always promote to a queen for example simplicity
       });
       setGame(gameCopy);
+      getGameFen();
 
       // if invalid, setMoveFrom and getMoveOptions
       if (move === null) {
@@ -626,6 +628,32 @@ export default function PlayerVsPlayer(props) {
       .then((data) => {
         console.log("data");
         console.log(data);
+      });
+  }
+
+  function getGameFen() {
+    let boardGameFen = game.fen();
+    //let apiGame be a new game
+    let apiGame = new Chess();
+    //fetch the game moves from the database
+    fetch(`/api/games/${gameId}/moves`)
+      .then((response) => response.json())
+      .then((data) => {
+        //loop through the moves
+        for (let i = 0; i < data.length; i++) {
+          //make the move on the apiGame
+          apiGame.move(data[i].move);
+        }
+        console.log(apiGame.fen());
+        //return the fen
+        if (boardGameFen === apiGame.fen()) {
+          return true;
+        } else {
+          setGame(new Chess(apiGame.fen()));
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 
