@@ -96,6 +96,7 @@ function Index() {
               analyze={analyze}
               moves={moves}
               movesFetched={movesFetched}
+              setMoves={setMoves}
             />
             <br />
           </>

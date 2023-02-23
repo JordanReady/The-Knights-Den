@@ -57,6 +57,7 @@ export default function PlayerVsPlayer(props) {
     handleMovesHistory,
     moves,
     movesFetched,
+    setMoves,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -210,15 +211,15 @@ export default function PlayerVsPlayer(props) {
     getGameInfo();
   }, []);
 
-  //make moves when props.moves changes
+  //make moves when moves changes
   useEffect(() => {
     console.log(" make moves");
-    console.log(props.moves);
-    props.moves.forEach((move) => {
+    console.log(moves);
+    moves.forEach((move) => {
       game.move(move);
     });
     setGame(game);
-  }, [props.moves]);
+  }, [moves]);
 
   //set orientation of board for current player
   useEffect(() => {
@@ -284,7 +285,7 @@ export default function PlayerVsPlayer(props) {
         return response.json();
       })
       .then((data) => {
-        props.handleMovesHistory(data.map((move) => move.move));
+        handleMovesHistory(data.map((move) => move.move));
         console.log("moves");
         console.log(data.map((move) => move.move));
         return fetch(`/api/games/${gameId}`);
@@ -349,6 +350,7 @@ export default function PlayerVsPlayer(props) {
     const gameCopy = { ...game };
     gameCopy.move(recievedMove);
     setGame(gameCopy);
+    setMoves(data.moves.map((move) => move.move));
   }
 
   function handleUpdateResignation(data) {
@@ -432,7 +434,7 @@ export default function PlayerVsPlayer(props) {
       // illegal move
       if (move === null) return false;
       // set moves
-      props.handleMove(move, gameCopy.turn(), gameId);
+      handleMove(move, gameCopy.turn(), gameId);
       return true;
     }
   }
@@ -637,7 +639,7 @@ export default function PlayerVsPlayer(props) {
             <br />
             <button
               className="board-btn"
-              onClick={() => props.analyze(gameId, gameOverMessage, gameWinner)}
+              onClick={() => analyze(gameId, gameOverMessage, gameWinner)}
             >
               Analyze Game
             </button>
