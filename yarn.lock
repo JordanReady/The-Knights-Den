@@ -964,13 +964,6 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@chrisoakman/chessboardjs@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@chrisoakman/chessboardjs/-/chessboardjs-1.0.0.tgz#2cfc3399bed5e9933bd8d02ea4b405e21a0b611b"
-  integrity sha512-JHXHoQwwc86xW3F0YIdFcEWLnPldee5mHkqwJbOTeDh5gvNmYXyBj6AkeecDkj2WtORF959yaWYlpyZHUl3LCQ==
-  dependencies:
-    jquery ">=3.4.1"
-
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.npmjs.org/@csstools/convert-colors/-/convert-colors-1.4.0.tgz"
@@ -4092,11 +4085,6 @@ jest-worker@^26.5.0:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
-
-jquery@>=3.4.1:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
-  integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
 
 jquery@^3.6.2:
   version "3.6.2"
