@@ -215,10 +215,6 @@ export default function PlayerVsPlayer(props) {
   useEffect(() => {
     console.log(" make moves");
     console.log(moves);
-    moves.forEach((move) => {
-      game.move(move);
-    });
-    setGame(game);
     getGameFen();
   }, [moves]);
 
@@ -430,12 +426,15 @@ export default function PlayerVsPlayer(props) {
         to: targetSquare,
         promotion: "q", // always promote to a queen for example simplicity
       });
-      setGame(gameCopy);
-      getGameFen();
       // illegal move
       if (move === null) return false;
       // set moves
       handleMove(move, gameCopy.turn(), gameId);
+      setMoveFrom("");
+      setOptionSquares({});
+      setTimeout(() => {
+        getGameFen();
+      }, 500);
       return true;
     }
   }
@@ -495,8 +494,6 @@ export default function PlayerVsPlayer(props) {
         to: square,
         promotion: "q", // always promote to a queen for example simplicity
       });
-      setGame(gameCopy);
-      getGameFen();
 
       // if invalid, setMoveFrom and getMoveOptions
       if (move === null) {
@@ -506,6 +503,9 @@ export default function PlayerVsPlayer(props) {
       handleMove(move, gameCopy.turn(), gameId);
       setMoveFrom("");
       setOptionSquares({});
+      setTimeout(() => {
+        getGameFen();
+      }, 500);
     }
   }
 
