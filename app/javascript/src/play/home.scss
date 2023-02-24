@@ -69,15 +69,15 @@ ul {
   border-radius: 8px;
   z-index: 99;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  max-height: 45px;
+  max-height: 45px !important;
 }
 
 .select-btn {
   min-width: 126px;
+  max-height: 45px !important;
   @media screen and (max-width: 991px) {
     min-width: 75px;
     font-size: 14px;
-    min-height: -webkit-fill-available;
     padding: 0.5rem;
     margin: 0;
   }
@@ -283,7 +283,7 @@ select {
 }
 
 .btn-col-el {
-  max-height: 45px;
+  max-height: 45px !important;
 }
 
 //green theme
