@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       patch :offer_draw, on: :member
       patch :reset_draw, on: :member
       patch :resignation, on: :member
+      patch :update_winner_and_loser, on: :member
       resources :moves, only: [:create, :index] do
         delete :delete_last_move, on: :collection
         delete :reset_moves, on: :collection

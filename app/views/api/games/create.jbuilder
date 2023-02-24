@@ -7,4 +7,6 @@ json.game do
     json.player_1_resigned @game.player_1_resigned
     json.player_2_resigned @game.player_2_resigned
     json.game_over @game.game_over
+    json.winner @game.winner
+    json.loser @game.loser
 end

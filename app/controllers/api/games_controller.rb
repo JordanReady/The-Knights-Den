@@ -33,6 +33,19 @@ module Api
         end
     end
 
+    def update_winner_and_loser
+        @game = Game.find(params[:id])
+        @game.game_over = true
+        @game.winner = params[:winner]
+        @game.loser = params[:loser]
+        if @game.save
+            ActionCable.server.broadcast("game_#{@game.id}_channel", {type: "UPDATE_WINNER_AND_LOSER", game: @game})
+            render json: @game
+        else
+            render json: @game.errors, status: :unprocessable_entity
+        end
+    end
+
     def destroy
         @game.destroy
         head :no_content

@@ -101,6 +101,9 @@ export default function PlayerVsPlayer(props) {
     } else if (data.type === "UPDATE_RESIGNATION") {
       console.log("Updating resign...");
       handleUpdateResignation(data);
+    } else if (data.type === "UPDATE_WINNER_AND_LOSER") {
+      console.log("Updating game...");
+      handleUpdateWinnerAndLoser(data);
     }
   }, [data]);
 
@@ -126,8 +129,6 @@ export default function PlayerVsPlayer(props) {
       setGameOver(true);
       setGameOverMessage("Draw!");
       setGameWinner("Game over!");
-      updateDraw(whitePlayerId);
-      updateDraw(blackPlayerId);
     }
   }, [
     whitePlayerDraw,
@@ -166,41 +167,54 @@ export default function PlayerVsPlayer(props) {
         setGameOverMessage("Checkmate! Game over.");
         if (turn === "w") {
           setGameWinner("Black wins!");
-          updateWin(blackPlayerId);
-          setTimeout(() => {
-            updateLoss(whitePlayerId);
-          }, 500);
+          fetch(`/api/games/${gameId}/update_winner_and_loser`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+                .content,
+            },
+            body: JSON.stringify({
+              winner: blackPlayerId,
+              loser: whitePlayerId,
+            }),
+          });
         } else {
           setGameWinner("White wins!");
-          updateWin(whitePlayerId);
-          setTimeout(() => {
-            updateLoss(blackPlayerId);
-          }, 500);
+          fetch(`/api/games/${gameId}/update_winner_and_loser`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+                .content,
+            },
+            body: JSON.stringify({
+              winner: whitePlayerId,
+              loser: blackPlayerId,
+            }),
+          });
         }
       } else if (game.in_stalemate()) {
         setGameOverMessage("Stalemate! Game over.");
-        updateDraw(whitePlayerDraw);
+        updatePlayerDraw(whitePlayerId);
         setTimeout(() => {
-          updateDraw(blackPlayerDraw);
-        }, 500);
+          updatePlayerDraw(blackPlayerId);
+        }, 250);
       } else if (game.insufficient_material()) {
         setGameOverMessage("Insufficient material! Game over.");
-        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(blackPlayerDraw);
-        }, 500);
+          updatePlayerDraw(blackPlayerId);
+        }, 250);
       } else if (game.in_threefold_repetition()) {
         setGameOverMessage("Threefold repetition! Game over.");
-        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(blackPlayerDraw);
-        }, 500);
+          updatePlayerDraw(blackPlayerId);
+        }, 250);
       } else if (game.in_draw()) {
         setGameOverMessage("Draw! Game over.");
-        updateDraw(whitePlayerDraw);
         setTimeout(() => {
-          updateDraw(blackPlayerDraw);
-        }, 500);
+          updatePlayerDraw(blackPlayerId);
+        }, 250);
       }
     }
     setMoveNumber(moveNumber + 1);
@@ -323,7 +337,7 @@ export default function PlayerVsPlayer(props) {
       setGameOver(true);
       setGameOverMessage("Draw!");
       setGameWinner("Game over!");
-      updateDraw();
+      setWaitingForDraw(false);
     } else if (whitePlayerDraw && currentPlayerColor === "white") {
       setDrawOffered(false);
     } else if (blackPlayerDraw && currentPlayerColor === "black") {
@@ -347,6 +361,17 @@ export default function PlayerVsPlayer(props) {
     const gameCopy = { ...game };
     handleMove(recievedMove, gameCopy.turn());
     setMoves(data.moves.map((move) => move.move));
+    // check if recieved move has a #
+    if (recievedMove.includes("#")) {
+      setGameOver(true);
+      setGameOverMessage("Checkmate! Game over!");
+      if (gameCopy.turn() === "w") {
+        setGameWinner("Black wins!");
+      }
+      if (gameCopy.turn() === "b") {
+        setGameWinner("White wins!");
+      }
+    }
   }
 
   function handleUpdateResignation(data) {
@@ -357,13 +382,45 @@ export default function PlayerVsPlayer(props) {
     //iif either player has resigned, game is over
     if (whitePlayerResignation === true) {
       setGameOver(true);
+      setWhitePlayerResigned(true);
       setGameOverMessage("White resigned!");
       setGameWinner("Black wins!");
     }
     if (blackPlayerResignation === true) {
       setGameOver(true);
+      setBlackPlayerResigned(true);
       setGameOverMessage("Black resigned!");
       setGameWinner("White wins!");
+    }
+  }
+
+  function handleUpdateWinnerAndLoser(data) {
+    let whitePlayerResignation = data.game.player_1_resigned;
+    let blackPlayerResignation = data.game.player_2_resigned;
+    let whitePlayerDraw = data.game.player_1_draw_offer;
+    let blackPlayerDraw = data.game.player_2_draw_offer;
+    console.log("whitePlayerResignation and blackPlayerResignation");
+    console.log(whitePlayerResignation + " " + blackPlayerResignation);
+    console.log("whitePlayerDraw and blackPlayerDraw");
+    console.log(whitePlayerDraw + " " + blackPlayerDraw);
+    //iif either player has resigned, game is over
+    if (whitePlayerResignation === true) {
+      setGameOver(true);
+      setWhitePlayerResigned(true);
+      setGameOverMessage("White resigned!");
+      setGameWinner("Black wins!");
+    }
+    if (blackPlayerResignation === true) {
+      setGameOver(true);
+      setBlackPlayerResigned(true);
+      setGameOverMessage("Black resigned!");
+      setGameWinner("White wins!");
+    }
+    //if both players have offered a draw, game is over
+    if (whitePlayerDraw && blackPlayerDraw) {
+      setGameOver(true);
+      setGameOverMessage("Draw!");
+      setGameWinner("Game over!");
     }
   }
 
@@ -376,42 +433,6 @@ export default function PlayerVsPlayer(props) {
       setBoardOrientation("black");
     }
   };
-
-  function updateDraw(id) {
-    setDrawOffered(false);
-    setDrawReceived(false);
-    setWaitingForDraw(false);
-    setTimeout(() => {
-      fetch(`/api/users/${id}/stats/draw`)
-        .then(handleErrors)
-        .then((data) => {})
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 1000);
-  }
-
-  function updateWin(id) {
-    setTimeout(() => {
-      fetch(`/api/users/${id}/stats/win`)
-        .then(handleErrors)
-        .then((data) => {})
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 1000);
-  }
-
-  function updateLoss(id) {
-    setTimeout(() => {
-      fetch(`/api/users/${id}/stats/loss`)
-        .then(handleErrors)
-        .then((data) => {})
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 1000);
-  }
 
   function onDrop(sourceSquare, targetSquare) {
     // check whos turn it is and only allow them to move if its their turn
@@ -574,7 +595,6 @@ export default function PlayerVsPlayer(props) {
     if (whitePlayerDraw && blackPlayerDraw) {
       setGameOver(true);
       setGameOverMessage("Draw");
-      updateDraw(userId);
     }
   }
 
@@ -723,7 +743,6 @@ export default function PlayerVsPlayer(props) {
                 setGameOver(true);
                 setGameOverMessage("Draw");
                 updatePlayerDraw();
-                updateDraw();
               }}
             >
               Accept
@@ -758,18 +777,51 @@ export default function PlayerVsPlayer(props) {
                 setUserResign();
                 setGameOver(true);
                 setGameOverMessage(user + " Resigns");
-                setGameWinner(user === "White" ? "Black Wins" : "White Wins");
-                updateLoss(userId);
-                setTimeout(() => {
-                  if (userId === whitePlayerId) {
-                    updateWin(blackPlayerId);
-                    setGameWinner("Black Wins");
-                  }
-                  if (userId === blackPlayerId) {
-                    updateWin(whitePlayerId);
-                    setGameWinner("White Wins");
-                  }
-                }, 1000);
+                setGameWinner(user === "White" ? "Black Wins!" : "White Wins!");
+                if (user === "White") {
+                  setGameWinner("Black Wins");
+                  fetch(`/api/games/${gameId}/update_winner_and_loser`, {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "X-CSRF-Token": document.querySelector(
+                        'meta[name="csrf-token"]'
+                      ).content,
+                    },
+                    body: JSON.stringify({
+                      winner: blackPlayerId,
+                      loser: whitePlayerId,
+                    }),
+                  });
+                }
+                if (user === "Black") {
+                  setGameWinner("White Wins");
+                  fetch(`/api/games/${gameId}/update_winner_and_loser`, {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "X-CSRF-Token": document.querySelector(
+                        'meta[name="csrf-token"]'
+                      ).content,
+                    },
+                    body: JSON.stringify({
+                      winner: whitePlayerId,
+                      loser: blackPlayerId,
+                    }),
+                  });
+                }
+                fetch(`/api/games/${gameId}/resignation`, {
+                  method: "PATCH",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": document.querySelector(
+                      'meta[name="csrf-token"]'
+                    ).content,
+                  },
+                  body: JSON.stringify({
+                    user_id: userId,
+                  }),
+                });
               }}
             >
               Accept
