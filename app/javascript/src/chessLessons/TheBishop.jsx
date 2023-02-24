@@ -66,7 +66,7 @@ export default function TheBishop(props) {
             other hand, can't be bothered with this silly dance routine, which
             is why they leap right over the pawns when making their grand
             entrance. Now that we've covered the powerful diagonal movements of
-            the bishops, the fancy footwork of the knights, and the uninpressive
+            the bishops, the fancy footwork of the knights, and the unimpressive
             shuffle of the pawns, it's time to turn our attention to the
             straight-shooting rooks. They may not be as flashy as some of the
             other pieces, but don't be fooled - they can still pack a punch on

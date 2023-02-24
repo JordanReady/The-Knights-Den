@@ -63,10 +63,10 @@ export default function TheKnight(props) {
             L-shape. This pattern can be a bit tricky to visualize, but it's
             really quite simple once you get the hang of it. In fact, this would
             be a good time to mention if you haven't visited the terms page,
-            there is an interactive board that allows you to cl;ick on a piece
-            to show all of that pieces legal moves and allow you to make moves
-            to help better understand the knight or any of the other (not as
-            cool) pieces that you want!
+            there is an interactive board that allows you to click on a piece to
+            show all of that pieces legal moves and allow you to make moves to
+            help better understand the knight or any of the other (not as cool)
+            pieces that you want!
           </p>
         </div>
       </div>
