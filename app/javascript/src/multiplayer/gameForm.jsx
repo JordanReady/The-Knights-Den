@@ -10,6 +10,7 @@ const GameForm = (props) => {
   const [gameLink, setGameLink] = useState(undefined);
   const [white_player_id, setWhitePlayerId] = useState("");
   const [black_player_id, setBlackPlayerId] = useState("");
+  const [joinGameId, setJoinGameId] = useState("");
 
   const handleWhitePlayer = (e) => {
     setWhitePlayerId(e.target.value);
@@ -63,6 +64,17 @@ const GameForm = (props) => {
     }
   };
 
+  const joinGame = (e) => {
+    e.preventDefault();
+    if (!joinGameId || isNaN(joinGameId)) {
+      alert("Please enter a valid game ID.");
+    } else {
+      const gameLink = window.location.href + "/" + joinGameId;
+      setGameLink(gameLink);
+      window.location.href = gameLink;
+    }
+  };
+
   return (
     <div className="container game-container">
       <div className="row">
@@ -103,11 +115,33 @@ const GameForm = (props) => {
               <p className="game-info">
                 <span>Here is your game link!</span>
                 {gameLink} <br />
+                <span>Share this link with your opponent!</span>
+                <br />
+                <span>Or give them this game id to enter!</span>
+                <span>Game ID: {game_id}</span>
                 <span>
                   Click <a href={gameLink}>Here</a> to start your game!
                 </span>
               </p>
             )}
+          </form>
+          <div className="col-12 header">
+            <h1>Join Multiplayer Game!</h1>
+          </div>
+          <form className="game-form">
+            <div className="form-group">
+              <label>Game ID</label>
+              <input
+                type="int"
+                className="form-control"
+                placeholder="Game ID"
+                value={joinGameId}
+                onChange={(e) => setJoinGameId(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="btn create-btn" onClick={joinGame}>
+              Join Game
+            </button>
           </form>
         </div>
       </div>
