@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
-before_action :authenticate_user!, only: [:learn, :stats, :multiplayer, :multiplayer_game]
-before_action :set_authenticated
+  before_action :authenticate_user!, only: [:learn, :stats, :multiplayer, :multiplayer_game]
+  before_action :set_authenticated
 
   def home
     render 'home'
@@ -43,6 +43,4 @@ before_action :set_authenticated
     session = Session.find_by(token: cookies.signed[:session_token])
     @authenticated = !!session
   end
-    
 end
-

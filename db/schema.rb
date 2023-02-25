@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2023_02_24_053215) do
-
   create_table "game_rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,5 +65,4 @@ ActiveRecord::Schema.define(version: 2023_02_24_053215) do
     t.integer "draws", default: 0
     t.integer "total_games", default: 0
   end
-
 end

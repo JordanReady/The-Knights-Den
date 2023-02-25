@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/multiplayer' => 'static_pages#multiplayer'
   get '/multiplayer/:id' => 'static_pages#multiplayer_game'
 
-  #resources :game_rooms, only: [:index, :show, :create, :destroy]
-  #mount ActionCable.server => '/cable'
+  # resources :game_rooms, only: [:index, :show, :create, :destroy]
+  # mount ActionCable.server => '/cable'
 
   namespace :api do
     resources :users, only: [:create]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'users/:id/stats/draw' => 'stats#update_draw'
     get 'users/:id/stats/reset' => 'stats#reset_stats'
     resources :sessions, only: [:create, :destroy, :authenticated]
-    resources :games, only: [:create, :show,] do
+    resources :games, only: [:create, :show] do
       patch :offer_draw, on: :member
       patch :reset_draw, on: :member
       patch :resignation, on: :member

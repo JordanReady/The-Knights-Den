@@ -1,3 +1,3 @@
-json.move do 
-    json.move @move.move
+json.move do
+  json.move @move.move
 end

@@ -1,4 +1,3 @@
 class Move < ApplicationRecord
-    belongs_to :game
-  end
-  
+  belongs_to :game
+end

@@ -1,2 +1,26 @@
 inherit_from:
   - .rubocop_airbnb.yml
+
+Layout/LineLength:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+Lint/ImplicitStringConcatenation:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Airbnb/ModuleMethodInWrongFile:
+  Enabled: false
+
+Airbnb/SimpleModifierConditional:
+  Enabled: false
