@@ -499,7 +499,7 @@ export default function PlayerVsBot(props) {
   return (
     <>
       <div className="chessboard">
-        {gameOver && (
+        {gameOver && !firstWin && (
           <div className="game-over-message">
             {gameOverMessage} <br />
             {gameWinner}

@@ -17,6 +17,7 @@ export default function LearnBoard(props) {
     setShowMessage,
     fens,
     startFen,
+    showButtons,
   } = props;
 
   const [game, setGame] = useState(new Chess());
@@ -195,6 +196,14 @@ export default function LearnBoard(props) {
     }
   }
 
+  function safeGameMutate(modify) {
+    setGame((g) => {
+      const update = { ...g };
+      modify(update);
+      return update;
+    });
+  }
+
   return (
     <div className={colorTheme}>
       <div className="chessboard">
@@ -228,6 +237,40 @@ export default function LearnBoard(props) {
             backgroundColor: lightSquareColor,
           }}
         />
+        {showButtons && (
+          <div className="btn-row">
+            <button
+              className="btn board-btn"
+              onClick={() => {
+                safeGameMutate((game) => {
+                  game.reset();
+                });
+              }}
+            >
+              Reset
+            </button>
+            <button
+              className="btn board-btn"
+              onClick={() => {
+                safeGameMutate((game) => {
+                  game.undo();
+                });
+              }}
+            >
+              Undo
+            </button>
+            <button
+              className="btn board-btn"
+              onClick={(game) => {
+                setBoardOrientation(
+                  boardOrientation === "white" ? "black" : "white"
+                );
+              }}
+            >
+              Flip Board
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

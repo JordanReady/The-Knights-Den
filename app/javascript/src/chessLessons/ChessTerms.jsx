@@ -21,6 +21,7 @@ export default function ChessTerms(props) {
               colorTheme={colorTheme}
               boardWidth={boardWidth}
               showMessage={true}
+              showButtons={true}
             />
           </div>
         </div>
