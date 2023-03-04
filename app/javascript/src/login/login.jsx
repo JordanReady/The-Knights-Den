@@ -19,6 +19,25 @@ class Login extends React.Component {
     error: "",
   };
 
+  rotateColorTheme() {
+    const colorThemes = ["", "green", "blue", "red", "purple", ""];
+    const currentIndex = colorThemes.indexOf(this.state.colorTheme);
+    const nextIndex = (currentIndex + 1) % colorThemes.length;
+    this.setState({ colorTheme: colorThemes[nextIndex] });
+  }
+
+  componentDidMount() {
+    // Set up the timer to change the color theme every 5 seconds
+    this.timerId = setInterval(() => {
+      this.rotateColorTheme();
+    }, 6000);
+  }
+
+  componentWillUnmount() {
+    // Clean up the timer when the component unmounts
+    clearInterval(this.timerId);
+  }
+
   render() {
     const { email, password, username, colorTheme } = this.state;
     return (
@@ -39,19 +58,40 @@ class Login extends React.Component {
                     But wait, there's more! Our bot is programmed to beat even
                     the most experienced players, so good luck with that. Or, if
                     you're feeling lucky, challenge your friends to see who is
-                    the true chess master. So what are you waiting for? Sign up
-                    or login now and join The Knights Den, where we promise to
-                    complicate your life in the best way possible... Chess!
+                    the true chess master. And if you haven't noticed by now, we
+                    have a variety of themes to chose from! Click on the theme
+                    dropdown after you login to add some color to your chess
+                    journey! So what are you waiting for? Sign up or login now
+                    and join The Knights Den, where we promise to complicate
+                    your life in the best way possible... Chess!
                   </h3>
                 </div>
                 <div className="chess-img"></div>
               </div>
-              <div className="col-12 col-lg-4 mt-2">
+              <div className="col-12 col-lg-4 mt-2 login-signup-box">
                 <LoginWidget />
                 <SignUpWidget />
               </div>
             </div>
           </div>
+          <footer>
+            <div className="row">
+              <div className="col-12">
+                <p>
+                  Interested in learning more about the development proccess of
+                  The Knights Den?
+                  <br />
+                  Check out my github repo <span> </span>
+                  <a
+                    href="https://github.com/JordanReady/The-Knights-Den"
+                    target="blank"
+                  >
+                    here!
+                  </a>
+                </p>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
     );

@@ -102,3 +102,229 @@ body {
     }
   }
 }
+
+.login-signup-box {
+  margin-bottom: 130px;
+  a {
+    color: $dark-color;
+  }
+}
+
+footer {
+  // make the footer stick to the bottom of the page
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $dark-color !important;
+  color: $light-color !important;
+  text-align: center;
+  padding: 0.5rem;
+  a {
+    color: $light-color !important;
+    font-weight: bold;
+  }
+}
+
+//green theme
+.green {
+  .hero-text {
+    color: $dark-green-color !important;
+    text-shadow: 1px 1px 1px $light-green-color;
+  }
+
+  .form-box {
+    background-color: $light-green-color !important;
+    color: $dark-green-color !important;
+    border: 2px solid $dark-green-color !important;
+    input {
+      background-color: $dark-green-color !important;
+      color: $light-green-color !important;
+      border: 2px solid $dark-green-color !important;
+      &::placeholder {
+        color: $light-green-color !important;
+      }
+    }
+    input:focus {
+      background-color: $dark-green-color !important;
+      color: $light-green-color !important;
+      border: 2px solid $dark-green-color !important;
+    }
+    .btn {
+      background-color: $dark-green-color !important;
+      color: $light-green-color !important;
+      border: 2px solid $light-green-color !important;
+    }
+    .btn:hover {
+      background-color: $light-green-color !important;
+      color: $dark-green-color !important;
+      border: 2px solid $dark-green-color !important;
+    }
+  }
+
+  .login-signup-box {
+    a {
+      color: $dark-green-color !important;
+    }
+  }
+
+  footer {
+    background-color: $dark-green-color !important;
+    color: $light-green-color !important;
+    a {
+      color: $light-green-color !important;
+    }
+  }
+}
+
+//blue theme
+.blue {
+  .hero-text {
+    color: $dark-blue-color !important;
+    text-shadow: 1px 1px 1px $light-blue-color;
+  }
+
+  .form-box {
+    background-color: $light-blue-color !important;
+    color: $dark-blue-color !important;
+    border: 2px solid $dark-blue-color !important;
+    input {
+      background-color: $dark-blue-color !important;
+      color: $light-blue-color !important;
+      border: 2px solid $dark-blue-color !important;
+      &::placeholder {
+        color: $light-blue-color !important;
+      }
+    }
+    input:focus {
+      background-color: $dark-blue-color !important;
+      color: $light-blue-color !important;
+      border: 2px solid $dark-blue-color !important;
+    }
+    .btn {
+      background-color: $dark-blue-color !important;
+      color: $light-blue-color !important;
+      border: 2px solid $light-blue-color !important;
+    }
+    .btn:hover {
+      background-color: $light-blue-color !important;
+      color: $dark-blue-color !important;
+      border: 2px solid $dark-blue-color !important;
+    }
+  }
+
+  .login-signup-box {
+    a {
+      color: $dark-blue-color !important;
+    }
+  }
+
+  footer {
+    background-color: $dark-blue-color !important;
+    color: $light-blue-color !important;
+    a {
+      color: $light-blue-color !important;
+    }
+  }
+}
+
+//red theme
+.red {
+  .hero-text {
+    color: $dark-red-color !important;
+    text-shadow: 1px 1px 1px $light-red-color;
+  }
+
+  .form-box {
+    background-color: $light-red-color !important;
+    color: $dark-red-color !important;
+    border: 2px solid $dark-red-color !important;
+    input {
+      background-color: $dark-red-color !important;
+      color: $light-red-color !important;
+      border: 2px solid $dark-red-color !important;
+      &::placeholder {
+        color: $light-red-color !important;
+      }
+    }
+    input:focus {
+      background-color: $dark-red-color !important;
+      color: $light-red-color !important;
+      border: 2px solid $dark-red-color !important;
+    }
+    .btn {
+      background-color: $dark-red-color !important;
+      color: $light-red-color !important;
+      border: 2px solid $light-red-color !important;
+    }
+    .btn:hover {
+      background-color: $light-red-color !important;
+      color: $dark-red-color !important;
+      border: 2px solid $dark-red-color !important;
+    }
+  }
+
+  .login-signup-box {
+    a {
+      color: $dark-red-color !important;
+    }
+  }
+
+  footer {
+    background-color: $dark-red-color !important;
+    color: $light-red-color !important;
+    a {
+      color: $light-red-color !important;
+    }
+  }
+}
+
+//purple theme
+.purple {
+  .hero-text {
+    color: $dark-purple-color !important;
+    text-shadow: 1px 1px 1px $light-purple-color;
+  }
+
+  .form-box {
+    background-color: $light-purple-color !important;
+    color: $dark-purple-color !important;
+    border: 2px solid $dark-purple-color !important;
+    input {
+      background-color: $dark-purple-color !important;
+      color: $light-purple-color !important;
+      border: 2px solid $dark-purple-color !important;
+      &::placeholder {
+        color: $light-purple-color !important;
+      }
+    }
+    input:focus {
+      background-color: $dark-purple-color !important;
+      color: $light-purple-color !important;
+      border: 2px solid $dark-purple-color !important;
+    }
+    .btn {
+      background-color: $dark-purple-color !important;
+      color: $light-purple-color !important;
+      border: 2px solid $light-purple-color !important;
+    }
+    .btn:hover {
+      background-color: $light-purple-color !important;
+      color: $dark-purple-color !important;
+      border: 2px solid $dark-purple-color !important;
+    }
+  }
+
+  .login-signup-box {
+    a {
+      color: $dark-purple-color !important;
+    }
+  }
+
+  footer {
+    background-color: $dark-purple-color !important;
+    color: $light-purple-color !important;
+    a {
+      color: $light-purple-color !important;
+    }
+  }
+}
