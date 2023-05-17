@@ -2,11 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "../navbar/navbar";
 import { safeCredentials, handleErrors } from "../utils/fetchHelper";
+import { useEffect } from "react";
 
 import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./login.scss";
+import Logo from "../../images/knights-den-logo.png";
+import LogoBlue from "../../images/knights-den-logo-blue.png";
+import LogoRed from "../../images/knights-den-logo-red.png";
+import LogoPurple from "../../images/knights-den-logo-purple.png";
+import LogoGreen from "../../images/knights-den-logo-green.png";
 import LoginWidget from "./loginWidget";
 import SignUpWidget from "./signupWidget";
 
@@ -24,6 +30,31 @@ class Login extends React.Component {
     const currentIndex = colorThemes.indexOf(this.state.colorTheme);
     const nextIndex = (currentIndex + 1) % colorThemes.length;
     this.setState({ colorTheme: colorThemes[nextIndex] });
+  }
+
+  renderLogo() {
+    const { colorTheme } = this.state;
+    let logoSrc = Logo;
+
+    switch (colorTheme) {
+      case "green":
+        logoSrc = LogoGreen;
+        break;
+      case "blue":
+        logoSrc = LogoBlue;
+        break;
+      case "red":
+        logoSrc = LogoRed;
+        break;
+      case "purple":
+        logoSrc = LogoPurple;
+        break;
+      default:
+        logoSrc = Logo;
+        break;
+    }
+
+    return <img src={logoSrc} alt="Logo" className="logo" />;
   }
 
   componentDidMount() {
@@ -48,6 +79,12 @@ class Login extends React.Component {
             <div className="row">
               <div className="hero col-12 col-lg-8 mt-2">
                 <div>
+                  <div className="row">
+                    <div className="logo-box col-12 mt-2">
+                      {this.renderLogo()}
+                      <h1 className="logo-text">The Knights Den</h1>
+                    </div>
+                  </div>
                   <h3 className="hero-text">
                     Welcome to The Knights Den, where you can become the chess
                     champion you've always dreamed of becoming! With the
