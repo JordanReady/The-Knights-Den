@@ -47,7 +47,11 @@ ul {
 }
 
 .view-port {
+  max-height: 85vh;
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .spacer {

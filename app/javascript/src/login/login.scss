@@ -17,6 +17,13 @@ body {
   font-family: "Grandstander", cursive !important;
 }
 
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 84vh;
+}
+
 .logo-box {
   display: flex;
   align-items: flex-end;
