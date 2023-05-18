@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-before_action :authenticate_user!, only: [:learn, :stats, :multiplayer, :multiplayer_game]
+before_action :authenticate_user!, only: [:learn, :stats, :multiplayer, :multiplayer_game, :home]
 before_action :set_authenticated
 
   def home
