@@ -118,12 +118,19 @@ class Login extends React.Component {
                   Interested in learning more about the development proccess of
                   The Knights Den?
                   <br />
-                  Check out my github repo <span> </span>
+                  Check out my github repo{" "}
                   <a
                     href="https://github.com/JordanReady/The-Knights-Den"
                     target="blank"
                   >
                     here!
+                  </a>{" "}
+                  Or visit my{" "}
+                  <a
+                    href="https://jordanready.github.io/my-portfolio-website/"
+                    target="blank"
+                  >
+                    Website!
                   </a>
                 </p>
               </div>
