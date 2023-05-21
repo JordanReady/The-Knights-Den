@@ -81,7 +81,7 @@ class SignUpWidget extends React.Component {
   };
 
   render() {
-    const { email, password, username } = this.state;
+    const { email, password, username, error } = this.state;
     return (
       <div className="form-box mt-2 mb-2">
         <h4>Sign up</h4>
@@ -116,6 +116,11 @@ class SignUpWidget extends React.Component {
               onChange={this.handleChange}
             />
           </div>
+          {error && (
+            <p className="error text-danger">
+              Error: {error} Please try again.
+            </p>
+          )}
           <button
             type="submit"
             className="btn btn-primary btn-block"

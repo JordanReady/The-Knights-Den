@@ -3,6 +3,7 @@ import { ReactDOM } from "react";
 import { safeCredentials, handleErrors } from "../utils/fetchHelper";
 
 import "./login.scss";
+import { error } from "jquery";
 
 class LoginWidget extends React.Component {
   state = {
@@ -43,11 +44,12 @@ class LoginWidget extends React.Component {
         this.setState({
           error: error.message,
         });
+        console.log(error);
       });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
     return (
       <div className="form-box">
         <h4>Login</h4>
@@ -72,6 +74,11 @@ class LoginWidget extends React.Component {
               onChange={this.handleChange}
             />
           </div>
+          {error && (
+            <p className="error text-danger">
+              Error: {error} Incorrect Email or Password
+            </p>
+          )}
           <button
             type="submit"
             className="btn btn-primary btn-block"
