@@ -74,7 +74,9 @@ class Login extends React.Component {
     return (
       <div className={colorTheme}>
         <div className="login">
-          <Navbar />
+          <div className="nav-container">
+            <Navbar />
+          </div>
           <div className="container login-container">
             <div className="row">
               <div className="hero col-12 col-lg-8 mt-2">

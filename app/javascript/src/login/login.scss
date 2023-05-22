@@ -22,6 +22,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 84vh;
+  @media screen and (max-width: 768px) {
+    align-items: flex-start;
+  }
 }
 
 .logo-box {
@@ -39,6 +42,10 @@ body {
     -webkit-text-stroke: 2px black; /* For webkit-based browsers like Chrome */
     text-stroke: 2px black; /* For other browsers */
   }
+}
+
+.hero {
+  display: flex;
 }
 
 .hero-text {
@@ -158,7 +165,11 @@ footer {
     display: none;
   }
   .login-signup-box {
-    margin-bottom: 110px;
+    margin-bottom: 145px;
+  }
+  .nav-container {
+    position: sticky;
+    top: 0;
   }
 }
 
